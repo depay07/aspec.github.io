@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ASPEC - 머신비전과 조명솔루션의 토탈 파트너">
+    <title>회사소개 - ASPEC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+        }
+
+        /* 네비게이션 */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo svg {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #334155;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #06b6d4;
+        }
+
+        /* 페이지 헤더 */
+        .page-header {
+            padding: 150px 30px 80px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, -30px); }
+        }
+
+        .page-header h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .page-header p {
+            font-size: 20px;
+            color: #cbd5e1;
+            position: relative;
+        }
+
+        /* 메인 컨텐츠 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 30px;
+        }
+
+        /* 인트로 섹션 */
+        .intro-section {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .intro-section h2 {
+            font-size: 42px;
+            color: #0f172a;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .intro-section .tagline {
+            font-size: 24px;
+            color: #06b6d4;
+            font-weight: 600;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .intro-section p {
+            font-size: 18px;
+            color: #475569;
+            line-height: 2;
+            max-width: 900px;
+            margin: 0 auto 20px;
+        }
+
+        .highlight-text {
+            color: #06b6d4;
+            font-weight: 700;
+        }
+
+        /* 비전 섹션 */
+        .vision-section {
+            background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+            padding: 80px 60px;
+            border-radius: 30px;
+            margin-bottom: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+        }
+
+        .vision-content {
+            position: relative;
+            text-align: center;
+        }
+
+        .vision-content h3 {
+            font-size: 36px;
+            color: #0f172a;
+            margin-bottom: 30px;
+        }
+
+        .vision-content .promise {
+            font-size: 28px;
+            color: #0891b2;
+            font-weight: 700;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .vision-content p {
+            font-size: 18px;
+            color: #475569;
+            line-height: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 사업 영역 */
+        .business-section {
+            margin-bottom: 100px;
+        }
+
+        .business-section h3 {
+            font-size: 36px;
+            color: #0f172a;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .business-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border-top: 5px solid #06b6d4;
+            position: relative;
+        }
+
+        .business-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .business-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .business-card h4 {
+            font-size: 22px;
+            color: #0f172a;
+            margin-bottom: 15px;
+        }
+
+        .business-card p {
+            color: #64748b;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .business-list {
+            list-style: none;
+        }
+
+        .business-list li {
+            padding: 8px 0;
+            color: #475569;
+            font-size: 14px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .business-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #06b6d4;
+            font-weight: 700;
+        }
+
+        /* 차별화 포인트 */
+        .difference-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 80px 60px;
+            border-radius: 30px;
+            color: white;
+            margin-bottom: 100px;
+        }
+
+        .difference-section h3 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .difference-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .difference-item {
+            text-align: center;
+        }
+
+        .difference-number {
+            width: 80px;
+            height: 80px;
+            background: rgba(6, 182, 212, 0.2);
+            border: 3px solid #06b6d4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: #06b6d4;
+            margin: 0 auto 25px;
+        }
+
+        .difference-item h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .difference-item p {
+            color: #cbd5e1;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        /* 약속 섹션 */
+        .promise-section {
+            text-align: center;
+            background: #f8fafc;
+            padding: 80px 60px;
+            border-radius: 30px;
+        }
+
+        .promise-section h3 {
+            font-size: 36px;
+            color: #0f172a;
+            margin-bottom: 40px;
+        }
+
+        .promises-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .promise-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .promise-card .icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .promise-card h4 {
+            font-size: 20px;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .promise-card p {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        /* CTA 섹션 */
+        .cta-section {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 45px;
+            background: white;
+            color: #0891b2;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 푸터 */
+        footer {
+            background: #0f172a;
+            padding: 40px 30px;
+            text-align: center;
+            color: #64748b;
+            margin-top: 80px;
+        }
+
+        /* 모바일 반응형 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .intro-section h2 {
+                font-size: 32px;
+            }
+
+            .intro-section .tagline {
+                font-size: 20px;
+            }
+
+            .vision-section,
+            .difference-section,
+            .promise-section {
+                padding: 50px 30px;
+            }
+
+            .business-grid,
+            .difference-grid,
+            .promises-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vision-content .promise {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <svg width="140" height="52" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="30" y="50" width="8" height="50" fill="#06b6d4"/>
+                        <rect x="42" y="40" width="8" height="60" fill="#0891b2"/>
+                        <rect x="54" y="45" width="8" height="55" fill="#0e7490"/>
+                        <text x="80" y="85" font-family="Arial, sans-serif" font-size="56" font-weight="700" fill="#0f172a" letter-spacing="-2px">ASPEC</text>
+                        <text x="82" y="105" font-family="Arial, sans-serif" font-size="11" fill="#64748b" letter-spacing="3px">ADVANCED SPECIFICATION</text>
+                    </svg>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">홈</a></li>
+                <li><a href="about.html" class="active">회사소개</a></li>
+                <li><a href="products.html">제품소개</a></li>
+                <li><a href="portfolio.html">포트폴리오</a></li>
+                <li><a href="contact.html">문의하기</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 페이지 헤더 -->
+    <div class="page-header">
+        <h1>ASPEC을 소개합니다</h1>
+        <p>산업 자동화의 모든 것, 한 곳에서 시작하세요</p>
+    </div>
+
+    <!-- 메인 컨텐츠 -->
+    <div class="container">
+        <!-- 인트로 -->
+        <div class="intro-section">
+            <h2>자동화의 완성, ASPEC</h2>
+            <p class="tagline">
+                머신비전 솔루션과 조명솔루션 제공 전문업체
+            </p>
+            <p>
+                <span class="highlight-text">ASPEC</span>은 머신비전과 조명 기술을 기반으로 산업 자동화의 모든 과정을 책임지는 <span class="highlight-text">토탈 솔루션 제공업체</span>입니다.
+            </p>
+            <p>
+                글로벌 선두 브랜드인 <span class="highlight-text">Cognex</span>와 <span class="highlight-text">Hikrobot</span>의 공식 파트너로서 최고 수준의 머신비전 제품을 공급하며, 
+                여기에 더해 <span class="highlight-text">장비 제작, PLC 솔루션, 전장 설계, 배선</span>까지 One-Stop으로 제공합니다.
+            </p>
+            <p>
+                단순히 제품을 납품하는 것을 넘어, <strong>설계부터 제작, 설치, 운영, 유지보수</strong>까지 자동화 라인 구축에 필요한 모든 것을 완벽하게 구현합니다.
+            </p>
+        </div>
+
+        <!-- 비전 섹션 -->
+        <div class="vision-section">
+            <div class="vision-content">
+                <h3>우리의 약속</h3>
+                <p class="promise">
+                    "고객이 필요로 할 때까지,<br>
+                    무조건 끝까지 함께합니다"
+                </p>
+                <p>
+                    ASPEC은 프로젝트의 시작부터 끝까지, 그리고 그 이후까지도 고객과 함께 걷겠다는 확고한 신념을 가지고 있습니다. 
+                    단 한 번의 거래가 아닌, 평생의 파트너가 되겠습니다. 
+                    고객의 생산 라인이 멈추지 않도록, 고객의 성공이 우리의 성공이 될 수 있도록 항상 최선을 다하겠습니다.
+                </p>
+            </div>
+        </div>
+
+        <!-- 사업 영역 -->
+        <div class="business-section">
+            <h3>ASPEC이 제공하는 토탈 솔루션</h3>
+            <div class="business-grid">
+                <div class="business-card">
+                    <div class="business-icon">📷</div>
+                    <h4>머신비전 시스템</h4>
+                    <p>세계 최고 수준의 비전 기술로 완벽한 품질 관리를 실현합니다</p>
+                    <ul class="business-list">
+                        <li>Cognex 비전 시스템</li>
+                        <li>Hikrobot 산업용 카메라</li>
+                        <li>바코드 리더 시스템</li>
+                        <li>3D 측정 솔루션</li>
+                    </ul>
+                </div>
+
+                <div class="business-card">
+                    <div class="business-icon">💡</div>
+                    <h4>조명 솔루션</h4>
+                    <p>최적의 이미지 품질을 위한 전문 조명 설계 및 제공</p>
+                    <ul class="business-list">
+                        <li>머신비전 전용 LED 조명</li>
+                        <li>맞춤형 조명 설계</li>
+                        <li>다양한 파장 및 형태</li>
+                        <li>조명 컨트롤러</li>
+                    </ul>
+                </div>
+
+                <div class="business-card">
+                    <div class="business-icon">🔧</div>
+                    <h4>장비 제작</h4>
+                    <p>현장 맞춤형 비전 검사 장비 설계 및 제작</p>
+                    <ul class="business-list">
+                        <li>검사 장비 설계/제작</li>
+                        <li>자동화 라인 통합</li>
+                        <li>기구부 설계</li>
+                        <li>3D 설계 및 시뮬레이션</li>
+                    </ul>
+                </div>
+
+                <div class="business-card">
+                    <div class="business-icon">⚙️</div>
+                    <h4>PLC & 제어 시스템</h4>
+                    <p>안정적이고 효율적인 자동화 제어 솔루션</p>
+                    <ul class="business-list">
+                        <li>PLC 프로그래밍</li>
+                        <li>HMI 개발</li>
+                        <li>SCADA 시스템</li>
+                        <li>통신 프로토콜 연동</li>
+                    </ul>
+                </div>
+
+                <div class="business-card">
+                    <div class="business-icon">🔌</div>
+                    <h4>전장 & 배선</h4>
+                    <p>안전하고 체계적인 전기 설계 및 시공</p>
+                    <ul class="business-list">
+                        <li>전장 패널 설계</li>
+                        <li>배선 작업</li>
+                        <li>안전 규격 준수</li>
+                        <li>현장 설치 및 시운전</li>
+                    </ul>
+                </div>
+
+                <div class="business-card">
+                    <div class="business-icon">💻</div>
+                    <h4>소프트웨어 개발</h4>
+                    <p>고객 요구에 맞춘 맞춤형 비전 소프트웨어</p>
+                    <ul class="business-list">
+                        <li>비전 알고리즘 개발</li>
+                        <li>딥러닝 모델 구축</li>
+                        <li>데이터 분석 시스템</li>
+                        <li>MES/ERP 연동</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 차별화 포인트 -->
+        <div class="difference-section">
+            <h3>ASPEC이 특별한 이유</h3>
+            <div class="difference-grid">
+                <div class="difference-item">
+                    <div class="difference-number">01</div>
+                    <h4>원스톱 서비스</h4>
+                    <p>설계부터 제작, 설치, A/S까지 모든 과정을 한 곳에서 해결하여 시간과 비용을 절약합니다</p>
+                </div>
+
+                <div class="difference-item">
+                    <div class="difference-number">02</div>
+                    <h4>검증된 기술력</h4>
+                    <p>글로벌 브랜드 공식 파트너이자 다수의 성공적인 프로젝트 경험을 보유한 전문가 그룹입니다</p>
+                </div>
+
+                <div class="difference-item">
+                    <div class="difference-number">03</div>
+                    <h4>맞춤형 솔루션</h4>
+                    <p>고객사의 특수한 요구사항과 현장 환경을 완벽하게 이해하고 최적의 솔루션을 제시합니다</p>
+                </div>
+
+                <div class="difference-item">
+                    <div class="difference-number">04</div>
+                    <h4>평생 파트너십</h4>
+                    <p>프로젝트 완료 후에도 지속적인 기술 지원과 업그레이드로 고객의 성장을 함께합니다</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 약속 섹션 -->
+        <div class="promise-section">
+            <h3>ASPEC의 약속</h3>
+            <div class="promises-grid">
+                <div class="promise-card">
+                    <div class="icon">🤝</div>
+                    <h4>신뢰</h4>
+                    <p>약속한 일정과 품질을 반드시 지킵니다. 고객과의 신뢰가 우리의 가장 큰 자산입니다</p>
+                </div>
+
+                <div class="promise-card">
+                    <div class="icon">⚡</div>
+                    <h4>신속</h4>
+                    <p>긴급한 문제 발생 시 24시간 내 대응합니다. 고객의 생산 라인을 멈추지 않습니다</p>
+                </div>
+
+                <div class="promise-card">
+                    <div class="icon">🎯</div>
+                    <h4>완성</h4>
+                    <p>고객이 만족할 때까지 끝까지 책임집니다. 타협하지 않는 완벽함을 추구합니다</p>
+                </div>
+
+                <div class="promise-card">
+                    <div class="icon">🌟</div>
+                    <h4>혁신</h4>
+                    <p>최신 기술을 끊임없이 연구하여 고객에게 더 나은 솔루션을 제공합니다</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h2>이제 시작할 때입니다</h2>
+            <p>ASPEC과 함께라면 당신의 자동화 프로젝트는 성공합니다</p>
+            <a href="contact.html" class="cta-button">프로젝트 상담 시작하기</a>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer>
+        <p>&copy; 2024 ASPEC. All rights reserved. | Advanced Specification</p>
+    </footer>
+</body>
+</html>
