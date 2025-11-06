@@ -356,6 +356,37 @@
             margin-top: 80px;
         }
 
+        /* 햄버거 메뉴 */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-btn span {
+            width: 28px;
+            height: 3px;
+            background: #334155;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         /* 모바일 반응형 */
         @media (max-width: 968px) {
             .contact-wrapper {
@@ -372,8 +403,38 @@
         }
 
         @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                padding: 30px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+                transition: left 0.3s ease;
+                gap: 0;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 20px 0;
+                font-size: 18px;
             }
 
             .page-header h1 {
@@ -403,11 +464,16 @@
             </div>
             <ul class="nav-links">
                 <li><a href="index.html">홈</a></li>
-                <li><a href="회사소개.html">회사소개</a></li>
-                <li><a href="제품소개페이지.html">제품소개</a></li>
-                <li><a href="포트폴리오.html">포트폴리오</a></li>
-                <li><a href="문의페이지.html" class="active">문의하기</a></li>
+                <li><a href="about.html">회사소개</a></li>
+                <li><a href="products.html">제품소개</a></li>
+                <li><a href="portfolio.html">포트폴리오</a></li>
+                <li><a href="contact.html" class="active">문의하기</a></li>
             </ul>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
@@ -485,7 +551,7 @@
                 <div class="info-card">
                     <div class="info-icon">📧</div>
                     <h3>이메일</h3>
-                    <p><a href="mailto:sales@aspec-tech.co.kr">contact@aspec-tech.co.kr</a></p>
+                    <p><a href="mailto:contact@aspec-tech.co.kr">contact@aspec-tech.co.kr</a></p>
                     <p style="margin-top: 10px; font-size: 13px; color: #64748b;">영업일 기준 24시간 이내 답변</p>
                 </div>
 
@@ -499,7 +565,7 @@
                 <div class="info-card">
                     <div class="info-icon">📍</div>
                     <h3>오시는 길</h3>
-                    <p>경기도 화성시<br>메타폴리스로 42, 902호</p>
+                    <p>서울특별시 강남구<br>테헤란로 123</p>
                     <p style="margin-top: 10px; font-size: 13px; color: #64748b;">방문 상담 시 사전 예약 필수</p>
                 </div>
 
@@ -511,7 +577,7 @@
                             <span>📞</span>
                             <span>전화 걸기</span>
                         </a>
-                        <a href="mailto:sales@aspec-tech.co.kr" class="quick-btn">
+                        <a href="mailto:contact@aspec-tech.co.kr" class="quick-btn">
                             <span>✉️</span>
                             <span>이메일 보내기</span>
                         </a>
@@ -559,10 +625,29 @@
 
     <!-- 푸터 -->
     <footer>
-        <p>&copy; 2025 ASPEC. All rights reserved. | Advanced Specification</p>
+        <p>&copy; 2024 ASPEC. All rights reserved. | Advanced Specification</p>
     </footer>
 
     <script>
+        // 모바일 메뉴 토글
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            navLinks.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+        }
+
+        // 메뉴 링크 클릭시 메뉴 닫기
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                const menuBtn = document.querySelector('.mobile-menu-btn');
+                navLinks.classList.remove('active');
+                menuBtn.classList.remove('active');
+            });
+        });
+
+        // 문의 양식 제출
         function handleSubmit(event) {
             event.preventDefault();
             
@@ -592,6 +677,4 @@
         }
     </script>
 </body>
-
 </html>
-
