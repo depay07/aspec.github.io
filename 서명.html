@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASPEC 이메일 서명</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 800px;
+        }
+        .instructions {
+            background: #ecfeff;
+            border-left: 4px solid #06b6d4;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        .instructions h2 {
+            margin-top: 0;
+            color: #0891b2;
+        }
+        .instructions ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        .instructions li {
+            margin: 10px 0;
+            color: #334155;
+        }
+        .preview-label {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .signature-preview {
+            border: 2px dashed #cbd5e1;
+            padding: 20px;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+        .copy-btn {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(6, 182, 212, 0.4);
+        }
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+        .success-message {
+            display: none;
+            background: #d1fae5;
+            border: 1px solid #6ee7b7;
+            color: #065f46;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .edit-section {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .edit-section h3 {
+            margin-top: 0;
+            color: #1e293b;
+        }
+        .input-group {
+            margin: 15px 0;
+        }
+        .input-group label {
+            display: block;
+            color: #475569;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #06b6d4;
+        }
+        .update-btn {
+            background: #0891b2;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .update-btn:hover {
+            background: #0e7490;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="instructions">
+            <h2>📧 이메일 서명 사용 방법</h2>
+            <ol>
+                <li>아래 "서명 복사하기" 버튼을 클릭하세요</li>
+                <li>이메일 클라이언트(Gmail, Outlook 등)의 설정으로 이동하세요</li>
+                <li>서명 설정 페이지에서 <strong>Ctrl+V</strong> (또는 ⌘+V)로 붙여넣기 하세요</li>
+                <li>저장하면 완료됩니다!</li>
+            </ol>
+        </div>
+
+        <div class="edit-section">
+            <h3>✏️ 정보 수정하기</h3>
+            <div class="input-group">
+                <label>이름</label>
+                <input type="text" id="nameInput" value="홍길동">
+            </div>
+            <div class="input-group">
+                <label>직책</label>
+                <input type="text" id="titleInput" value="대표이사">
+            </div>
+            <div class="input-group">
+                <label>전화번호</label>
+                <input type="text" id="phoneInput" value="010-1234-5678">
+            </div>
+            <div class="input-group">
+                <label>이메일</label>
+                <input type="text" id="emailInput" value="contact@aspec.kr">
+            </div>
+            <div class="input-group">
+                <label>웹사이트</label>
+                <input type="text" id="websiteInput" value="www.aspec.kr">
+            </div>
+            <div class="input-group">
+                <label>주소</label>
+                <input type="text" id="addressInput" value="서울특별시 강남구 테헤란로 123">
+            </div>
+            <button class="update-btn" onclick="updateSignature()">서명 업데이트</button>
+        </div>
+
+        <div class="preview-label">📋 미리보기</div>
+        <div class="signature-preview" id="signaturePreview">
+            <!-- 서명이 여기 표시됩니다 -->
+        </div>
+
+        <button class="copy-btn" onclick="copySignature()">📋 서명 복사하기</button>
+        <div class="success-message" id="successMessage">✓ 서명이 클립보드에 복사되었습니다!</div>
+    </div>
+
+    <script>
+        function generateSignature(name, title, phone, email, website, address) {
+            return `
+                <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.6; color: #334155;">
+                    <tr>
+                        <td style="padding-right: 20px; border-right: 3px solid #06b6d4; vertical-align: top;">
+                            <svg width="120" height="45" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="30" y="50" width="8" height="50" fill="#06b6d4"/>
+                                <rect x="42" y="40" width="8" height="60" fill="#0891b2"/>
+                                <rect x="54" y="45" width="8" height="55" fill="#0e7490"/>
+                                <text x="80" y="85" font-family="Arial, sans-serif" font-size="56" font-weight="700" fill="#0f172a" letter-spacing="-2px">ASPEC</text>
+                                <text x="82" y="105" font-family="Arial, sans-serif" font-size="11" fill="#64748b" letter-spacing="3px">ADVANCED SPECIFICATION</text>
+                            </svg>
+                        </td>
+                        <td style="padding-left: 20px; vertical-align: top;">
+                            <div style="margin-bottom: 12px;">
+                                <div style="font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 2px;">${name}</div>
+                                <div style="font-size: 13px; color: #06b6d4; font-weight: 600;">${title}</div>
+                            </div>
+                            <table cellpadding="0" cellspacing="0" border="0" style="font-size: 13px; line-height: 1.8;">
+                                <tr>
+                                    <td style="color: #64748b; padding-right: 8px; font-weight: 600;">M</td>
+                                    <td style="color: #334155;">${phone}</td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #64748b; padding-right: 8px; font-weight: 600;">E</td>
+                                    <td><a href="mailto:${email}" style="color: #0891b2; text-decoration: none;">${email}</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #64748b; padding-right: 8px; font-weight: 600;">W</td>
+                                    <td><a href="https://${website}" style="color: #0891b2; text-decoration: none;">${website}</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #64748b; padding-right: 8px; font-weight: 600; vertical-align: top;">A</td>
+                                    <td style="color: #64748b;">${address}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            `;
+        }
+
+        function updateSignature() {
+            const name = document.getElementById('nameInput').value;
+            const title = document.getElementById('titleInput').value;
+            const phone = document.getElementById('phoneInput').value;
+            const email = document.getElementById('emailInput').value;
+            const website = document.getElementById('websiteInput').value;
+            const address = document.getElementById('addressInput').value;
+
+            const signatureHTML = generateSignature(name, title, phone, email, website, address);
+            document.getElementById('signaturePreview').innerHTML = signatureHTML;
+        }
+
+        function copySignature() {
+            const signature = document.getElementById('signaturePreview').innerHTML;
+            
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = signature;
+            tempDiv.style.position = 'absolute';
+            tempDiv.style.left = '-9999px';
+            document.body.appendChild(tempDiv);
+            
+            const range = document.createRange();
+            range.selectNodeContents(tempDiv);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            
+            try {
+                document.execCommand('copy');
+                const successMsg = document.getElementById('successMessage');
+                successMsg.style.display = 'block';
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 3000);
+            } catch (err) {
+                alert('복사에 실패했습니다. 다시 시도해주세요.');
+            }
+            
+            document.body.removeChild(tempDiv);
+            selection.removeAllRanges();
+        }
+
+        // 페이지 로드시 초기 서명 생성
+        updateSignature();
+    </script>
+</body>
+</html>

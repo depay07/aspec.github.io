@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ASPEC 제품 소개 - Cognex, Hikrobot 머신비전 제품">
+    <title>제품소개 - ASPEC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+        }
+
+        /* 네비게이션 */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo svg {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #334155;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #06b6d4;
+        }
+
+        .nav-links a.active {
+            color: #06b6d4;
+        }
+
+        /* 페이지 헤더 */
+        .page-header {
+            padding: 150px 30px 80px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: #cbd5e1;
+        }
+
+        /* 메인 컨텐츠 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 30px;
+        }
+
+        .intro-section {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .intro-section h2 {
+            font-size: 36px;
+            color: #0f172a;
+            margin-bottom: 20px;
+        }
+
+        .intro-section p {
+            font-size: 18px;
+            color: #64748b;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 제품 섹션 */
+        .product-section {
+            margin-bottom: 100px;
+        }
+
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+            border-radius: 20px;
+            border-left: 6px solid #06b6d4;
+        }
+
+        .product-logo {
+            font-size: 80px;
+            font-weight: 700;
+            color: #06b6d4;
+        }
+
+        .product-title h2 {
+            font-size: 42px;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .product-title p {
+            font-size: 18px;
+            color: #475569;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 40px 30px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #06b6d4, #0891b2);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            border-color: #06b6d4;
+        }
+
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .product-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .product-card h3 {
+            font-size: 24px;
+            color: #0f172a;
+            margin-bottom: 15px;
+        }
+
+        .product-card p {
+            color: #64748b;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .features-list li {
+            padding: 8px 0;
+            color: #475569;
+            font-size: 14px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #06b6d4;
+            font-weight: 700;
+        }
+
+        /* CTA 섹션 */
+        .cta-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            color: #cbd5e1;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.4);
+        }
+
+        /* 푸터 */
+        footer {
+            background: #0f172a;
+            padding: 40px 30px;
+            text-align: center;
+            color: #64748b;
+            margin-top: 80px;
+        }
+
+        /* 모바일 반응형 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .product-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .product-title h2 {
+                font-size: 32px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <svg width="140" height="52" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="30" y="50" width="8" height="50" fill="#06b6d4"/>
+                        <rect x="42" y="40" width="8" height="60" fill="#0891b2"/>
+                        <rect x="54" y="45" width="8" height="55" fill="#0e7490"/>
+                        <text x="80" y="85" font-family="Arial, sans-serif" font-size="56" font-weight="700" fill="#0f172a" letter-spacing="-2px">ASPEC</text>
+                        <text x="82" y="105" font-family="Arial, sans-serif" font-size="11" fill="#64748b" letter-spacing="3px">ADVANCED SPECIFICATION</text>
+                    </svg>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">홈</a></li>
+                <li><a href="products.html" class="active">제품소개</a></li>
+                <li><a href="portfolio.html">포트폴리오</a></li>
+                <li><a href="contact.html">문의하기</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 페이지 헤더 -->
+    <div class="page-header">
+        <h1>제품 소개</h1>
+        <p>세계 최고 수준의 머신비전 솔루션을 제공합니다</p>
+    </div>
+
+    <!-- 메인 컨텐츠 -->
+    <div class="container">
+        <div class="intro-section">
+            <h2>프리미엄 머신비전 파트너십</h2>
+            <p>ASPEC은 글로벌 머신비전 시장을 선도하는 Cognex와 Hikrobot의 공식 파트너로서, 산업 현장에 최적화된 비전 솔루션을 제공합니다. 고객의 요구사항에 맞는 최상의 제품과 기술 지원을 약속드립니다.</p>
+        </div>
+
+        <!-- Cognex 제품 -->
+        <div class="product-section">
+            <div class="product-header">
+                <div class="product-logo">C</div>
+                <div class="product-title">
+                    <h2>Cognex</h2>
+                    <p>세계 1위 머신비전 솔루션 제공업체</p>
+                </div>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-icon">📷</div>
+                    <h3>In-Sight 비전 시스템</h3>
+                    <p>산업용 스마트 카메라의 업계 표준. 강력한 비전 툴과 사용하기 쉬운 인터페이스를 제공합니다.</p>
+                    <ul class="features-list">
+                        <li>고해상도 이미지 센서</li>
+                        <li>PatMax® 패턴 인식</li>
+                        <li>자동 초점 및 조명 제어</li>
+                        <li>산업용 IP67 등급</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">📊</div>
+                    <h3>DataMan 바코드 리더</h3>
+                    <p>세계에서 가장 빠르고 정확한 바코드 판독 시스템. 1D/2D 코드 및 DPM 판독 전문.</p>
+                    <ul class="features-list">
+                        <li>DPM 코드 전문 판독</li>
+                        <li>손상된 코드 인식</li>
+                        <li>초고속 판독 속도</li>
+                        <li>다중 코드 동시 판독</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🖥️</div>
+                    <h3>VisionPro 소프트웨어</h3>
+                    <p>PC 기반의 강력한 머신비전 소프트웨어. 복잡한 검사 애플리케이션에 최적화.</p>
+                    <ul class="features-list">
+                        <li>고급 비전 알고리즘</li>
+                        <li>딥러닝 통합 지원</li>
+                        <li>유연한 개발 환경</li>
+                        <li>.NET 프레임워크 지원</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🤖</div>
+                    <h3>ViDi Suite (딥러닝)</h3>
+                    <p>딥러닝 기반 결함 검출 및 분류 솔루션. 기존 방식으로 해결하기 어려운 과제 해결.</p>
+                    <ul class="features-list">
+                        <li>자동 학습 기능</li>
+                        <li>외관 검사 특화</li>
+                        <li>복잡한 결함 분류</li>
+                        <li>OCR 및 문자 인식</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hikrobot 제품 -->
+        <div class="product-section">
+            <div class="product-header">
+                <div class="product-logo">H</div>
+                <div class="product-title">
+                    <h2>Hikrobot</h2>
+                    <p>하이크비전 계열의 산업용 머신비전 전문 브랜드</p>
+                </div>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-icon">📸</div>
+                    <h3>산업용 카메라</h3>
+                    <p>고성능 CMOS 센서 기반의 산업용 디지털 카메라. 다양한 해상도와 프레임 속도 지원.</p>
+                    <ul class="features-list">
+                        <li>2~45MP 고해상도</li>
+                        <li>GigE / USB3.0 인터페이스</li>
+                        <li>글로벌 셔터 방식</li>
+                        <li>뛰어난 가격 경쟁력</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🎯</div>
+                    <h3>스마트 카메라</h3>
+                    <p>비전 처리 기능이 내장된 올인원 카메라 시스템. 별도 PC 없이 독립 동작 가능.</p>
+                    <ul class="features-list">
+                        <li>내장형 비전 프로세서</li>
+                        <li>다양한 검사 기능</li>
+                        <li>PLC 연동 용이</li>
+                        <li>설치 및 설정 간편</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">📐</div>
+                    <h3>3D 비전 시스템</h3>
+                    <p>레이저 스캐닝 및 구조광 방식의 3D 측정 솔루션. 높이 측정 및 형상 검사.</p>
+                    <ul class="features-list">
+                        <li>고정밀 3D 측정</li>
+                        <li>빠른 스캔 속도</li>
+                        <li>볼륨 측정 기능</li>
+                        <li>로봇 비전 가이드</li>
+                    </ul>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">💡</div>
+                    <h3>조명 시스템</h3>
+                    <p>머신비전 전용 LED 조명. 다양한 형태와 색상으로 최적의 이미지 획득 지원.</p>
+                    <ul class="features-list">
+                        <li>링, 바, 돔, 백라이트</li>
+                        <li>다중 파장 지원</li>
+                        <li>스트로브 제어</li>
+                        <li>장수명 LED</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h2>제품 상담이 필요하신가요?</h2>
+            <p>고객님의 산업 환경에 최적화된 머신비전 솔루션을 제안해드립니다</p>
+            <a href="contact.html" class="cta-button">지금 문의하기</a>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer>
+        <p>&copy; 2024 ASPEC. All rights reserved. | Advanced Specification</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ASPEC 문의하기 - 머신비전 솔루션 상담">
+    <title>문의하기 - ASPEC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+        }
+
+        /* 네비게이션 */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo svg {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #334155;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #06b6d4;
+        }
+
+        /* 페이지 헤더 */
+        .page-header {
+            padding: 150px 30px 80px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: #cbd5e1;
+        }
+
+        /* 메인 컨텐츠 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 30px;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        /* 문의 양식 */
+        .contact-form-section {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .contact-form-section h2 {
+            font-size: 32px;
+            color: #0f172a;
+            margin-bottom: 15px;
+        }
+
+        .contact-form-section p {
+            color: #64748b;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #334155;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .form-group label .required {
+            color: #ef4444;
+            margin-left: 3px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: #f8fafc;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #06b6d4;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* 연락처 정보 */
+        .contact-info-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border-left: 5px solid #06b6d4;
+            transition: all 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+        }
+
+        .info-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .info-card h3 {
+            font-size: 20px;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .info-card p {
+            color: #475569;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .info-card a {
+            color: #06b6d4;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .info-card a:hover {
+            color: #0891b2;
+            text-decoration: underline;
+        }
+
+        /* 빠른 문의 카드 */
+        .quick-contact {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 40px;
+            border-radius: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .quick-contact h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .quick-contact p {
+            color: #cbd5e1;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+
+        .quick-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .quick-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 14px 20px;
+            background: rgba(6, 182, 212, 0.2);
+            border: 2px solid rgba(6, 182, 212, 0.3);
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .quick-btn:hover {
+            background: rgba(6, 182, 212, 0.3);
+            border-color: #06b6d4;
+            transform: translateY(-2px);
+        }
+
+        /* FAQ 섹션 */
+        .faq-section {
+            margin-top: 80px;
+            padding: 60px;
+            background: #f8fafc;
+            border-radius: 20px;
+        }
+
+        .faq-section h2 {
+            font-size: 36px;
+            color: #0f172a;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #06b6d4;
+        }
+
+        .faq-question {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .faq-answer {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.8;
+        }
+
+        /* 성공 메시지 */
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border: 2px solid #6ee7b7;
+            color: #065f46;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* 푸터 */
+        footer {
+            background: #0f172a;
+            padding: 40px 30px;
+            text-align: center;
+            color: #64748b;
+            margin-top: 80px;
+        }
+
+        /* 모바일 반응형 */
+        @media (max-width: 968px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form-section {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <svg width="140" height="52" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="30" y="50" width="8" height="50" fill="#06b6d4"/>
+                        <rect x="42" y="40" width="8" height="60" fill="#0891b2"/>
+                        <rect x="54" y="45" width="8" height="55" fill="#0e7490"/>
+                        <text x="80" y="85" font-family="Arial, sans-serif" font-size="56" font-weight="700" fill="#0f172a" letter-spacing="-2px">ASPEC</text>
+                        <text x="82" y="105" font-family="Arial, sans-serif" font-size="11" fill="#64748b" letter-spacing="3px">ADVANCED SPECIFICATION</text>
+                    </svg>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">홈</a></li>
+                <li><a href="products.html">제품소개</a></li>
+                <li><a href="portfolio.html">포트폴리오</a></li>
+                <li><a href="contact.html" class="active">문의하기</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 페이지 헤더 -->
+    <div class="page-header">
+        <h1>문의하기</h1>
+        <p>머신비전 전문가가 신속하게 답변해드립니다</p>
+    </div>
+
+    <!-- 메인 컨텐츠 -->
+    <div class="container">
+        <div class="contact-wrapper">
+            <!-- 문의 양식 -->
+            <div class="contact-form-section">
+                <h2>프로젝트 문의</h2>
+                <p>아래 양식을 작성해주시면 담당자가 영업일 기준 24시간 이내에 연락드리겠습니다.</p>
+
+                <div class="success-message" id="successMessage">
+                    ✓ 문의가 성공적으로 제출되었습니다! 빠른 시일 내에 연락드리겠습니다.
+                </div>
+
+                <form id="contactForm" onsubmit="handleSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>이름 <span class="required">*</span></label>
+                            <input type="text" name="name" required placeholder="홍길동">
+                        </div>
+                        <div class="form-group">
+                            <label>회사명 <span class="required">*</span></label>
+                            <input type="text" name="company" required placeholder="(주)회사명">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>이메일 <span class="required">*</span></label>
+                            <input type="email" name="email" required placeholder="example@company.com">
+                        </div>
+                        <div class="form-group">
+                            <label>연락처 <span class="required">*</span></label>
+                            <input type="tel" name="phone" required placeholder="010-1234-5678">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>문의 분야 <span class="required">*</span></label>
+                        <select name="category" required>
+                            <option value="">선택해주세요</option>
+                            <option value="cognex">Cognex 제품</option>
+                            <option value="hikrobot">Hikrobot 제품</option>
+                            <option value="software">소프트웨어 개발</option>
+                            <option value="plc">PLC 통합</option>
+                            <option value="project">프로젝트 의뢰</option>
+                            <option value="support">기술 지원</option>
+                            <option value="other">기타</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>제목 <span class="required">*</span></label>
+                        <input type="text" name="subject" required placeholder="문의 제목을 입력해주세요">
+                    </div>
+
+                    <div class="form-group">
+                        <label>문의 내용 <span class="required">*</span></label>
+                        <textarea name="message" required placeholder="프로젝트 상세 내용, 예산, 일정 등을 자세히 작성해주시면 더 정확한 상담이 가능합니다."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">문의 보내기</button>
+                </form>
+            </div>
+
+            <!-- 연락처 정보 -->
+            <div class="contact-info-section">
+                <div class="info-card">
+                    <div class="info-icon">📧</div>
+                    <h3>이메일</h3>
+                    <p><a href="mailto:contact@aspec-tech.co.kr">contact@aspec-tech.co.kr</a></p>
+                    <p style="margin-top: 10px; font-size: 13px; color: #64748b;">영업일 기준 24시간 이내 답변</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">📱</div>
+                    <h3>전화 상담</h3>
+                    <p><a href="tel:010-1234-5678">010-1234-5678</a></p>
+                    <p style="margin-top: 10px; font-size: 13px; color: #64748b;">평일 09:00 - 18:00</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">📍</div>
+                    <h3>오시는 길</h3>
+                    <p>서울특별시 강남구<br>테헤란로 123</p>
+                    <p style="margin-top: 10px; font-size: 13px; color: #64748b;">방문 상담 시 사전 예약 필수</p>
+                </div>
+
+                <div class="quick-contact">
+                    <h3>빠른 상담</h3>
+                    <p>긴급 문의는 전화로 연락주세요</p>
+                    <div class="quick-buttons">
+                        <a href="tel:010-1234-5678" class="quick-btn">
+                            <span>📞</span>
+                            <span>전화 걸기</span>
+                        </a>
+                        <a href="mailto:contact@aspec-tech.co.kr" class="quick-btn">
+                            <span>✉️</span>
+                            <span>이메일 보내기</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ 섹션 -->
+        <div class="faq-section">
+            <h2>자주 묻는 질문</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">Q. 프로젝트 견적은 어떻게 받나요?</div>
+                    <div class="faq-answer">위 문의 양식을 작성해주시면 프로젝트 내용을 검토 후 상세 견적을 제공해드립니다. 방문 상담도 가능합니다.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Q. 납품 기간은 얼마나 걸리나요?</div>
+                    <div class="faq-answer">프로젝트 규모에 따라 다르지만, 일반적으로 2주~2개월 소요됩니다. 긴급 프로젝트는 별도 협의 가능합니다.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Q. A/S 및 유지보수는 제공하나요?</div>
+                    <div class="faq-answer">네, 모든 프로젝트에 1년 무상 A/S가 포함되며, 유지보수 계약을 통해 지속적인 기술 지원이 가능합니다.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Q. 데모나 테스트는 가능한가요?</div>
+                    <div class="faq-answer">제품 구매 전 데모 시연과 샘플 테스트가 가능합니다. 고객사 방문 또는 당사 방문 모두 가능합니다.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Q. 커스텀 소프트웨어 개발도 가능한가요?</div>
+                    <div class="faq-answer">네, 고객사의 특수한 요구사항에 맞춘 맞춤형 비전 소프트웨어 개발이 가능합니다.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Q. 교육 프로그램이 있나요?</div>
+                    <div class="faq-answer">제품 납품 시 운영자 교육을 제공하며, 별도 심화 교육 프로그램도 운영하고 있습니다.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer>
+        <p>&copy; 2024 ASPEC. All rights reserved. | Advanced Specification</p>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // 폼 데이터 수집
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            console.log('문의 내용:', data);
+            
+            // 성공 메시지 표시
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+            
+            // 폼 초기화
+            event.target.reset();
+            
+            // 3초 후 성공 메시지 숨김
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 5000);
+            
+            // 페이지 상단으로 스크롤
+            window.scrollTo({ top: 300, behavior: 'smooth' });
+            
+            // 실제 서비스에서는 여기서 서버로 데이터를 전송합니다
+            // fetch('/api/contact', { method: 'POST', body: JSON.stringify(data) })
+        }
+    </script>
+</body>
+</html>

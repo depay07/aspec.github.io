@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ASPEC 포트폴리오 - 머신비전 프로젝트 실적">
+    <title>포트폴리오 - ASPEC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+        }
+
+        /* 네비게이션 */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo svg {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #334155;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #06b6d4;
+        }
+
+        /* 페이지 헤더 */
+        .page-header {
+            padding: 150px 30px 80px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: #cbd5e1;
+        }
+
+        /* 메인 컨텐츠 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 30px;
+        }
+
+        .intro-section {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .intro-section h2 {
+            font-size: 36px;
+            color: #0f172a;
+            margin-bottom: 20px;
+        }
+
+        .intro-section p {
+            font-size: 18px;
+            color: #64748b;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 프로젝트 카드 */
+        .projects-grid {
+            display: grid;
+            gap: 50px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            padding: 50px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .project-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .project-header h3 {
+            font-size: 32px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .project-category {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .project-content {
+            padding: 40px;
+        }
+
+        .project-description {
+            font-size: 16px;
+            color: #475569;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .project-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .detail-item {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #06b6d4;
+        }
+
+        .detail-label {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-value {
+            font-size: 16px;
+            color: #0f172a;
+            font-weight: 600;
+        }
+
+        .features-section {
+            margin-top: 30px;
+        }
+
+        .features-title {
+            font-size: 20px;
+            color: #0f172a;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: start;
+            gap: 12px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-size: 14px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .tech-stack {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .tech-label {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-tag {
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #ecfeff, #cffafe);
+            color: #0891b2;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid #67e8f9;
+        }
+
+        /* CTA 섹션 */
+        .cta-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            color: #cbd5e1;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.4);
+        }
+
+        /* 푸터 */
+        footer {
+            background: #0f172a;
+            padding: 40px 30px;
+            text-align: center;
+            color: #64748b;
+            margin-top: 80px;
+        }
+
+        /* 모바일 반응형 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .project-header {
+                padding: 30px 25px;
+            }
+
+            .project-header h3 {
+                font-size: 24px;
+            }
+
+            .project-content {
+                padding: 25px;
+            }
+
+            .project-details,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <svg width="140" height="52" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="30" y="50" width="8" height="50" fill="#06b6d4"/>
+                        <rect x="42" y="40" width="8" height="60" fill="#0891b2"/>
+                        <rect x="54" y="45" width="8" height="55" fill="#0e7490"/>
+                        <text x="80" y="85" font-family="Arial, sans-serif" font-size="56" font-weight="700" fill="#0f172a" letter-spacing="-2px">ASPEC</text>
+                        <text x="82" y="105" font-family="Arial, sans-serif" font-size="11" fill="#64748b" letter-spacing="3px">ADVANCED SPECIFICATION</text>
+                    </svg>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">홈</a></li>
+                <li><a href="products.html">제품소개</a></li>
+                <li><a href="portfolio.html" class="active">포트폴리오</a></li>
+                <li><a href="contact.html">문의하기</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 페이지 헤더 -->
+    <div class="page-header">
+        <h1>포트폴리오</h1>
+        <p>ASPEC의 검증된 프로젝트 실적을 확인하세요</p>
+    </div>
+
+    <!-- 메인 컨텐츠 -->
+    <div class="container">
+        <div class="intro-section">
+            <h2>성공적인 프로젝트 사례</h2>
+            <p>다양한 산업 분야에서 축적된 머신비전 노하우를 바탕으로 고객 맞춤형 솔루션을 제공합니다. 검증된 기술력과 실전 경험으로 최상의 결과를 보장합니다.</p>
+        </div>
+
+        <!-- 프로젝트 목록 -->
+        <div class="projects-grid">
+            <!-- 프로젝트 1: ALIGN -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">📐</div>
+                    <h3>ALIGN 프로젝트</h3>
+                    <span class="project-category">비전 정렬 시스템</span>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        고정밀 부품 조립 라인을 위한 자동 정렬 시스템 구축. 패턴 매칭 기술과 서브픽셀 정확도를 통해 ±0.01mm 수준의 정렬 정확도를 달성했습니다. 로봇 비전 가이드와 연동하여 완전 자동화된 조립 프로세스를 구현했습니다.
+                    </p>
+
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <div class="detail-label">산업 분야</div>
+                            <div class="detail-value">전자제품 조립</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">정확도</div>
+                            <div class="detail-value">±0.01mm</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">처리 속도</div>
+                            <div class="detail-value">0.5초/개</div>
+                        </div>
+                    </div>
+
+                    <div class="features-section">
+                        <h4 class="features-title">주요 기능</h4>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">서브픽셀 정밀도 패턴 매칭</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">로봇 비전 가이드 연동</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">다중 포인트 정렬 보정</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">실시간 각도 및 위치 보정</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tech-stack">
+                        <div class="tech-label">사용 기술</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Cognex In-Sight</span>
+                            <span class="tech-tag">PatMax</span>
+                            <span class="tech-tag">로봇 통신</span>
+                            <span class="tech-tag">PLC 연동</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 프로젝트 2: Classify -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🤖</div>
+                    <h3>AI 제품 분류 시스템</h3>
+                    <span class="project-category">딥러닝 분류</span>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        딥러닝 기술을 활용한 제품 자동 분류 시스템. CNN 알고리즘을 통해 수십 가지 제품 종류를 실시간으로 판별하고 분류합니다. 기존 룰 베이스 방식으로 어려웠던 유사 제품 구분 문제를 99% 이상의 정확도로 해결했습니다.
+                    </p>
+
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <div class="detail-label">산업 분야</div>
+                            <div class="detail-value">물류/유통</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">분류 정확도</div>
+                            <div class="detail-value">99.2%</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">분류 속도</div>
+                            <div class="detail-value">0.2초/개</div>
+                        </div>
+                    </div>
+
+                    <div class="features-section">
+                        <h4 class="features-title">주요 기능</h4>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">다중 클래스 자동 분류</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">유사 제품 정밀 구분</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">실시간 학습 데이터 추가</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">신뢰도 점수 표시</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tech-stack">
+                        <div class="tech-label">사용 기술</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Cognex ViDi</span>
+                            <span class="tech-tag">Deep Learning</span>
+                            <span class="tech-tag">CNN</span>
+                            <span class="tech-tag">데이터 증강</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 프로젝트 3: OCR -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🔤</div>
+                    <h3>AI 문자인식 시스템</h3>
+                    <span class="project-category">딥러닝 OCR</span>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        인쇄 품질이 낮거나 손상된 문자를 인식하는 딥러닝 기반 OCR 솔루션. 기존 OCR로 인식이 어려웠던 다양한 폰트, 각인 문자, 저품질 인쇄물을 높은 정확도로 판독합니다. 실시간 학습 기능으로 지속적인 성능 개선이 가능합니다.
+                    </p>
+
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <div class="detail-label">산업 분야</div>
+                            <div class="detail-value">제조/식품</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">인식 정확도</div>
+                            <div class="detail-value">98.5%</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">처리 속도</div>
+                            <div class="detail-value">0.3초/개</div>
+                        </div>
+                    </div>
+
+                    <div class="features-section">
+                        <h4 class="features-title">주요 기능</h4>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">손상된 문자 인식</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">다양한 폰트 대응</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">각인 문자 판독</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">저품질 이미지 처리</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tech-stack">
+                        <div class="tech-label">사용 기술</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Cognex ViDi Read</span>
+                            <span class="tech-tag">Deep Learning OCR</span>
+                            <span class="tech-tag">문자 분할</span>
+                            <span class="tech-tag">전처리 알고리즘</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 프로젝트 4: 사이즈 측정 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">📏</div>
+                    <h3>정밀 사이즈 측정 시스템</h3>
+                    <span class="project-category">3D 측정</span>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        3D 레이저 스캐닝 기술을 활용한 비접촉식 정밀 측정 시스템. 제품의 길이, 폭, 높이, 볼륨을 실시간으로 측정하고 규격 적합 여부를 자동 판정합니다. 고속 라인에서도 안정적인 측정 성능을 보장합니다.
+                    </p>
+
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <div class="detail-label">산업 분야</div>
+                            <div class="detail-value">자동차 부품</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">측정 정밀도</div>
+                            <div class="detail-value">±0.05mm</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">측정 속도</div>
+                            <div class="detail-value">1.0초/개</div>
+                        </div>
+                    </div>
+
+                    <div class="features-section">
+                        <h4 class="features-title">주요 기능</h4>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">3축 동시 측정</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">볼륨 자동 계산</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">규격 자동 판정</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">측정 데이터 통계</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tech-stack">
+                        <div class="tech-label">사용 기술</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Hikrobot 3D 카메라</span>
+                            <span class="tech-tag">레이저 스캐닝</span>
+                            <span class="tech-tag">포인트 클라우드</span>
+                            <span class="tech-tag">캘리브레이션</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 프로젝트 5: 불량검사 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🔍</div>
+                    <h3>외관 불량검사 시스템</h3>
+                    <span class="project-category">품질 검사</span>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        제품 표면의 스크래치, 얼룩, 찍힘, 변색 등 다양한 외관 결함을 자동으로 검출하는 시스템. 딥러닝 기반 이상 감지 알고리즘을 통해 육안 검사로 놓치기 쉬운 미세 결함까지 정확하게 판별합니다. 불량 유형별 자동 분류 및 통계 기능을 제공합니다.
+                    </p>
+
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <div class="detail-label">산업 분야</div>
+                            <div class="detail-value">디스플레이</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">검출 정확도</div>
+                            <div class="detail-value">99.5%</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">검사 속도</div>
+                            <div class="detail-value">0.8초/개</div>
+                        </div>
+                    </div>
+
+                    <div class="features-section">
+                        <h4 class="features-title">주요 기능</h4>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">다중 결함 동시 검출</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">미세 결함 자동 감지</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">불량 유형 자동 분류</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">불량 위치 시각화</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tech-stack">
+                        <div class="tech-label">사용 기술</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Cognex ViDi</span>
+                            <span class="tech-tag">이상 감지</span>
+                            <span class="tech-tag">고해상도 촬영</span>
+                            <span class="tech-tag">조명 최적화</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 프로젝트 6: DPM -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">📱</div>
+                    <h3>DPM 바코드 리딩 시스템</h3>
+                    <span class="project-category">코드 판독</span>
+                </div>
+                <div class="project-content">
+                    <p class="project-description">
+                        금속, 플라스틱 표면에 직접 각인된 DPM(Direct Part Marking) 코드를 판독하는 시스템. 데이터매트릭스, QR코드 등 2D 코드를 저대비, 손상 상태에서도 높은 판독률로 읽어냅니다. 생산 이력 추적 및 품질 관리를 위한 필수 솔루션입니다.
+                    </p>
+
+                    <div class="project-details">
+                        <div class="detail-item">
+                            <div class="detail-label">산업 분야</div>
+                            <div class="detail-value">전자/반도체</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">판독 성공률</div>
+                            <div class="detail-value">99.8%</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">판독 속도</div>
+                            <div class="detail-value">0.1초/개</div>
+                        </div>
+                    </div>
+
+                    <div class="features-section">
+                        <h4 class="features-title">주요 기능</h4>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">저대비 코드 판독</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">손상된 코드 복원</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">다중 코드 동시 판독</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">✓</div>
+                                <div class="feature-text">MES 시스템 연동</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tech-stack">
+                        <div class="tech-label">사용 기술</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Cognex DataMan</span>
+                            <span class="tech-tag">DPM 전용 조명</span>
+                            <span class="tech-tag">2D Matrix</span>
+                            <span class="tech-tag">데이터베이스</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h2>프로젝트 상담이 필요하신가요?</h2>
+            <p>귀사의 비전 시스템 구축을 위한 맞춤 솔루션을 제안해드립니다</p>
+            <a href="contact.html" class="cta-button">프로젝트 문의하기</a>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer>
+        <p>&copy; 2024 ASPEC. All rights reserved. | Advanced Specification</p>
+    </footer>
+</body>
+</html>
