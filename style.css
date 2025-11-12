@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+
+:root {
+    --bg-color: #1e1e2f;
+    --card-color: #2a2a40;
+    --text-color: #e0e0e0;
+    --text-muted: #a0a0b0;
+    --primary-color: #007bff;
+    --primary-hover: #0056b3;
+    --border-color: #40405a;
+    --input-bg: #1a1a2e;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.calculator-container {
+    width: 100%;
+    max-width: 800px;
+    background-color: var(--card-color);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+h1 {
+    text-align: center;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px;
+    margin: 0;
+}
+
+h3 {
+    color: var(--text-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+/* 탭 스타일 */
+.tabs {
+    display: flex;
+    background-color: var(--bg-color);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.tab-link {
+    background-color: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-link:hover {
+    color: var(--text-color);
+}
+
+.tab-link.active {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.tab-content {
+    padding: 25px;
+    display: none; /* JS가 로드되기 전까지 숨김 */
+}
+
+.tab-content.active {
+    display: block; /* JS가 로드된 후 활성화 */
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 폼 그리드 */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+input[type="number"], select {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-color);
+    font-size: 15px;
+    box-sizing: border-box; /* 패딩 포함 크기 계산 */
+}
+
+input[readonly] {
+    background-color: #3a3a50;
+    cursor: not-allowed;
+    color: var(--text-muted);
+}
+
+/* 버튼 */
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 25px 0;
+}
+
+/* 결과 박스 */
+.result-box {
+    background-color: var(--input-bg);
+    border: 1px dashed var(--border-color);
+    border-radius: 6px;
+    padding: 20px;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.result-box p {
+    margin: 0 0 10px 0;
+}
+
+.note {
+    background-color: #2c2c42;
+    border-left: 4px solid #f0ad4e;
+    padding: 15px;
+    border-radius: 4px;
+    color: #e0e0e0;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
