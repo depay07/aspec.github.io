@@ -1,5 +1,4 @@
 // --- 탭 초기화 및 제어 ---
-
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tab-content");
@@ -19,7 +18,6 @@ window.onload = function() {
     for (var i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
-    // 첫 번째 탭(AreaScan)만 보이도록 수정
     var firstTab = document.getElementById('AreaScan'); 
     if (firstTab) {
         firstTab.style.display = 'block';
@@ -29,24 +27,21 @@ window.onload = function() {
         firstTabButton.className += " active";
     }
 
-    // [신규] Speed 탭의 드롭다운도 초기화
-    populateSpeedModels();
+    // 모든 탭의 드롭다운 목록 초기화
+    populateModels(); // AreaScan 탭
+    populateSpeedModels(); // Speed 탭
+    populateDofModels(); // DOF 탭
+    populateBarcodeModels(); // Barcode 탭
 };
 
-// --- 1. Area Scan 계산기 ---
-// (cameradb.js가 로드되었는지 확인하는 로직은 populateModels에서 처리)
 
+// --- 1. Area Scan 계산기 ---
 function populateModels() {
-    if (typeof cameraDb === 'undefined') {
-        alert("cameradb.js 파일을 찾을 수 없습니다.");
-        return;
-    }
+    if (typeof cameraDb === 'undefined') { return; }
     const brand = document.getElementById('cameraBrand').value;
     const modelSelect = document.getElementById('cameraModel');
     modelSelect.innerHTML = '<option value="">-- 모델 선택 --</option>';
-    if (!brand || !cameraDb[brand]) {
-        return;
-    }
+    if (!brand || !cameraDb[brand]) { return; }
     cameraDb[brand].forEach((cam, index) => {
         if (cam.sensorH) { 
             const option = document.createElement('option');
@@ -56,7 +51,6 @@ function populateModels() {
         }
     });
 }
-
 function selectCamera() {
     const brand = document.getElementById('cameraBrand').value;
     const modelIndex = document.getElementById('cameraModel').value;
@@ -73,7 +67,6 @@ function selectCamera() {
     document.getElementById('resH').value = cam.resH;
     document.getElementById('resV').value = cam.resV;
 }
-
 function calculateAreaScan(type) {
     const sH = parseFloat(document.getElementById('sensorH').value);
     const sV = parseFloat(document.getElementById('sensorV').value);
@@ -108,22 +101,14 @@ function calculateAreaScan(type) {
     }
 }
 
-// --- 2. [신규] Area Scan Speed 계산기 ---
-
+// --- 2. Area Scan Speed 계산기 ---
 function populateSpeedModels() {
-    if (typeof cameraDb === 'undefined') {
-        // alert("cameradb.js 파일을 찾을 수 없습니다."); // 중복 알림 방지
-        return;
-    }
-    // AreaScan 탭과 다른 ID를 사용 ('speed_')
+    if (typeof cameraDb === 'undefined') { return; }
     const brand = document.getElementById('speed_cameraBrand').value;
     const modelSelect = document.getElementById('speed_cameraModel');
     modelSelect.innerHTML = '<option value="">-- 모델 선택 --</option>';
-    if (!brand || !cameraDb[brand]) {
-        return;
-    }
+    if (!brand || !cameraDb[brand]) { return; }
     cameraDb[brand].forEach((cam, index) => {
-        // fps 데이터가 있는 모델만 스피드 탭에 표시 (sensorH도 있어야 함)
         if (cam.sensorH && cam.fps) { 
             const option = document.createElement('option');
             option.value = index;
@@ -132,76 +117,51 @@ function populateSpeedModels() {
         }
     });
 }
-
 function selectSpeedCamera() {
     const brand = document.getElementById('speed_cameraBrand').value;
     const modelIndex = document.getElementById('speed_cameraModel').value;
     const fpsInput = document.getElementById('cameraFPS');
-    
     if (!brand || modelIndex === "") {
         fpsInput.value = "";
         return;
     }
     const cam = cameraDb[brand][modelIndex];
-    // cam.fps가 존재하면 값을 넣고, 없으면 빈칸
     fpsInput.value = cam.fps ? cam.fps : ""; 
 }
-
 function calculateAreaSpeed() {
     const speed = parseFloat(document.getElementById('lineSpeedValue').value);
     const unit = document.getElementById('lineSpeedUnit').value;
     const length = parseFloat(document.getElementById('inspectionLength').value);
-    const cameraFPS = parseFloat(document.getElementById('cameraFPS').value) || 0; // 선택된 카메라 FPS
+    const cameraFPS = parseFloat(document.getElementById('cameraFPS').value) || 0;
     const resultBox = document.getElementById('speedResult');
-
     if (!speed || !length || speed <= 0 || length <= 0) {
         resultBox.innerHTML = "<p>유효한 라인 속도와 검사 간격을 입력하세요.</p>";
         return;
     }
-
-    // 1. 라인 속도를 mm/sec로 변환
-    let lineSpeed_mm_sec = 0;
-    if (unit === 'm/min') {
-        // 40 m/min -> 40 * 1000 mm / 60 sec = 666.6 mm/sec
-        lineSpeed_mm_sec = (speed * 1000) / 60;
-    } else { // 'mm/sec'
-        lineSpeed_mm_sec = speed;
-    }
-
-    // 2. 필요 FPS 계산 (초당 필요한 트리거 수)
-    // (666 mm/sec) / (50 mm/검사) = 13.33 검사/sec = 13.33 FPS
+    let lineSpeed_mm_sec = (unit === 'm/min') ? (speed * 1000) / 60 : speed;
     const requiredFPS = lineSpeed_mm_sec / length;
-
-    // 3. 1개 검사당 허용 시간 (Takt Time) 계산
-    // 1 / (13.33 FPS) = 0.075 sec/검사 = 75 ms/검사
     const allowedTime_ms = (1 / requiredFPS) * 1000;
-
-    // 4. 카메라 성능 비교
     let fpsComparison = "";
-    if (cameraFPS > 0) { // 카메라가 선택되었다면
+    if (cameraFPS > 0) {
         if (cameraFPS >= requiredFPS) {
-            fpsComparison = `<p class="good">선택한 카메라 FPS (${cameraFPS} FPS)는 요구 사양 (${requiredFPS.toFixed(2)} FPS)을 만족합니다. (OK)</p>`;
+            fpsComparison = `<p class="good">선택한 카메라 FPS (${cameraFPS} Hz)는 요구 사양 (${requiredFPS.toFixed(2)} Hz)을 만족합니다. (OK)</p>`;
         } else {
-            fpsComparison = `<p class="bad">선택한 카메라 FPS (${cameraFPS} FPS)가 요구 사양 (${requiredFPS.toFixed(2)} FPS)보다 낮습니다! (NG)</p>`;
+            fpsComparison = `<p class="bad">선택한 카메라 FPS (${cameraFPS} Hz)가 요구 사양 (${requiredFPS.toFixed(2)} Hz)보다 낮습니다! (NG)</p>`;
         }
     } else {
         fpsComparison = `<p>카메라를 선택하면 FPS 사양을 비교할 수 있습니다.</p>`;
     }
-
-    // 결과 출력
     resultBox.innerHTML = `
         <p><b>라인 속도 (변환):</b> ${lineSpeed_mm_sec.toFixed(2)} mm/sec</p>
-        <p><b>요구 FPS:</b> ${requiredFPS.toFixed(2)} FPS (Triggers/sec)</p>
+        <p><b>요구 FPS:</b> ${requiredFPS.toFixed(2)} Hz (Triggers/sec)</p>
         <p><b>검사당 허용 시간 (Takt):</b> ${allowedTime_ms.toFixed(2)} ms</p>
         <hr style="margin: 15px 0;">
         ${fpsComparison}
     `;
 }
 
-
 // --- 3. Line Scan 계산기 ---
 function calculateLineScan() {
-    // (이하 동일)
     const fov = parseFloat(document.getElementById('lineFov').value);
     const pixels = parseFloat(document.getElementById('linePixels').value);
     const resultBox = document.getElementById('lineResult');
@@ -217,15 +177,45 @@ function calculateLineScan() {
 }
 
 // --- 4. Depth of Field (DOF) 계산기 ---
+function populateDofModels() {
+    if (typeof cameraDb === 'undefined') { return; }
+    const brand = document.getElementById('dof_cameraBrand').value;
+    const modelSelect = document.getElementById('dof_cameraModel');
+    modelSelect.innerHTML = '<option value="">-- 모델 선택 --</option>';
+    if (!brand || !cameraDb[brand]) { return; }
+    cameraDb[brand].forEach((cam, index) => {
+        if (cam.sensorH && cam.resH) { 
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = cam.name;
+            modelSelect.appendChild(option);
+        }
+    });
+}
+function selectDofCamera() {
+    const brand = document.getElementById('dof_cameraBrand').value;
+    const modelIndex = document.getElementById('dof_cameraModel').value;
+    const cocInput = document.getElementById('dof_CoC');
+    if (!brand || modelIndex === "") {
+        cocInput.value = "";
+        return;
+    }
+    const cam = cameraDb[brand][modelIndex];
+    if (cam.sensorH && cam.resH) {
+        const pixelPitch = (cam.sensorH / cam.resH) * 1000;
+        cocInput.value = pixelPitch.toFixed(2);
+    } else {
+        cocInput.value = "";
+    }
+}
 function calculateDOF() {
-    // (이하 동일)
     const f = parseFloat(document.getElementById('dofFocalLength').value);
     const wd = parseFloat(document.getElementById('dofWD').value);
     const N = parseFloat(document.getElementById('dofAperture').value);
-    let c = parseFloat(document.getElementById('dofCoC').value);
+    let c = parseFloat(document.getElementById('dof_CoC').value);
     const resultBox = document.getElementById('dofResult');
     if (!f || !wd || !N || !c) {
-        resultBox.innerHTML = "<p>모든 값을 입력하세요.</p>";
+        resultBox.innerHTML = "<p>카메라를 선택하고, 모든 렌즈/거리 값을 입력하세요.</p>";
         return;
     }
     if (f <= 0 || wd <= 0 || N <= 0 || c <= 0) {
@@ -254,21 +244,110 @@ function calculateDOF() {
     `;
 }
 
-// --- 5. Barcode Reader 계산기 (Mockup) ---
-const barcodeSpecDb = { /* (이하 동일) */ };
-function calculateBarcode() {
-    alert("이 기능은 UI 예시입니다. JavaScript 코드의 'barcodeSpecDb' 객체에 실제 사양표 데이터를 입력해야 합니다.");
+// --- 5. Barcode Reader 계산기 ---
+function populateBarcodeModels() {
+    if (typeof barcodeSpecDb === 'undefined') {
+        alert("barcodeSpecDb.js 파일을 찾을 수 없습니다.");
+        return;
+    }
     const brand = document.getElementById('barcodeBrand').value;
-    const model = document.getElementById('barcodeModel').value;
-    const lens = document.getElementById('barcodeLens').value;
-    const wd = parseFloat(document.getElementById('barcodeWD').value) || 200;
-    const resultBox = document.getElementById('barcodeResult');
-    resultBox.innerHTML = `
-        <p><b>조회 결과 (예시):</b></p>
-        <p>선택: ${brand} ${model} / ${lens} @ ${wd}mm</p>
-        <p>FOV: 102mm x 78mm</p>
-        <p>최소 엘리먼트 크기: 0.15mm (6 mil)</p>
-    `;
+    const modelSelect = document.getElementById('barcodeModel');
+    
+    modelSelect.innerHTML = '<option value="">-- 모델 선택 --</option>';
+    document.getElementById('barcodeLens').innerHTML = '<option value="">-- 렌즈 선택 --</option>';
 
+    if (!brand || !barcodeSpecDb[brand]) return;
+
+    const models = Object.keys(barcodeSpecDb[brand]);
+    models.forEach(modelKey => {
+        const option = document.createElement('option');
+        option.value = modelKey;
+        option.textContent = modelKey; // (키 값을 그대로 이름으로 사용)
+        modelSelect.appendChild(option);
+    });
 }
 
+function populateBarcodeLenses() {
+    const brand = document.getElementById('barcodeBrand').value;
+    const modelKey = document.getElementById('barcodeModel').value;
+    const lensSelect = document.getElementById('barcodeLens');
+
+    lensSelect.innerHTML = '<option value="">-- 렌즈 선택 --</option>';
+
+    if (!brand || !modelKey || !barcodeSpecDb[brand][modelKey]) return;
+
+    const lenses = Object.keys(barcodeSpecDb[brand][modelKey]);
+    lenses.forEach(lensKey => {
+        const option = document.createElement('option');
+        option.value = lensKey;
+        option.textContent = lensKey; // (키 값을 그대로 이름으로 사용)
+        lensSelect.appendChild(option);
+    });
+}
+
+function calculateBarcode() {
+    const brand = document.getElementById('barcodeBrand').value;
+    const modelKey = document.getElementById('barcodeModel').value;
+    const lensKey = document.getElementById('barcodeLens').value;
+    const wd = parseFloat(document.getElementById('barcodeWD').value);
+    const resultBox = document.getElementById('barcodeResult');
+
+    if (!brand || !modelKey || !lensKey) {
+        resultBox.innerHTML = "<p>브랜드, 모델, 렌즈를 모두 선택하세요.</p>";
+        return;
+    }
+    if (isNaN(wd) || wd <= 0) {
+        resultBox.innerHTML = "<p>유효한 작동 거리(WD)를 입력하세요.</p>";
+        return;
+    }
+    if (typeof barcodeSpecDb === 'undefined') {
+        resultBox.innerHTML = "<p>오류: barcodeSpecDb.js 파일을 찾을 수 없습니다.</p>";
+        return;
+    }
+
+    const specTable = barcodeSpecDb[brand][modelKey][lensKey];
+    if (!specTable || specTable.length < 2) {
+        resultBox.innerHTML = "<p>오류: barcodeSpecDb.js에 이 렌즈에 대한 데이터가 2개 미만입니다.</p>";
+        return;
+    }
+
+    if (wd < specTable[0].wd || wd > specTable[specTable.length - 1].wd) {
+        resultBox.innerHTML = `<p class="bad">입력한 WD(${wd}mm)가 사양표의 유효 범위( ${specTable[0].wd} ~ ${specTable[specTable.length - 1].wd} mm)를 벗어났습니다.</p>`;
+        return;
+    }
+
+    let p1, p2;
+    for (let i = 0; i < specTable.length - 1; i++) {
+        if (wd >= specTable[i].wd && wd <= specTable[i+1].wd) {
+            p1 = specTable[i];
+            p2 = specTable[i+1];
+            break;
+        }
+    }
+
+    if (!p1 || !p2) {
+        resultBox.innerHTML = "<p>오류: 사양표에서 적절한 기준점을 찾지 못했습니다.</p>";
+        return;
+    }
+    
+    const interpolate = (x1, y1, x2, y2, x) => {
+        if (x1 === x2) return y1;
+        const ratio = (x - x1) / (x2 - x1);
+        return y1 + (y2 - y1) * ratio;
+    };
+
+    const fovH = interpolate(p1.wd, p1.fovH, p2.wd, p2.fovH, wd);
+    const fovV = interpolate(p1.wd, p1.fovV, p2.wd, p2.fovV, wd);
+    const minEl = interpolate(p1.wd, p1.minEl, p2.wd, p2.minEl, wd);
+
+    resultBox.innerHTML = `
+        <p><b>계산된 사양 @ ${wd}mm (보간됨):</b></p>
+        <p><b>FOV H:</b> ${fovH.toFixed(2)} mm</p>
+        <p><b>FOV V:</b> ${fovV.toFixed(2)} mm</p>
+        <p><b>최소 해상도 (1D/2D):</b> ${minEl.toFixed(3)} mm</p>
+        <hr style="margin: 15px 0;">
+        <p style="font-size: 14px; color: var(--text-muted);">
+            (기준점: ${p1.wd}mm ~ ${p2.wd}mm 사이의 값)
+        </p>
+    `;
+}
