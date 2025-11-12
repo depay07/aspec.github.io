@@ -191,7 +191,7 @@ function calculateAreaSpeed() {
     // 결과 출력
     resultBox.innerHTML = `
         <p><b>라인 속도 (변환):</b> ${lineSpeed_mm_sec.toFixed(2)} mm/sec</p>
-        <p><b>요구 FPS:</b> ${requiredFPS.toFixed(2)} Hz (Triggers/sec)</p>
+        <p><b>요구 FPS:</b> ${requiredFPS.toFixed(2)} fps (Triggers/sec)</p>
         <p><b>검사당 허용 시간 (Takt):</b> ${allowedTime_ms.toFixed(2)} ms</p>
         <hr style="margin: 15px 0;">
         ${fpsComparison}
@@ -269,4 +269,5 @@ function calculateBarcode() {
         <p>FOV: 102mm x 78mm</p>
         <p>최소 엘리먼트 크기: 0.15mm (6 mil)</p>
     `;
+
 }
