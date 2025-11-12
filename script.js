@@ -180,9 +180,9 @@ function calculateAreaSpeed() {
     let fpsComparison = "";
     if (cameraFPS > 0) { // 카메라가 선택되었다면
         if (cameraFPS >= requiredFPS) {
-            fpsComparison = `<p class="good">선택한 카메라 FPS (${cameraFPS} Hz)는 요구 사양 (${requiredFPS.toFixed(2)} Hz)을 만족합니다. (OK)</p>`;
+            fpsComparison = `<p class="good">선택한 카메라 FPS (${cameraFPS} FPS)는 요구 사양 (${requiredFPS.toFixed(2)} FPS)을 만족합니다. (OK)</p>`;
         } else {
-            fpsComparison = `<p class="bad">선택한 카메라 FPS (${cameraFPS} Hz)가 요구 사양 (${requiredFPS.toFixed(2)} Hz)보다 낮습니다! (NG)</p>`;
+            fpsComparison = `<p class="bad">선택한 카메라 FPS (${cameraFPS} FPS)가 요구 사양 (${requiredFPS.toFixed(2)} FPS)보다 낮습니다! (NG)</p>`;
         }
     } else {
         fpsComparison = `<p>카메라를 선택하면 FPS 사양을 비교할 수 있습니다.</p>`;
@@ -191,7 +191,7 @@ function calculateAreaSpeed() {
     // 결과 출력
     resultBox.innerHTML = `
         <p><b>라인 속도 (변환):</b> ${lineSpeed_mm_sec.toFixed(2)} mm/sec</p>
-        <p><b>요구 FPS:</b> ${requiredFPS.toFixed(2)} fps (Triggers/sec)</p>
+        <p><b>요구 FPS:</b> ${requiredFPS.toFixed(2)} FPS (Triggers/sec)</p>
         <p><b>검사당 허용 시간 (Takt):</b> ${allowedTime_ms.toFixed(2)} ms</p>
         <hr style="margin: 15px 0;">
         ${fpsComparison}
@@ -271,3 +271,4 @@ function calculateBarcode() {
     `;
 
 }
+
