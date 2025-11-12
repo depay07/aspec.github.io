@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>머신비전 통합 계산기</title>
     <link rel="stylesheet" href="style.css">
-</head>
+    </head>
 <body>
     <div class="calculator-container">
         <h1>머신비전 통합 계산기</h1>
@@ -36,7 +36,6 @@
                     </select>
                 </div>
             </div>
-            
             <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
                 <div class="input-group">
                     <label>센서(가로) (mm)</label>
@@ -56,7 +55,6 @@
                 </div>
             </div>
             <hr>
-            
             <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
                 <div class="input-group">
                     <label for="focalLength">렌즈 (mm)</label>
@@ -85,7 +83,6 @@
         <div id="AreaScanSpeed" class="tab-content">
             <h3>Area Scan Speed (Takt Time)</h3>
             <p class="note">라인 속도와 검사 간격을 기준으로 필요한 카메라 FPS와 검사 허용 시간을 계산합니다.</p>
-            
             <h4>1. 카메라 선택</h4>
             <div class="form-grid">
                 <div class="input-group">
@@ -109,7 +106,6 @@
                     <input type="number" id="cameraFPS" readonly placeholder="fps">
                 </div>
             </div>
-            
             <hr>
             <h4>2. 라인 조건 입력</h4>
             <div class="form-grid" style="grid-template-columns: 2fr 1fr;">
@@ -128,10 +124,9 @@
             <div class="form-grid">
                 <div class="input-group">
                     <label for="inspectionLength">검사 간격 (mm)</label>
-                    <input type="number" id="inspectionLength" placeholder="e.g., 50 (제품 1개 길이 또는 트리거 간격)">
+                    <input type="number" id="inspectionLength" placeholder="e.g., 50">
                 </div>
             </div>
-            
             <button onclick="calculateAreaSpeed()">스피드 계산</button>
             <div class="result-box" id="speedResult"></div>
         </div>
@@ -154,7 +149,26 @@
 
         <div id="DOF" class="tab-content">
             <h3>Depth of Field (렌즈 심도)</h3>
-            <p class="note">렌즈 심도는 브랜드가 아닌, 렌즈의 초점 거리, 조리개(f-stop), 작동 거리(WD) 및 카메라의 픽셀 사이즈(Circle of Confusion)로 결정됩니다.</p>
+            <p class="note">렌즈 심도는 렌즈 사양(초점 거리, 조리개)과 카메라 사양(픽셀 크기)의 조합으로 결정됩니다.</p>
+            <h4>1. 카메라 선택 (픽셀 크기 계산용)</h4>
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="dof_cameraBrand">카메라 브랜드</label>
+                    <select id="dof_cameraBrand" onchange="populateDofModels()">
+                        <option value="">-- 브랜드 선택 --</option>
+                        <option value="cognex">Cognex In-Sight</option>
+                        <option value="hikrobot">Hikrobot</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="dof_cameraModel">카메라 모델</label>
+                    <select id="dof_cameraModel" onchange="selectDofCamera()">
+                        <option value="">-- 모델 선택 --</option>
+                    </select>
+                </div>
+            </div>
+            <hr>
+            <h4>2. 렌즈 및 거리 입력</h4>
             <div class="form-grid">
                 <div class="input-group">
                     <label for="dofFocalLength">초점 거리 (mm)</label>
@@ -169,8 +183,8 @@
                     <input type="number" id="dofAperture" placeholder="e.g., 4">
                 </div>
                 <div class="input-group">
-                    <label for="dofCoC">Circle of Confusion (CoC, µm)</label>
-                    <input type="number" id="dofCoC" placeholder="e.g., 5.5 (픽셀 피치 입력)">
+                    <label for="dof_CoC">카메라 픽셀 크기 (CoC, µm)</label>
+                    <input type="number" id="dof_CoC" readonly placeholder="카메라 선택 시 자동 계산">
                 </div>
             </div>
             <button onclick="calculateDOF()">심도 계산</button>
@@ -179,27 +193,29 @@
 
         <div id="Barcode" class="tab-content">
             <h3>Barcode Reader (FOV / 해상도)</h3>
-            <p class="note">이 기능은 실제 작동하지 않는 UI 예시입니다. <br>정확한 계산을 위해서는 JavaScript의 `barcodeSpecDb` 객체에 Cognex 및 Hikrobot의 모델별/렌즈별 사양표 데이터를 직접 입력해야 합니다.</p>
+            <p class="note">
+                아래 계산은 <b>barcodeSpecDb.js</b> 파일에 입력된 데이터를 기반으로 합니다.<br>
+                정확한 계산을 위해 해당 파일에 실제 제품 사양표 데이터를 입력하세요.
+            </p>
             <div class="form-grid">
                 <div class="input-group">
                     <label for="barcodeBrand">리더기 브랜드</label>
-                    <select id="barcodeBrand">
+                    <select id="barcodeBrand" onchange="populateBarcodeModels()">
+                        <option value="">-- 브랜드 선택 --</option>
                         <option value="cognex">Cognex DataMan</option>
                         <option value="hikrobot">Hikrobot ID</option>
                     </select>
                 </div>
                 <div class="input-group">
                     <label for="barcodeModel">리더기 모델</label>
-                    <select id="barcodeModel">
-                        <option value="dm474">DataMan 474 (예시)</option>
-                        <option value="id3000">ID3000 (예시)</option>
+                    <select id="barcodeModel" onchange="populateBarcodeLenses()">
+                        <option value="">-- 모델 선택 --</option>
                     </select>
                 </div>
                 <div class="input-group">
                     <label for="barcodeLens">렌즈 옵션</label>
                     <select id="barcodeLens">
-                        <option value="16mm">16mm Liquid Lens (예시)</option>
-                        <option value="25mm">25mm (예시)</option>
+                        <option value="">-- 렌즈 선택 --</option>
                     </select>
                 </div>
                 <div class="input-group">
@@ -207,11 +223,9 @@
                     <input type="number" id="barcodeWD" placeholder="e.g., 200">
                 </div>
             </div>
-            <button onclick="calculateBarcode()">사양 조회 (동작 안 함)</button>
+            <button onclick="calculateBarcode()">사양 계산</button>
             <div class="result-box" id="barcodeResult">
-                <p><b>조회 결과 (예시):</b></p>
-                <p>FOV: 102mm x 78mm</p>
-                <p>최소 엘리먼트 크기: 0.15mm (6 mil)</p>
+                <p>브랜드, 모델, 렌즈를 선택하고 작동 거리를 입력하세요.</p>
             </div>
         </div>
     </div>
@@ -219,12 +233,5 @@
     <script src="cameradb.js"></script>
     <script src="barcodeSpecDb.js"></script>
     <script src="script.js"></script>
-</body>
-
+    </body>
 </html>
-
-
-
-
-
-
