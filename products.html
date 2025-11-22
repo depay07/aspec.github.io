@@ -1,566 +1,367 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ASPEC 제품 소개 - Cognex, Hikrobot 머신비전 제품">
-    <title>제품소개 - ASPEC</title>
+    <title>ASPEC - Portfolio | 포트폴리오</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0B0C15',
+                            primary: '#3B82F6',
+                            accent: '#8B5CF6',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: #1e293b;
+            background-color: #0B0C15;
+            color: #ffffff;
         }
 
-        /* 네비게이션 */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+        .gradient-text {
+            background: linear-gradient(to right, #60A5FA, #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(11, 12, 21, 0.3), rgba(11, 12, 21, 1));
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            padding: 15px 0;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            z-index: 1000;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .glass-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(96, 165, 250, 0.5);
+            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
         }
 
-        .logo svg {
-            height: 40px;
-            width: auto;
+        .portfolio-img {
+            transition: transform 0.5s ease;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #334155;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #06b6d4;
-        }
-
-        .nav-links a.active {
-            color: #06b6d4;
-        }
-
-        /* 페이지 헤더 */
-        .page-header {
-            padding: 150px 30px 80px;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            text-align: center;
-            color: white;
-        }
-
-        .page-header h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .page-header p {
-            font-size: 18px;
-            color: #cbd5e1;
-        }
-
-        /* 메인 컨텐츠 */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 30px;
-        }
-
-        .intro-section {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .intro-section h2 {
-            font-size: 36px;
-            color: #0f172a;
-            margin-bottom: 20px;
-        }
-
-        .intro-section p {
-            font-size: 18px;
-            color: #64748b;
-            line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* 제품 섹션 */
-        .product-section {
-            margin-bottom: 100px;
-        }
-
-        .product-header {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            margin-bottom: 50px;
-            padding: 40px;
-            background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
-            border-radius: 20px;
-            border-left: 6px solid #06b6d4;
-        }
-
-        .product-logo {
-            font-size: 80px;
-            font-weight: 700;
-            color: #06b6d4;
-        }
-
-        .product-title h2 {
-            font-size: 42px;
-            color: #0f172a;
-            margin-bottom: 10px;
-        }
-
-        .product-title p {
-            font-size: 18px;
-            color: #475569;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 40px 30px;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #06b6d4, #0891b2);
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-            border-color: #06b6d4;
-        }
-
-        .product-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .product-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            margin-bottom: 25px;
-            color: white;
-        }
-
-        .product-card h3 {
-            font-size: 24px;
-            color: #0f172a;
-            margin-bottom: 15px;
-        }
-
-        .product-card p {
-            color: #64748b;
-            font-size: 15px;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .features-list {
-            list-style: none;
-            margin-top: 20px;
-        }
-
-        .features-list li {
-            padding: 8px 0;
-            color: #475569;
-            font-size: 14px;
-            position: relative;
-            padding-left: 25px;
-        }
-
-        .features-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #06b6d4;
-            font-weight: 700;
-        }
-
-        /* CTA 섹션 */
-        .cta-section {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            border-radius: 20px;
-            padding: 60px 40px;
-            text-align: center;
-            color: white;
-            margin-top: 80px;
-        }
-
-        .cta-section h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-
-        .cta-section p {
-            font-size: 18px;
-            color: #cbd5e1;
-            margin-bottom: 30px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.4);
-        }
-
-        /* 푸터 */
-        footer {
-            background: #0f172a;
-            padding: 40px 30px;
-            text-align: center;
-            color: #64748b;
-            margin-top: 80px;
-        }
-
-        /* 햄버거 메뉴 */
-        .mobile-menu-btn {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .mobile-menu-btn span {
-            width: 28px;
-            height: 3px;
-            background: #334155;
-            border-radius: 3px;
-            transition: all 0.3s;
-        }
-
-        .mobile-menu-btn.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-
-        .mobile-menu-btn.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-btn.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        /* 모바일 반응형 */
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: flex;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background: white;
-                flex-direction: column;
-                padding: 30px;
-                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-                transition: left 0.3s ease;
-                gap: 0;
-                z-index: 999;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .nav-links li {
-                width: 100%;
-                border-bottom: 1px solid #e2e8f0;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 20px 0;
-                font-size: 18px;
-            }
-
-            .page-header h1 {
-                font-size: 32px;
-            }
-
-            .product-header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .product-title h2 {
-                font-size: 32px;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
+        .group:hover .portfolio-img {
+            transform: scale(1.05);
         }
     </style>
 </head>
-<body>
-    <!-- 네비게이션 -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">
-                <a href="index.html">
-                    <svg width="140" height="52" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="30" y="50" width="8" height="50" fill="#06b6d4"/>
-                        <rect x="42" y="40" width="8" height="60" fill="#0891b2"/>
-                        <rect x="54" y="45" width="8" height="55" fill="#0e7490"/>
-                        <text x="80" y="85" font-family="Arial, sans-serif" font-size="56" font-weight="700" fill="#0f172a" letter-spacing="-2px">ASPEC</text>
-                        <text x="82" y="105" font-family="Arial, sans-serif" font-size="11" fill="#64748b" letter-spacing="3px">ADVANCED SPECIFICATION</text>
-                    </svg>
-                </a>
+
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-brand-dark/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-tighter">
+                <a href="index.html">ASPEC<span class="text-blue-500">.</span></a>
             </div>
-            <ul class="nav-links">
-                <li><a href="index.html">홈</a></li>
-                <li><a href="about.html">회사소개</a></li>
-                <li><a href="products.html" class="active">제품소개</a></li>
-                <li><a href="portfolio.html">포트폴리오</a></li>
-                <li><a href="calculator.html">머신비전 계산기</a></li>
-                <li><a href="contact.html">문의하기</a></li>
-            </ul>
-            <button class="mobile-menu-btn" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+                <a href="index.html" class="hover:text-white transition-colors">홈</a>
+                <a href="index.html#about" class="hover:text-white transition-colors">회사소개</a>
+                <a href="index.html#products" class="hover:text-white transition-colors">제품소개</a>
+                <a href="portfolio.html" class="text-white font-bold">포트폴리오</a>
+                <a href="index.html#contact"
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full transition-colors">문의하기</a>
+            </div>
         </div>
     </nav>
 
-    <!-- 페이지 헤더 -->
-    <div class="page-header">
-        <h1>제품 소개</h1>
-        <p>세계 최고 수준의 머신비전 솔루션을 제공합니다</p>
-    </div>
-
-    <!-- 메인 컨텐츠 -->
-    <div class="container">
-        <div class="intro-section">
-            <h2>프리미엄 머신비전 파트너십</h2>
-            <p>ASPEC은 글로벌 머신비전 시장을 선도하는 Cognex와 Hikrobot의 공식 파트너로서, 산업 현장에 최적화된 비전 솔루션을 제공합니다. 고객의 요구사항에 맞는 최상의 제품과 기술 지원을 약속드립니다.</p>
+    <!-- Hero Section -->
+    <header class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="portfolio-hero.png" alt="Portfolio Background" class="w-full h-full object-cover opacity-60">
+            <div class="hero-overlay absolute inset-0"></div>
         </div>
 
-        <!-- Cognex 제품 -->
-        <div class="product-section">
-            <div class="product-header">
-                <div class="product-logo">C</div>
-                <div class="product-title">
-                    <h2>Cognex</h2>
-                    <p>세계 1위 머신비전 솔루션 제공업체</p>
+        <!-- Content -->
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto mt-20">
+            <div
+                class="inline-block mb-4 px-4 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-semibold tracking-wide uppercase">
+                Our Works
+            </div>
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                ASPEC <span class="gradient-text">Portfolio</span>
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                최첨단 머신비전 기술로 완성된 성공적인 프로젝트 사례를 소개합니다.
+            </p>
+        </div>
+    </header>
+
+    <!-- Portfolio List -->
+    <section class="py-24">
+        <div class="max-w-7xl mx-auto px-6 space-y-32">
+
+            <!-- Item 1: Alignment -->
+            <div class="grid md:grid-cols-2 gap-12 items-center group">
+                <div class="order-2 md:order-1">
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                        <img src="portfolio-alignment.png" alt="Vision Alignment" class="w-full h-auto portfolio-img">
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-12 h-1 bg-blue-500 rounded-full"></span>
+                        <span class="text-blue-400 font-semibold tracking-wider uppercase">Alignment</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">초정밀 비전 얼라인먼트</h2>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                        디스플레이 및 반도체 공정에서 필수적인 미세 정렬 솔루션입니다.
+                        Cognex VisionPro의 강력한 패턴 매칭 알고리즘을 활용하여
+                        서브 픽셀 단위의 정밀도를 보장하며, 고속 로봇 가이던스를 수행합니다.
+                    </p>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            VisionPro PatMax RedLine 적용
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            UVW 스테이지 정밀 제어
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            반복 정밀도 ±0.005mm 달성
+                        </li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-icon">📷</div>
-                    <h3>In-Sight 비전 시스템</h3>
-                    <p>산업용 스마트 카메라의 업계 표준. 강력한 비전 툴과 사용하기 쉬운 인터페이스를 제공합니다.</p>
-                    <ul class="features-list">
-                        <li>고해상도 이미지 센서</li>
-                        <li>PatMax® 패턴 인식</li>
-                        <li>자동 초점 및 조명 제어</li>
-                        <li>산업용 IP67 등급</li>
+            <!-- Item 2: Barcode Reading -->
+            <div class="grid md:grid-cols-2 gap-12 items-center group">
+                <div class="order-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-12 h-1 bg-purple-500 rounded-full"></span>
+                        <span class="text-purple-400 font-semibold tracking-wider uppercase">Barcode Reading</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">고속 바코드/QR 리딩</h2>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                        물류 및 제조 라인의 이력 관리를 위한 고성능 바코드 판독 시스템입니다.
+                        DataMan 시리즈를 활용하여 손상되거나 인쇄 상태가 불량한 코드도
+                        99.9% 이상의 인식률로 판독합니다.
+                    </p>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            멀티 코드 동시 판독
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            DPM(Direct Part Mark) 난독 코드 대응
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            고속 컨베이어 라인 적용
+                        </li>
                     </ul>
                 </div>
-
-                <div class="product-card">
-                    <div class="product-icon">📊</div>
-                    <h3>DataMan 바코드 리더</h3>
-                    <p>세계에서 가장 빠르고 정확한 바코드 판독 시스템. 1D/2D 코드 및 DPM 판독 전문.</p>
-                    <ul class="features-list">
-                        <li>DPM 코드 전문 판독</li>
-                        <li>손상된 코드 인식</li>
-                        <li>초고속 판독 속도</li>
-                        <li>다중 코드 동시 판독</li>
-                    </ul>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-icon">🖥️</div>
-                    <h3>VisionPro 소프트웨어</h3>
-                    <p>PC 기반의 강력한 머신비전 소프트웨어. 복잡한 검사 애플리케이션에 최적화.</p>
-                    <ul class="features-list">
-                        <li>고급 비전 알고리즘</li>
-                        <li>딥러닝 통합 지원</li>
-                        <li>유연한 개발 환경</li>
-                        <li>.NET 프레임워크 지원</li>
-                    </ul>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-icon">🤖</div>
-                    <h3>ViDi Suite (딥러닝)</h3>
-                    <p>딥러닝 기반 결함 검출 및 분류 솔루션. 기존 방식으로 해결하기 어려운 과제 해결.</p>
-                    <ul class="features-list">
-                        <li>자동 학습 기능</li>
-                        <li>외관 검사 특화</li>
-                        <li>복잡한 결함 분류</li>
-                        <li>OCR 및 문자 인식</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Hikrobot 제품 -->
-        <div class="product-section">
-            <div class="product-header">
-                <div class="product-logo">H</div>
-                <div class="product-title">
-                    <h2>Hikrobot</h2>
-                    <p>하이크비전 계열의 산업용 머신비전 전문 브랜드</p>
+                <div class="order-2">
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                        <img src="https://placehold.co/800x600/1e1e2e/a78bfa?text=High+Speed+Barcode+Reading"
+                            alt="Barcode Reading" class="w-full h-auto portfolio-img">
+                    </div>
                 </div>
             </div>
 
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-icon">📸</div>
-                    <h3>산업용 카메라</h3>
-                    <p>고성능 CMOS 센서 기반의 산업용 디지털 카메라. 다양한 해상도와 프레임 속도 지원.</p>
-                    <ul class="features-list">
-                        <li>2~45MP 고해상도</li>
-                        <li>GigE / USB3.0 인터페이스</li>
-                        <li>글로벌 셔터 방식</li>
-                        <li>뛰어난 가격 경쟁력</li>
-                    </ul>
+            <!-- Item 3: Inspection -->
+            <div class="grid md:grid-cols-2 gap-12 items-center group">
+                <div class="order-2 md:order-1">
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                        <img src="https://placehold.co/800x600/1e1e2e/3b82f6?text=Vision+Inspection+System"
+                            alt="Inspection" class="w-full h-auto portfolio-img">
+                    </div>
                 </div>
-
-                <div class="product-card">
-                    <div class="product-icon">🎯</div>
-                    <h3>스마트 카메라</h3>
-                    <p>비전 처리 기능이 내장된 올인원 카메라 시스템. 별도 PC 없이 독립 동작 가능.</p>
-                    <ul class="features-list">
-                        <li>내장형 비전 프로세서</li>
-                        <li>다양한 검사 기능</li>
-                        <li>PLC 연동 용이</li>
-                        <li>설치 및 설정 간편</li>
-                    </ul>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-icon">📐</div>
-                    <h3>3D 비전 시스템</h3>
-                    <p>레이저 스캐닝 및 구조광 방식의 3D 측정 솔루션. 높이 측정 및 형상 검사.</p>
-                    <ul class="features-list">
-                        <li>고정밀 3D 측정</li>
-                        <li>빠른 스캔 속도</li>
-                        <li>볼륨 측정 기능</li>
-                        <li>로봇 비전 가이드</li>
-                    </ul>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-icon">💡</div>
-                    <h3>조명 시스템</h3>
-                    <p>머신비전 전용 LED 조명. 다양한 형태와 색상으로 최적의 이미지 획득 지원.</p>
-                    <ul class="features-list">
-                        <li>링, 바, 돔, 백라이트</li>
-                        <li>다중 파장 지원</li>
-                        <li>스트로브 제어</li>
-                        <li>장수명 LED</li>
+                <div class="order-1 md:order-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-12 h-1 bg-blue-500 rounded-full"></span>
+                        <span class="text-blue-400 font-semibold tracking-wider uppercase">Inspection</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">정밀 외관 검사</h2>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                        제품의 품질을 보증하는 최종 관문인 외관 검사 시스템입니다.
+                        고해상도 카메라와 특수 조명을 조합하여 스크래치, 찍힘, 이물 등
+                        미세한 결함을 완벽하게 검출합니다.
+                    </p>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            라인 스캔 카메라 적용 (고해상도)
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            다각도 조명 제어 시스템
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            실시간 불량 마킹 및 배출
+                        </li>
                     </ul>
                 </div>
             </div>
-        </div>
 
-        <!-- CTA -->
-        <div class="cta-section">
-            <h2>제품 상담이 필요하신가요?</h2>
-            <p>고객님의 산업 환경에 최적화된 머신비전 솔루션을 제안해드립니다</p>
-            <a href="contact.html" class="cta-button">지금 문의하기</a>
-        </div>
-    </div>
+            <!-- Item 4: Deep Learning -->
+            <div class="grid md:grid-cols-2 gap-12 items-center group">
+                <div class="order-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-12 h-1 bg-pink-500 rounded-full"></span>
+                        <span class="text-pink-400 font-semibold tracking-wider uppercase">Deep Learning</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">딥러닝 AI 검사</h2>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                        기존 룰 기반 알고리즘으로 해결하기 어려운 비정형 불량을 검출합니다.
+                        Cognex ViDi 및 VisionPro Deep Learning을 활용하여
+                        사람의 눈과 같은 감성 품질 검사를 자동화합니다.
+                    </p>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            복잡한 배경의 결함 검출 (Red Tool)
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            양품/불량품 분류 (Green Tool)
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            OCR/OCV 문자 인식 (Blue Tool)
+                        </li>
+                    </ul>
+                </div>
+                <div class="order-2">
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                        <img src="https://placehold.co/800x600/1e1e2e/ec4899?text=Deep+Learning+AI+Vision"
+                            alt="Deep Learning" class="w-full h-auto portfolio-img">
+                    </div>
+                </div>
+            </div>
 
-    <!-- 푸터 -->
-    <footer>
-        <p>&copy; 2024 ASPEC. All rights reserved. | Advanced Specification</p>
+            <!-- Item 5: Software -->
+            <div class="grid md:grid-cols-2 gap-12 items-center group">
+                <div class="order-2 md:order-1">
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                        <img src="https://placehold.co/800x600/1e1e2e/22d3ee?text=Automation+Software" alt="Software"
+                            class="w-full h-auto portfolio-img">
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-12 h-1 bg-cyan-500 rounded-full"></span>
+                        <span class="text-cyan-400 font-semibold tracking-wider uppercase">Software</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">소프트웨어 제작</h2>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                        고객의 요구사항에 최적화된 전용 검사 소프트웨어를 개발합니다.
+                        C#, C++, Python 기반의 고성능 어플리케이션으로
+                        직관적인 UI와 안정적인 장비 제어를 제공합니다.
+                    </p>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            사용자 친화적 UI/UX 디자인
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            MES/POP 시스템 연동
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            실시간 데이터 로깅 및 통계 분석
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-gradient-to-b from-transparent to-blue-900/20">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">더 자세한 포트폴리오가 궁금하신가요?</h2>
+            <p class="text-gray-400 mb-10 text-lg">
+                ASPEC의 기술력이 적용된 더 많은 사례를 확인해보세요.
+            </p>
+            <a href="index.html#contact"
+                class="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-all shadow-lg shadow-blue-600/30">
+                프로젝트 문의하기
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-8 text-center text-gray-500 text-sm">
+        <p>&copy; 2024 ASPEC. All rights reserved.</p>
     </footer>
 
-    <script>
-        // 모바일 메뉴 토글
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            const menuBtn = document.querySelector('.mobile-menu-btn');
-            navLinks.classList.toggle('active');
-            menuBtn.classList.toggle('active');
-        }
-
-        // 메뉴 링크 클릭시 메뉴 닫기
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                const navLinks = document.querySelector('.nav-links');
-                const menuBtn = document.querySelector('.mobile-menu-btn');
-                navLinks.classList.remove('active');
-                menuBtn.classList.remove('active');
-            });
-        });
-    </script>
 </body>
-</html>
 
+</html>
