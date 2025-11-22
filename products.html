@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASPEC - Products & Solutions | 제품소개</title>
+    <title>ASPEC - Portfolio | 포트폴리오</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script>
@@ -54,6 +54,14 @@
             border-color: rgba(96, 165, 250, 0.5);
             box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
         }
+
+        .portfolio-img {
+            transition: transform 0.5s ease;
+        }
+
+        .group:hover .portfolio-img {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 
@@ -67,9 +75,9 @@
             </div>
             <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
                 <a href="index.html" class="hover:text-white transition-colors">홈</a>
-                <a href="about.html" class="hover:text-white transition-colors">회사소개</a>
-                <a href="products.html" class="text-white font-bold">제품소개</a>
-                <a href="portfolio.html" class="hover:text-white transition-colors">포트폴리오</a>
+                <a href="index.html#about" class="hover:text-white transition-colors">회사소개</a>
+                <a href="index.html#products" class="hover:text-white transition-colors">제품소개</a>
+                <a href="portfolio.html" class="text-white font-bold">포트폴리오</a>
                 <a href="index.html#contact"
                     class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full transition-colors">문의하기</a>
             </div>
@@ -77,225 +85,165 @@
     </nav>
 
     <!-- Hero Section -->
-    <header class="relative h-[50vh] flex items-center justify-center overflow-hidden">
+    <header class="relative h-[60vh] flex items-center justify-center overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <img src="hero-bg.png" alt="Products Background" class="w-full h-full object-cover opacity-50">
+            <img src="portfolio-hero.png" alt="Portfolio Background" class="w-full h-full object-cover opacity-60">
             <div class="hero-overlay absolute inset-0"></div>
         </div>
 
         <!-- Content -->
         <div class="relative z-10 text-center px-6 max-w-5xl mx-auto mt-20">
             <div
-                class="inline-block mb-4 px-4 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-sm font-semibold tracking-wide uppercase">
-                Products & Solutions
+                class="inline-block mb-4 px-4 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-semibold tracking-wide uppercase">
+                Our Works
             </div>
             <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                <span class="gradient-text">제품 및 솔루션</span>
+                ASPEC <span class="gradient-text">Portfolio</span>
             </h1>
             <p class="text-xl text-gray-400 max-w-2xl mx-auto">
-                세계 최고의 머신비전 제품과 ASPEC만의 통합 솔루션을 만나보세요.
+                최첨단 머신비전 기술로 완성된 성공적인 프로젝트 사례를 소개합니다.
             </p>
         </div>
     </header>
 
-    <!-- Cognex Section -->
+    <!-- Portfolio List -->
     <section class="py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex items-center gap-4 mb-12">
-                <div class="w-2 h-12 bg-yellow-500 rounded-full"></div>
-                <h2 class="text-4xl font-bold text-white">COGNEX</h2>
-            </div>
+        <div class="max-w-7xl mx-auto px-6 space-y-32">
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Cameras -->
-                <div class="glass-card rounded-2xl overflow-hidden group">
-                    <div class="h-48 bg-white/5 relative overflow-hidden">
-                        <img src="https://placehold.co/600x400/1e1e2e/eab308?text=In-Sight+Cameras" alt="Cognex Cameras"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4">In-Sight Cameras</h3>
-                        <p class="text-gray-400 mb-6">
-                            강력한 비전 툴과 통합 조명을 갖춘 올인원 스마트 카메라입니다.
-                            복잡한 검사 작업을 쉽고 빠르게 해결할 수 있습니다.
-                        </p>
-                        <ul class="space-y-2 text-sm text-gray-300">
-                            <li class="flex items-center gap-2"><span class="text-yellow-500">●</span> In-Sight
-                                2000/3800 Series</li>
-                            <li class="flex items-center gap-2"><span class="text-yellow-500">●</span> In-Sight 9000
-                                High Resolution</li>
-                        </ul>
+            <!-- Item 1: Alignment -->
+            <div class="grid md:grid-cols-2 gap-12 items-center group">
+                <div class="order-2 md:order-1">
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                        <img src="portfolio-alignment.png" alt="Vision Alignment" class="w-full h-auto portfolio-img">
                     </div>
                 </div>
-
-                <!-- Barcode Readers -->
-                <div class="glass-card rounded-2xl overflow-hidden group">
-                    <div class="h-48 bg-white/5 relative overflow-hidden">
-                        <img src="https://placehold.co/600x400/1e1e2e/eab308?text=DataMan+Readers" alt="Cognex Barcode"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="order-1 md:order-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-12 h-1 bg-blue-500 rounded-full"></span>
+                        <span class="text-blue-400 font-semibold tracking-wider uppercase">Alignment</span>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4">DataMan Readers</h3>
-                        <p class="text-gray-400 mb-6">
-                            업계 최고의 판독률을 자랑하는 이미지 기반 바코드 리더기입니다.
-                            1D/2D 코드는 물론 DPM까지 완벽하게 판독합니다.
-                        </p>
-                        <ul class="space-y-2 text-sm text-gray-300">
-                            <li class="flex items-center gap-2"><span class="text-yellow-500">●</span> DataMan 150/260
-                                Series</li>
-                            <li class="flex items-center gap-2"><span class="text-yellow-500">●</span> DataMan 470 High
-                                Speed</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Deep Learning -->
-                <div class="glass-card rounded-2xl overflow-hidden group">
-                    <div class="h-48 bg-white/5 relative overflow-hidden">
-                        <img src="https://placehold.co/600x400/1e1e2e/eab308?text=ViDi+Deep+Learning"
-                            alt="Cognex Deep Learning"
-                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-4">Deep Learning</h3>
-                        <p class="text-gray-400 mb-6">
-                            인간의 육안 검사 능력을 자동화 시스템에 적용했습니다.
-                            기존 룰 기반 검사의 한계를 뛰어넘는 AI 솔루션입니다.
-                        </p>
-                        <ul class="space-y-2 text-sm text-gray-300">
-                            <li class="flex items-center gap-2"><span class="text-yellow-500">●</span> VisionPro Deep
-                                Learning</li>
-                            <li class="flex items-center gap-2"><span class="text-yellow-500">●</span> In-Sight D900 AI
-                                Camera</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Hikrobot Section -->
-    <section class="py-24 bg-white/5">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex items-center gap-4 mb-12">
-                <div class="w-2 h-12 bg-red-600 rounded-full"></div>
-                <h2 class="text-4xl font-bold text-white">HIKROBOT</h2>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="glass-card p-8 rounded-2xl">
-                    <h3 class="text-2xl font-bold mb-6">Industrial Cameras</h3>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">초정밀 비전 얼라인먼트</h2>
                     <p class="text-gray-400 text-lg leading-relaxed mb-8">
-                        Hikrobot의 산업용 카메라는 뛰어난 이미지 품질과 높은 가격 경쟁력을 제공합니다.
-                        GigE, USB3.0, Camera Link 등 다양한 인터페이스와 폭넓은 해상도 라인업을 보유하고 있어
-                        모든 비전 애플리케이션에 최적의 선택이 됩니다.
+                        디스플레이 및 반도체 공정에서 필수적인 미세 정렬 솔루션입니다.
+                        Cognex VisionPro의 강력한 패턴 매칭 알고리즘을 활용하여
+                        서브 픽셀 단위의 정밀도를 보장하며, 고속 로봇 가이던스를 수행합니다.
                     </p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-black/20 p-4 rounded-lg text-center">
-                            <div class="font-bold text-white mb-1">Area Scan</div>
-                            <div class="text-sm text-gray-500">고해상도/고속 촬영</div>
-                        </div>
-                        <div class="bg-black/20 p-4 rounded-lg text-center">
-                            <div class="font-bold text-white mb-1">Line Scan</div>
-                            <div class="text-sm text-gray-500">연속 공정 검사</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="rounded-2xl overflow-hidden border border-white/10">
-                    <img src="https://placehold.co/800x600/1e1e2e/dc2626?text=Hikrobot+Industrial+Cameras"
-                        alt="Hikrobot Cameras" class="w-full h-auto">
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            VisionPro PatMax RedLine 적용
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            UVW 스테이지 정밀 제어
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            반복 정밀도 ±0.005mm 달성
+                        </li>
+                    </ul>
                 </div>
             </div>
+
+            <!-- Item 2: Barcode Reading -->
+            <div class="grid md:grid-cols-2 gap-12 items-center group">
+                <div class="order-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-12 h-1 bg-purple-500 rounded-full"></span>
+                        <span class="text-purple-400 font-semibold tracking-wider uppercase">Barcode Reading</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">고속 바코드/QR 리딩</h2>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                        물류 및 제조 라인의 이력 관리를 위한 고성능 바코드 판독 시스템입니다.
+                        DataMan 시리즈를 활용하여 손상되거나 인쇄 상태가 불량한 코드도
+                        99.9% 이상의 인식률로 판독합니다.
+                    </p>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            멀티 코드 동시 판독
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            DPM(Direct Part Mark) 난독 코드 대응
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            고속 컨베이어 라인 적용
+                            <span class="text-cyan-400 font-semibold tracking-wider uppercase">Software</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">소프트웨어 제작</h2>
+                <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                    고객의 요구사항에 최적화된 전용 검사 소프트웨어를 개발합니다.
+                    C#, C++, Python 기반의 고성능 어플리케이션으로
+                    직관적인 UI와 안정적인 장비 제어를 제공합니다.
+                </p>
+                <ul class="space-y-3 text-gray-300">
+                    <li class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        사용자 친화적 UI/UX 디자인
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        MES/POP 시스템 연동
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        실시간 데이터 로깅 및 통계 분석
+                    </li>
+                </ul>
+            </div>
+        </div>
+
         </div>
     </section>
 
-    <!-- Solutions Section -->
-    <section class="py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex items-center gap-4 mb-12">
-                <div class="w-2 h-12 bg-blue-500 rounded-full"></div>
-                <h2 class="text-4xl font-bold text-white">ASPEC Solutions</h2>
-            </div>
-
-            <div class="space-y-8">
-                <!-- Solution 1: Software -->
-                <div class="glass-card p-8 md:p-12 rounded-2xl flex flex-col md:flex-row gap-8 items-center">
-                    <div class="w-full md:w-1/3">
-                        <div
-                            class="w-16 h-16 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-400 mb-6">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">Software Development</h3>
-                        <p class="text-gray-400">
-                            고객 맞춤형 비전 소프트웨어를 개발합니다.
-                            사용자 친화적인 UI와 최적화된 알고리즘으로
-                            생산 효율을 극대화합니다.
-                        </p>
-                    </div>
-                    <div class="w-full md:w-2/3 rounded-xl overflow-hidden border border-white/10">
-                        <img src="https://placehold.co/800x400/1e1e2e/3b82f6?text=Custom+Software+UI" alt="Software UI"
-                            class="w-full h-full object-cover">
-                    </div>
-                </div>
-
-                <!-- Solution 2: PLC -->
-                <div class="glass-card p-8 md:p-12 rounded-2xl flex flex-col md:flex-row gap-8 items-center">
-                    <div class="w-full md:w-1/3">
-                        <div
-                            class="w-16 h-16 bg-purple-500/20 rounded-2xl flex items-center justify-center text-purple-400 mb-6">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">PLC & Control</h3>
-                        <p class="text-gray-400">
-                            자동화 라인의 핵심인 PLC 제어 시스템을 구축합니다.
-                            비전 시스템과의 완벽한 통신 인터페이스를 제공하며
-                            안정적인 설비 운영을 보장합니다.
-                        </p>
-                    </div>
-                    <div class="w-full md:w-2/3 rounded-xl overflow-hidden border border-white/10">
-                        <img src="https://placehold.co/800x400/1e1e2e/a855f7?text=PLC+Control+System" alt="PLC System"
-                            class="w-full h-full object-cover">
-                    </div>
-                </div>
-
-                <!-- Solution 3: Equipment -->
-                <div class="glass-card p-8 md:p-12 rounded-2xl flex flex-col md:flex-row gap-8 items-center">
-                    <div class="w-full md:w-1/3">
-                        <div
-                            class="w-16 h-16 bg-pink-500/20 rounded-2xl flex items-center justify-center text-pink-400 mb-6">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">Equipment Manufacturing</h3>
-                        <p class="text-gray-400">
-                            검사 장비의 기구 설계부터 제작까지 턴키 솔루션을 제공합니다.
-                            광학 조건에 최적화된 기구 구조와
-                            사용자 편의성을 고려한 설계를 적용합니다.
-                        </p>
-                    </div>
-                    <div class="w-full md:w-2/3 rounded-xl overflow-hidden border border-white/10">
-                        <img src="https://placehold.co/800x400/1e1e2e/ec4899?text=Inspection+Equipment" alt="Equipment"
-                            class="w-full h-full object-cover">
-                    </div>
-                </div>
-            </div>
+    <!-- CTA Section -->
+    <section class="py-24 bg-gradient-to-b from-transparent to-blue-900/20">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">더 자세한 포트폴리오가 궁금하신가요?</h2>
+            <p class="text-gray-400 mb-10 text-lg">
+                ASPEC의 기술력이 적용된 더 많은 사례를 확인해보세요.
+            </p>
+            <a href="index.html#contact"
+                class="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-all shadow-lg shadow-blue-600/30">
+                프로젝트 문의하기
+            </a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="border-t border-white/10 py-8 text-center text-gray-500 text-sm">
-        <p>&copy; 2025 ASPEC. All rights reserved.</p>
+        <p>&copy; 2024 ASPEC. All rights reserved.</p>
     </footer>
 
 </body>
