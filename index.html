@@ -2,6 +2,14 @@
 <html lang="ko" class="scroll-smooth">
 
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J4CN1T8SXW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-J4CN1T8SXW');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -392,6 +400,7 @@
                         <div>
                             <h4 class="font-semibold text-white mb-1">Email</h4>
                             <a href="mailto:sales@aspec-tech.co.kr"
+                                onclick="gtag('event', 'click_email', {'event_category': 'lead', 'event_label': 'sales_contact'});"
                                 class="text-gray-400 hover:text-blue-400 transition-colors text-sm">sales@aspec-tech.co.kr</a>
                         </div>
                     </div>
@@ -407,6 +416,7 @@
                         <div>
                             <h4 class="font-semibold text-white mb-1">Phone</h4>
                             <a href="tel:010-9679-5522"
+                                onclick="gtag('event', 'click_phone', {'event_category': 'lead', 'event_label': 'mobile_contact'});"
                                 class="text-gray-400 hover:text-purple-400 transition-colors text-sm">010-9679-5522</a>
                         </div>
                     </div>
@@ -437,3 +447,4 @@
 
 </body>
 </html>
+
