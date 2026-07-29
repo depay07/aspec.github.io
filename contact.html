@@ -26,13 +26,18 @@
     <style>
         body{background:#0B0C15;color:#fff}
         .glass-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1)}
-        input,select,textarea{
-            color:#0f172a;
-            background:#fff;
-            border:1px solid rgba(148,163,184,.45);
+        input,select,textarea,.form-field{
+            color:#0f172a !important;
+            background-color:#fff !important;
+            border:1px solid rgba(148,163,184,.45) !important;
+            -webkit-text-fill-color:#0f172a !important;
+            caret-color:#0f172a;
             color-scheme:light;
         }
-        input::placeholder,textarea::placeholder{color:#64748b}
+        input::placeholder,textarea::placeholder{
+            color:#64748b !important;
+            -webkit-text-fill-color:#64748b !important;
+        }
         input:focus,select:focus,textarea:focus{
             outline:none;
             border-color:#93c5fd;
@@ -101,9 +106,9 @@
                         <input type="hidden" name="_subject" value="ASPEC 홈페이지 문의">
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_captcha" value="false">
-                        <div><label class="block text-sm font-semibold mb-2">문의 유형 <span class="text-gray-500 font-normal">(선택)</span></label><select name="문의 유형" class="w-full rounded-lg px-4 py-3"><option>간단 문의</option><option>장비 상담 / 견적 문의</option><option>AI 비전검사 / 딥러닝 외관검사</option><option>OCR검사 / OCV검사</option><option>코그넥스 비전검사</option><option>바코드리더기 / QR코드 / DPM</option><option>머신비전 조명 / 머신비전 케이블 / 렌즈</option><option>기존 장비 비교 / 연동 검토</option><option>PLC·MES 연동 검사 소프트웨어</option></select></div>
-                        <div><label class="block text-sm font-semibold mb-2">문의 내용</label><textarea name="문의 내용" rows="7" required class="w-full rounded-lg px-4 py-3" placeholder="예: 제품 외관검사를 자동화하고 싶습니다. 샘플 테스트가 가능한가요?"></textarea></div>
-                        <div><label class="block text-sm font-semibold mb-2">답변 받을 연락처 <span class="text-gray-500 font-normal">(선택)</span></label><input name="연락처" class="w-full rounded-lg px-4 py-3" placeholder="이메일 또는 휴대폰 번호"></div>
+                        <div><label class="block text-sm font-semibold mb-2">문의 유형 <span class="text-gray-500 font-normal">(선택)</span></label><select name="문의 유형" class="form-field w-full rounded-lg px-4 py-3 text-slate-900 bg-white"><option>간단 문의</option><option>장비 상담 / 견적 문의</option><option>AI 비전검사 / 딥러닝 외관검사</option><option>OCR검사 / OCV검사</option><option>코그넥스 비전검사</option><option>바코드리더기 / QR코드 / DPM</option><option>머신비전 조명 / 머신비전 케이블 / 렌즈</option><option>기존 장비 비교 / 연동 검토</option><option>PLC·MES 연동 검사 소프트웨어</option></select></div>
+                        <div><label class="block text-sm font-semibold mb-2">문의 내용</label><textarea name="문의 내용" rows="7" required class="form-field w-full rounded-lg px-4 py-3 text-slate-900 bg-white" placeholder="예: 제품 외관검사를 자동화하고 싶습니다. 샘플 테스트가 가능한가요?"></textarea></div>
+                        <div><label class="block text-sm font-semibold mb-2">답변 받을 연락처 <span class="text-gray-500 font-normal">(선택)</span></label><input name="연락처" class="form-field w-full rounded-lg px-4 py-3 text-slate-900 bg-white" placeholder="이메일 또는 휴대폰 번호"></div>
                         <button id="contact-submit" type="submit" class="w-full px-6 py-3 rounded-lg bg-white text-slate-950 hover:bg-slate-200 border border-white font-bold shadow-[0_10px_28px_rgba(255,255,255,0.16)] transition-colors">문의 보내기</button>
                         <p id="contact-status" class="hidden text-sm leading-relaxed"></p>
                     </form>
