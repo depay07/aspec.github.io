@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>body{background:#0B0C15;color:#fff}.gradient-text{background:linear-gradient(to right,#60A5FA,#A78BFA);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.glass-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1);transition:.25s}.glass-card:hover{transform:translateY(-4px);border-color:rgba(96,165,250,.45)}</style>
+    <link rel="stylesheet" href="product-pages.css">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -62,51 +63,133 @@
     <header class="pt-36 pb-20 bg-gradient-to-b from-blue-950/30 to-brand-dark">
         <div class="max-w-7xl mx-auto px-6">
             <p class="text-blue-300 font-semibold mb-4 uppercase tracking-wider">Products & Solutions</p>
-            <h1 class="text-4xl md:text-6xl font-bold mb-6"><span class="gradient-text">Cognex 기반</span> ASPEC 제품·솔루션</h1>
-            <p class="text-xl text-gray-300 max-w-4xl leading-relaxed">ASPEC은 In-Sight, VisionPro, PatMax, DataMan 바코드리더기와 머신비전 조명, 케이블, 렌즈, 산업용 카메라, OCR검사, 딥러닝 외관검사, PLC·MES 연동 소프트웨어를 현장 조건에 맞춰 구성합니다. 기존 장비를 사용 중인 라인도 적용 가능성과 대체 구성을 함께 검토합니다.</p>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6"><span class="gradient-text">Cognex 코그넥스 제품</span> · 머신비전 솔루션</h1>
+            <p class="text-xl text-gray-300 max-w-4xl leading-relaxed">Cognex 공식 대리점 ASPEC은 In-Sight 머신비전 시스템, DataMan 산업용 바코드 리더기, VisionPro와 AI 비전검사 제품을 검사 조건에 맞춰 선정합니다. OCR·OCV, 렌즈·조명 구성, 검사 프로그램 개발, PLC·MES 연동과 현장 셋업까지 한 흐름으로 기술 상담합니다.</p>
+            <p class="text-base text-gray-400 max-w-4xl leading-relaxed mt-5">ASPEC은 In-Sight, VisionPro, PatMax, DataMan 바코드리더기와 머신비전 조명, 케이블, 렌즈, 산업용 카메라, OCR검사, 딥러닝 외관검사, PLC·MES 연동 소프트웨어를 현장 조건에 맞춰 구성합니다. 기존 장비를 사용 중인 라인도 적용 가능성과 대체 구성을 함께 검토합니다.</p>
         </div>
     </header>
 
     <main>
-        <section class="py-24">
+        <section class="product-hub-section" aria-labelledby="cognex-products-heading">
+            <div class="section-inner">
+                <p class="section-kicker">Cognex Product Library</p>
+                <h2 id="cognex-products-heading" class="section-heading">Cognex 제품</h2>
+                <p class="section-lead">검사 방식과 설치 조건에 맞는 모델을 찾을 수 있도록 2D·3D 비전, 산업용 바코드 리더기, 비전 소프트웨어를 제품군별로 정리했습니다. 모델별 상세 페이지에서 적용 검사와 ASPEC 지원 범위를 확인할 수 있습니다.</p>
+
+                <div class="product-toolbar">
+                    <div class="product-search-wrap">
+                        <label for="product-search" class="product-search-label">제품 검색</label>
+                        <input id="product-search" class="product-search" type="search" autocomplete="off" placeholder="제품명 또는 모델 검색 (예: In-Sight 3900, DataMan 290)">
+                    </div>
+                    <p id="product-count" class="product-count" aria-live="polite">12개 제품</p>
+                </div>
+
+                <div class="product-filters" role="group" aria-label="Cognex 제품 카테고리">
+                    <button class="product-filter" type="button" data-filter="all" aria-pressed="true">전체</button>
+                    <button class="product-filter" type="button" data-filter="2d" aria-pressed="false">2D 비전</button>
+                    <button class="product-filter" type="button" data-filter="3d" aria-pressed="false">3D 비전</button>
+                    <button class="product-filter" type="button" data-filter="barcode" aria-pressed="false">바코드 리더기</button>
+                    <button class="product-filter" type="button" data-filter="software" aria-pressed="false">비전 소프트웨어</button>
+                </div>
+
+                <div id="product-grid" class="product-grid">
+                    <article class="product-card" data-category="2d" data-keywords="cognex 코그넥스 insight in-sight 3900 코그넥스3900 머신비전 스마트카메라 ai 고속 비전검사">
+                        <div class="product-visual" role="img" aria-label="Cognex In-Sight 3900 제품 이미지 자리 표시자"><span class="product-visual-label">In-Sight<br>3900</span></div>
+                        <div class="product-card-body"><p class="product-category">2D Vision</p><h3 class="product-name">In-Sight 3900</h3><p class="product-keyline">고속 검사에 대응하는 고성능 임베디드 AI 비전</p><p class="product-description">고속 생산라인과 고난도 검사에 대응하는 AI 기반 고성능 머신비전 시스템입니다.</p><div class="product-actions"><a href="products/cognex/insight-3900.html" class="product-action product-action-primary" aria-label="Cognex In-Sight 3900 제품 상세보기">제품 상세보기</a><a href="contact.html#contact-form" class="product-action product-action-secondary" aria-label="Cognex In-Sight 3900 제품 문의">제품 문의</a></div></div>
+                    </article>
+                    <article class="product-card" data-category="2d" data-keywords="cognex 코그넥스 insight in-sight 2800 코그넥스2800 머신비전 스마트카메라 ai edge learning ocr">
+                        <div class="product-visual" role="img" aria-label="Cognex In-Sight 2800 제품 이미지 자리 표시자"><span class="product-visual-label">In-Sight<br>2800</span></div>
+                        <div class="product-card-body"><p class="product-category">2D Vision</p><h3 class="product-name">In-Sight 2800</h3><p class="product-keyline">AI와 룰 기반 툴을 결합한 범용 스마트카메라</p><p class="product-description">유무검사, 분류, OCR 등 다양한 자동화 검사에 적용하기 좋은 머신비전 시스템입니다.</p><div class="product-actions"><a href="products/cognex/insight-2800.html" class="product-action product-action-primary" aria-label="Cognex In-Sight 2800 제품 상세보기">제품 상세보기</a><a href="contact.html#contact-form" class="product-action product-action-secondary" aria-label="Cognex In-Sight 2800 제품 문의">제품 문의</a></div></div>
+                    </article>
+                    <article class="product-card" data-category="2d" data-keywords="cognex 코그넥스 insight in-sight 8900 코그넥스8900 소형 compact oem ai 비전 시스템 스마트카메라">
+                        <div class="product-visual" role="img" aria-label="Cognex In-Sight 8900 제품 이미지 자리 표시자"><span class="product-visual-label">In-Sight<br>8900</span></div>
+                        <div class="product-card-body"><p class="product-category">2D Vision</p><h3 class="product-name">In-Sight 8900</h3><p class="product-keyline">협소한 장비 내부를 위한 소형 AI 비전 시스템</p><p class="product-description">설치 공간이 제한된 장비와 OEM 설비에 적합한 소형 고성능 머신비전 시스템입니다.</p><div class="product-actions"><a href="products/cognex/insight-8900.html" class="product-action product-action-primary" aria-label="Cognex In-Sight 8900 제품 상세보기">제품 상세보기</a><a href="contact.html#contact-form" class="product-action product-action-secondary" aria-label="Cognex In-Sight 8900 제품 문의">제품 문의</a></div></div>
+                    </article>
+                    <article class="product-card" data-category="2d" data-keywords="cognex 코그넥스 insight in-sight 3800 line scan linescan 라인스캔 머신비전 필름 웹 연속 소재">
+                        <div class="product-visual" role="img" aria-label="Cognex In-Sight 3800 Line Scan 제품 이미지 자리 표시자"><span class="product-visual-label">In-Sight 3800<br>Line Scan</span></div>
+                        <div class="product-card-body"><p class="product-category">2D Vision · Line Scan</p><h3 class="product-name">In-Sight 3800 Line Scan</h3><p class="product-keyline">연속 소재와 긴 제품을 위한 라인스캔 비전</p><p class="product-description">필름, 웹, 시트와 같이 연속 이동하는 소재 및 긴 제품의 고속 검사를 위한 머신비전 시스템입니다.</p><div class="product-actions"><a href="products/cognex/insight-3800-linescan.html" class="product-action product-action-primary" aria-label="Cognex In-Sight 3800 Line Scan 제품 상세보기">제품 상세보기</a><a href="contact.html#contact-form" class="product-action product-action-secondary" aria-label="Cognex In-Sight 3800 Line Scan 제품 문의">제품 문의</a></div></div>
+                    </article>
+                    <article class="product-card" data-category="3d" data-keywords="cognex 코그넥스 insight in-sight l38 3d 비전 검사 측정 로봇 가이던스 ai">
+                        <div class="product-visual" role="img" aria-label="Cognex In-Sight L38 제품 이미지 자리 표시자"><span class="product-visual-label">In-Sight<br>L38</span></div>
+                        <div class="product-card-body"><p class="product-category">3D Vision</p><h3 class="product-name">In-Sight L38</h3><p class="product-keyline">높이 정보까지 분석하는 AI 기반 3D 비전</p><p class="product-description">AI 기반 3D 검사, 측정과 로봇 가이던스를 검토할 수 있는 3D 머신비전 시스템입니다.</p><div class="product-actions"><a href="products/cognex/insight-l38.html" class="product-action product-action-primary" aria-label="Cognex In-Sight L38 제품 상세보기">제품 상세보기</a><a href="contact.html#contact-form" class="product-action product-action-secondary" aria-label="Cognex In-Sight L38 제품 문의">제품 문의</a></div></div>
+                    </article>
+                    <article class="product-card" data-category="3d" data-keywords="cognex 코그넥스 insight in-sight 6900 비전 컨트롤러 고해상도 카메라 ai 머신비전">
+                        <div class="product-visual" role="img" aria-label="Cognex In-Sight 6900 제품 이미지 자리 표시자"><span class="product-visual-label">In-Sight<br>6900</span></div>
+                        <div class="product-card-body"><p class="product-category">Vision Controller</p><h3 class="product-name">In-Sight 6900</h3><p class="product-keyline">복잡한 검사 구성을 위한 고성능 비전 컨트롤러</p><p class="product-description">고성능 카메라와 AI 처리가 필요한 복잡한 머신비전 애플리케이션을 위한 비전 컨트롤러입니다.</p><div class="product-actions"><a href="products/cognex/insight-6900.html" class="product-action product-action-primary" aria-label="Cognex In-Sight 6900 제품 상세보기">제품 상세보기</a><a href="contact.html#contact-form" class="product-action product-action-secondary" aria-label="Cognex In-Sight 6900 제품 문의">제품 문의</a></div></div>
+                    </article>
+                    <article class="product-card" data-category="barcode" data-keywords="cognex 코그넥스 dataman data man 290 바코드 리더기 산업용 고정식 1d 2d dpm ai">
+                        <div class="product-visual" role="img" aria-label="Cognex DataMan 290 제품 이미지 자리 표시자"><span class="product-visual-label">DataMan<br>290</span></div>
+                        <div class="product-card-body"><p class="product-category">Fixed Barcode Reader</p><h3 class="product-name">DataMan 290</h3><p class="product-keyline">범용 코드 판독을 위한 AI 고정식 리더기</p><p class="product-description">AI 기반 산업용 고정식 바코드 리더기로 1D·2D와 난이도 높은 코드 판독에 적합합니다.</p><div class="product-actions"><a href="products/cognex/dataman-290.html" class="product-action product-action-primary" aria-label="Cognex DataMan 290 제품 상세보기">제품 상세보기</a><a href="contact.html#contact-form" class="product-action product-action-secondary" aria-label="Cognex DataMan 290 제품 문의">제품 문의</a></div></div>
+                    </article>
+                    <article class="product-card" data-category="barcode" data-keywords="cognex 코그넥스 dataman data man 390 고해상도 바코드 리더기 산업용 고정식 멀티코드 ai">
+                        <div class="product-visual" role="img" aria-label="Cognex DataMan 390 제품 이미지 자리 표시자"><span class="product-visual-label">DataMan<br>390</span></div>
+                        <div class="product-card-body"><p class="product-category">Fixed Barcode Reader</p><h3 class="product-name">DataMan 390</h3><p class="product-keyline">넓은 판독 영역을 위한 고해상도 AI 리더기</p><p class="product-description">고해상도 이미지 센서와 AI 기능을 적용한 고성능 산업용 바코드 리더기입니다.</p><div class="product-actions"><a href="products/cognex/dataman-390.html" class="product-action product-action-primary" aria-label="Cognex DataMan 390 제품 상세보기">제품 상세보기</a><a href="contact.html#contact-form" class="product-action product-action-secondary" aria-label="Cognex DataMan 390 제품 문의">제품 문의</a></div></div>
+                    </article>
+                    <article class="product-card" data-category="barcode" data-keywords="cognex 코그넥스 dataman data man 80 초소형 바코드 리더기 산업용 고정식 좁은 공간">
+                        <div class="product-visual" role="img" aria-label="Cognex DataMan 80 제품 이미지 자리 표시자"><span class="product-visual-label">DataMan<br>80</span></div>
+                        <div class="product-card-body"><p class="product-category">Compact Barcode Reader</p><h3 class="product-name">DataMan 80</h3><p class="product-keyline">좁은 설치 공간에 맞는 초소형 고정식 리더기</p><p class="product-description">장비 내부와 협소한 공정에 설치하기 쉬운 초소형 산업용 고정식 바코드 리더기입니다.</p><div class="product-actions"><a href="products/cognex/dataman-80.html" class="product-action product-action-primary" aria-label="Cognex DataMan 80 제품 상세보기">제품 상세보기</a><a href="contact.html#contact-form" class="product-action product-action-secondary" aria-label="Cognex DataMan 80 제품 문의">제품 문의</a></div></div>
+                    </article>
+                    <article class="product-card" data-category="barcode" data-keywords="cognex 코그넥스 dataman data man 8700 핸드헬드 바코드 리더기 산업용 dpm 직접 부품 마킹">
+                        <div class="product-visual" role="img" aria-label="Cognex DataMan 8700 제품 이미지 자리 표시자"><span class="product-visual-label">DataMan<br>8700</span></div>
+                        <div class="product-card-body"><p class="product-category">Handheld Barcode Reader</p><h3 class="product-name">DataMan 8700</h3><p class="product-keyline">현장 이동 판독을 위한 산업용 핸드헬드</p><p class="product-description">제조 현장의 DPM과 난이도 높은 코드를 유연하게 판독하기 위한 산업용 핸드헬드 바코드 리더기입니다.</p><div class="product-actions"><a href="products/cognex/dataman-8700.html" class="product-action product-action-primary" aria-label="Cognex DataMan 8700 제품 상세보기">제품 상세보기</a><a href="contact.html#contact-form" class="product-action product-action-secondary" aria-label="Cognex DataMan 8700 제품 문의">제품 문의</a></div></div>
+                    </article>
+                    <article class="product-card" data-category="software" data-keywords="cognex 코그넥스 visionpro vision pro 비전프로 머신비전 소프트웨어 pc 검사 프로그램 c# 개발 patmax">
+                        <div class="product-visual" role="img" aria-label="Cognex VisionPro 제품 이미지 자리 표시자"><span class="product-visual-label">VisionPro</span></div>
+                        <div class="product-card-body"><p class="product-category">Vision Software</p><h3 class="product-name">VisionPro</h3><p class="product-keyline">PC 기반 검사 프로그램 개발용 비전 소프트웨어</p><p class="product-description">PC 기반 머신비전 검사 프로그램과 설비 전용 UI를 개발하기 위한 Cognex 비전 소프트웨어입니다.</p><div class="product-actions"><a href="products/cognex/visionpro.html" class="product-action product-action-primary" aria-label="Cognex VisionPro 제품 상세보기">제품 상세보기</a><a href="contact.html#contact-form" class="product-action product-action-secondary" aria-label="Cognex VisionPro 제품 문의">제품 문의</a></div></div>
+                    </article>
+                    <article class="product-card" data-category="software" data-keywords="cognex 코그넥스 visionpro deep learning 딥러닝 ai 이미지 분석 외관 불량 분류 ocr 소프트웨어">
+                        <div class="product-visual" role="img" aria-label="Cognex VisionPro Deep Learning 제품 이미지 자리 표시자"><span class="product-visual-label">VisionPro<br>Deep Learning</span></div>
+                        <div class="product-card-body"><p class="product-category">AI Vision Software</p><h3 class="product-name">VisionPro Deep Learning</h3><p class="product-keyline">복잡한 외관검사를 위한 AI 이미지 분석 도구</p><p class="product-description">불규칙한 외관 불량, 분류, OCR처럼 룰 기반으로 해결하기 어려운 검사를 위한 AI 비전 소프트웨어입니다.</p><div class="product-actions"><a href="products/cognex/visionpro-deep-learning.html" class="product-action product-action-primary" aria-label="Cognex VisionPro Deep Learning 제품 상세보기">제품 상세보기</a><a href="contact.html#contact-form" class="product-action product-action-secondary" aria-label="Cognex VisionPro Deep Learning 제품 문의">제품 문의</a></div></div>
+                    </article>
+                </div>
+                <p id="product-empty" class="product-empty">검색 조건에 맞는 제품이 없습니다. 모델명을 다시 확인하거나 제품 선정 문의를 이용해 주세요.</p>
+            </div>
+        </section>
+
+        <section class="py-24 border-t border-white/10" aria-labelledby="aspec-solutions-heading">
             <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="solution-hub-heading">
+                    <p class="section-kicker">Engineering Services</p>
+                    <h2 id="aspec-solutions-heading" class="text-3xl md:text-4xl font-bold">ASPEC 머신비전 솔루션</h2>
+                    <p class="text-gray-400 leading-relaxed mt-4 max-w-4xl">제품 공급에 그치지 않고 검사 대상, 광학 조건, 제어 방식과 생산 데이터 흐름을 함께 검토해 실제 라인에서 사용할 수 있는 시스템으로 구축합니다.</p>
+                </div>
                 <article class="glass-card rounded-xl p-7">
-                    <h2 class="text-2xl font-bold mb-4 text-yellow-300">Cognex 비전 시스템</h2>
+                    <h3 class="text-2xl font-bold mb-4 text-yellow-300">Cognex 비전 시스템</h3>
                     <p class="text-gray-400 leading-relaxed mb-4">ASPEC은 In-Sight 비전센서, VisionPro, PatMax, DataMan, 코그넥스 AI 툴 상담부터 검사 시스템 구축까지 지원합니다.</p>
                     <p class="text-sm text-gray-300">In-Sight, VisionPro, PatMax, DataMan 등 Cognex 제품군을 검사 목적에 맞춰 제안합니다.</p>
                 </article>
                 <article class="glass-card rounded-xl p-7">
-                    <h2 class="text-2xl font-bold mb-4 text-blue-300">AI 비전검사</h2>
+                    <h3 class="text-2xl font-bold mb-4 text-blue-300">AI 비전검사</h3>
                     <p class="text-gray-400 leading-relaxed mb-4">규칙화하기 어려운 스크래치, 찍힘, 얼룩, 오염, 이물, 누락, 조립 불량을 ai비전검사와 딥러닝 외관검사로 분류합니다.</p>
                     <p class="text-sm text-gray-300">표면 불량, 외관 편차, 조립 오류처럼 패턴이 일정하지 않은 검사에 적합합니다. <a href="ai-vision.html" class="text-blue-300 hover:text-blue-200 font-semibold">AI검사 상세 보기</a></p>
                 </article>
                 <article class="glass-card rounded-xl p-7">
-                    <h2 class="text-2xl font-bold mb-4 text-purple-300">OCR검사·OCV검사</h2>
+                    <h3 class="text-2xl font-bold mb-4 text-purple-300">OCR검사·OCV검사</h3>
                     <p class="text-gray-400 leading-relaxed mb-4">유통기한, LOT 번호, 제조번호, 라벨 문자, 각인 문자, 인쇄 품질을 OCR검사와 OCV검사로 판독하고 검증합니다.</p>
                     <p class="text-sm text-gray-300">문자 판독뿐 아니라 인쇄 누락, 흐림, 위치 틀어짐까지 함께 검토합니다.</p>
                 </article>
                 <article class="glass-card rounded-xl p-7">
-                    <h2 class="text-2xl font-bold mb-4 text-pink-300">바코드리더기</h2>
+                    <h3 class="text-2xl font-bold mb-4 text-pink-300">바코드리더기</h3>
                     <p class="text-gray-400 leading-relaxed mb-4">DataMan 바코드리더기, QR코드 리더기, 1D/2D 코드, DPM 판독, 다면 코드 리딩, 고속 컨베이어 판독을 지원합니다.</p>
                     <p class="text-sm text-gray-300">고속 라인, 다면 판독, DPM 코드, MES 추적성 관리까지 고려합니다. <a href="barcode-reader.html" class="text-blue-300 hover:text-blue-200 font-semibold">바코드리더기 상세 보기</a></p>
                 </article>
                 <article class="glass-card rounded-xl p-7">
-                    <h2 class="text-2xl font-bold mb-4 text-cyan-300">머신비전 조명·케이블·렌즈</h2>
+                    <h3 class="text-2xl font-bold mb-4 text-cyan-300">머신비전 조명·케이블·렌즈</h3>
                     <p class="text-gray-400 leading-relaxed mb-4">Area Scan, Line Scan, 3D 카메라와 함께 머신비전 조명, 머신비전 케이블, 비전 렌즈, 동축 조명, 돔 조명, 백라이트, 조명 컨트롤러 등 검사 대상에 맞는 광학계를 선정합니다.</p>
                     <p class="text-sm text-gray-300">검사 품질을 좌우하는 광학 조건을 샘플과 설치 환경 기준으로 선정합니다. <a href="vision-accessories.html" class="text-blue-300 hover:text-blue-200 font-semibold">조명·케이블 상세 보기</a></p>
                 </article>
                 <article class="glass-card rounded-xl p-7">
-                    <h2 class="text-2xl font-bold mb-4 text-green-300">비전 소프트웨어</h2>
+                    <h3 class="text-2xl font-bold mb-4 text-green-300">비전 소프트웨어</h3>
                     <p class="text-gray-400 leading-relaxed mb-4">C#, Python 기반 검사 UI, 결과 저장, 통계, 레시피 관리, PLC 통신, MES 연동, 로봇비전 좌표 전송을 개발합니다.</p>
                     <p class="text-sm text-gray-300">레시피, 로그, 통계, 설비 통신까지 현장 사용성을 기준으로 설계합니다. <a href="vision-software.html" class="text-blue-300 hover:text-blue-200 font-semibold">비전 프로그램 상세 보기</a></p>
                 </article>
                 <article class="glass-card rounded-xl p-7">
-                    <h2 class="text-2xl font-bold mb-4 text-orange-300">기존 장비 비교 검토</h2>
+                    <h3 class="text-2xl font-bold mb-4 text-orange-300">기존 장비 비교 검토</h3>
                     <p class="text-gray-400 leading-relaxed mb-4">기존 장비를 사용 중이거나 신규 장비를 비교 중인 경우에도 검사 난이도, 통신 방식, 예산, 유지보수 조건을 기준으로 대안과 연동 방식을 함께 비교합니다.</p>
                     <p class="text-sm text-gray-300">기존 장비와 신규 구성을 비교해 성능, 비용, 유지보수 균형을 맞춥니다.</p>
                 </article>
                 <article class="glass-card rounded-xl p-7">
-                    <h2 class="text-2xl font-bold mb-4 text-lime-300">예산형 머신비전 구성</h2>
+                    <h3 class="text-2xl font-bold mb-4 text-lime-300">예산형 머신비전 구성</h3>
                     <p class="text-gray-400 leading-relaxed mb-4">초기 비용을 줄여야 하는 프로젝트는 무조건 낮은 사양을 권하기보다 검사 목표, 불량 유형, 택타임, 조명 조건을 기준으로 필요한 구성을 제안합니다.</p>
                     <p class="text-sm text-gray-300">낮은 초기 비용이 필요한 경우에도 검사 안정성을 해치지 않는 선에서 구성합니다.</p>
                 </article>
@@ -127,5 +210,42 @@
     <footer class="border-t border-white/10 py-8 text-center text-gray-500 text-sm">
         <p>&copy; 2026 ASPEC. All rights reserved.</p>
     </footer>
+    <script>
+        (() => {
+            const search = document.getElementById('product-search');
+            const cards = Array.from(document.querySelectorAll('.product-card'));
+            const filters = Array.from(document.querySelectorAll('.product-filter'));
+            const count = document.getElementById('product-count');
+            const empty = document.getElementById('product-empty');
+            let activeCategory = 'all';
+
+            const applyFilters = () => {
+                const query = search.value.trim().toLocaleLowerCase('ko-KR');
+                let visibleCount = 0;
+
+                cards.forEach((card) => {
+                    const categoryMatches = activeCategory === 'all' || card.dataset.category === activeCategory;
+                    const searchableText = `${card.querySelector('.product-name').textContent} ${card.dataset.keywords}`.toLocaleLowerCase('ko-KR');
+                    const queryMatches = !query || searchableText.includes(query);
+                    const isVisible = categoryMatches && queryMatches;
+                    card.hidden = !isVisible;
+                    if (isVisible) visibleCount += 1;
+                });
+
+                count.textContent = `${visibleCount}개 제품`;
+                empty.classList.toggle('is-visible', visibleCount === 0);
+            };
+
+            filters.forEach((button) => {
+                button.addEventListener('click', () => {
+                    activeCategory = button.dataset.filter;
+                    filters.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+                    applyFilters();
+                });
+            });
+
+            search.addEventListener('input', applyFilters);
+        })();
+    </script>
 </body>
 </html>
