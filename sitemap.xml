@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.aspec-tech.co.kr/</loc><priority>1.0</priority></url>
   <url><loc>https://www.aspec-tech.co.kr/about.html</loc><priority>0.8</priority></url>
-  <url><loc>https://www.aspec-tech.co.kr/products.html</loc><priority>0.8</priority></url>
+  <url><loc>https://www.aspec-tech.co.kr/products.html</loc><lastmod>2026-08-08</lastmod><priority>0.8</priority></url>
   <url><loc>https://www.aspec-tech.co.kr/products/cognex/insight-3900.html</loc><lastmod>2026-08-08</lastmod><priority>0.8</priority></url>
   <url><loc>https://www.aspec-tech.co.kr/products/cognex/insight-2800.html</loc><lastmod>2026-08-08</lastmod><priority>0.8</priority></url>
   <url><loc>https://www.aspec-tech.co.kr/products/cognex/insight-8900.html</loc><lastmod>2026-08-08</lastmod><priority>0.8</priority></url>
