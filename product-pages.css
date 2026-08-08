@@ -29,7 +29,7 @@ body{background:#0B0C15;color:#fff}
 .product-name{font-size:1.35rem;font-weight:700;line-height:1.25}
 .product-keyline{margin-top:.65rem;color:#e5e7eb;font-size:.9rem;font-weight:600;line-height:1.55}
 .product-description{margin-top:.55rem;color:#9ca3af;font-size:.86rem;line-height:1.7}
-.product-actions{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-top:auto;padding-top:1.25rem}
+.product-actions{display:grid;grid-template-columns:1fr;gap:.65rem;margin-top:auto;padding-top:1.25rem}
 .product-action{display:inline-flex;min-height:2.65rem;align-items:center;justify-content:center;padding:.6rem .75rem;border-radius:6px;font-size:.78rem;font-weight:700;text-align:center;transition:background-color .2s,border-color .2s,color .2s}
 .product-action-primary{border:1px solid #fff;background:#fff;color:#111827}
 .product-action-primary:hover{background:#e5e7eb}
