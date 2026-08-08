@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.aspec-tech.co.kr/data/case-studies.schema.json",
+  "title": "ASPEC Case Studies",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "cases"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "cases": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/caseStudy" }
+    }
+  },
+  "$defs": {
+    "link": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "url"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "minLength": 1 }
+      }
+    },
+    "image": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["src", "alt", "caption"],
+      "properties": {
+        "src": { "type": "string", "minLength": 1 },
+        "alt": { "type": "string", "minLength": 1 },
+        "caption": { "type": "string" }
+      }
+    },
+    "projectSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inspectionTarget", "inspectionPurpose", "camera", "lens", "lighting", "software", "integration", "cycleTime"],
+      "properties": {
+        "inspectionTarget": { "type": "string" },
+        "inspectionPurpose": { "type": "string" },
+        "camera": { "type": "string" },
+        "lens": { "type": "string" },
+        "lighting": { "type": "string" },
+        "software": { "type": "string" },
+        "integration": { "type": "string" },
+        "cycleTime": { "type": "string" }
+      }
+    },
+    "caseStudy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slug", "published", "title", "category", "categoryLabel", "filters", "industry",
+        "summary", "heroImage", "cardImage", "cardImageAlt", "keywords", "highlights",
+        "technologies", "projectSummary", "overview", "problem", "difficulty", "solution",
+        "inspectionMethod", "results", "images", "relatedProducts", "relatedCases"
+      ],
+      "properties": {
+        "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "published": { "type": "boolean" },
+        "title": { "type": "string", "minLength": 1 },
+        "category": { "enum": ["ai", "ocr", "barcode", "robot", "alignment", "software", "optics"] },
+        "categoryLabel": { "type": "string", "minLength": 1 },
+        "filters": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["ai", "ocr", "barcode", "robot", "alignment", "software", "optics"] }
+        },
+        "industry": { "type": "string", "minLength": 1 },
+        "summary": { "type": "string", "minLength": 1 },
+        "heroImage": { "type": "string" },
+        "heroImageAlt": { "type": "string" },
+        "cardImage": { "type": "string", "minLength": 1 },
+        "cardImageAlt": { "type": "string", "minLength": 1 },
+        "keywords": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "highlights": { "type": "array", "maxItems": 6, "items": { "type": "string", "minLength": 1 } },
+        "technologies": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "projectSummary": { "$ref": "#/$defs/projectSummary" },
+        "overview": { "type": "string" },
+        "problem": { "type": "string" },
+        "difficulty": { "type": "string" },
+        "solution": { "type": "string" },
+        "inspectionMethod": { "type": "string" },
+        "results": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "images": { "type": "array", "items": { "$ref": "#/$defs/image" } },
+        "relatedProducts": { "type": "array", "items": { "$ref": "#/$defs/link" } },
+        "relatedCases": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" } },
+        "metaDescription": { "type": "string" },
+        "ogImage": { "type": "string" }
+      }
+    }
+  }
+}

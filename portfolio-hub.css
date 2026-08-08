@@ -1,0 +1,58 @@
+.portfolio-problem-intro{padding:5rem 0 0}
+.portfolio-problem-inner{width:min(100% - 3rem,80rem);margin:0 auto;padding-bottom:5rem;border-bottom:1px solid rgba(255,255,255,.09)}
+.portfolio-problem-inner h2{max-width:48rem;font-size:clamp(2rem,3.5vw,3rem);font-weight:700;line-height:1.2}
+.portfolio-problem-inner p{max-width:68rem;margin-top:1.25rem;color:#9ca3af;font-size:1.05rem;line-height:1.85}
+.library-heading{max-width:60rem}
+.library-heading h2{font-size:clamp(2rem,3vw,2.75rem)}
+.case-toolbar{display:flex;align-items:end;justify-content:space-between;gap:1.5rem;margin:2rem 0 1.25rem;padding:1.25rem 0;border-top:1px solid rgba(255,255,255,.09);border-bottom:1px solid rgba(255,255,255,.09)}
+.case-search-wrap{display:block;flex:1;max-width:42rem}
+.case-search-label{display:block;margin-bottom:.55rem;color:#d1d5db;font-size:.8rem;font-weight:700}
+.case-search{width:100%;min-height:3.1rem;padding:.75rem 1rem;border:1px solid rgba(255,255,255,.15);border-radius:6px;background:#fff;color:#111827;font:inherit;letter-spacing:0}
+.case-search::placeholder{color:#6b7280}
+.case-search:focus{border-color:#93c5fd;outline:2px solid rgba(147,197,253,.35);outline-offset:2px}
+.case-count{flex:0 0 auto;padding-bottom:.8rem;color:#9ca3af;font-size:.85rem}
+.case-filters{margin-bottom:2rem}
+.case-filter{border-radius:6px}
+.case-filter[aria-pressed="true"]{border-color:#fff;background:#fff;color:#111827;box-shadow:none}
+#case-library.case-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:1.25rem;align-items:stretch}
+#case-library .case-card{display:flex;min-width:0;flex-direction:column;overflow:hidden;border:1px solid rgba(255,255,255,.1);border-radius:8px;background:rgba(255,255,255,.045);scroll-margin-top:7rem;transition:border-color .2s ease,transform .2s ease}
+#case-library .case-card:hover{border-color:rgba(147,197,253,.42);transform:translateY(-2px)}
+#case-library .case-media{aspect-ratio:16/9;border-bottom:1px solid rgba(255,255,255,.09);background:#050508}
+#case-library .case-image{width:100%;height:100%;object-fit:cover}
+#case-library .case-content{display:flex;flex:1;flex-direction:column;padding:1.4rem}
+#case-library .case-meta{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:.9rem}
+#case-library .case-category{color:#93c5fd;font-size:.72rem;font-weight:700;line-height:1.45;text-transform:uppercase;letter-spacing:.04em}
+#case-library .case-industry{color:#d1d5db;font-size:.72rem;line-height:1.5;text-align:right}
+#case-library .case-industry span{margin-right:.4rem;color:#6b7280}
+#case-library .case-title{margin-bottom:.75rem;font-size:1.35rem;line-height:1.35;font-weight:700}
+#case-library .case-summary{display:-webkit-box;min-height:5.1rem;margin-bottom:1rem;overflow:hidden;color:#9ca3af;font-size:.88rem;line-height:1.7;-webkit-box-orient:vertical;-webkit-line-clamp:3}
+.case-highlights{display:grid;gap:.45rem;margin-bottom:1.1rem;color:#d1d5db;font-size:.8rem;line-height:1.5}
+.case-highlights li{position:relative;padding-left:1rem}
+.case-highlights li::before{content:"";position:absolute;top:.62rem;left:0;width:.32rem;height:.32rem;border-radius:50%;background:#60a5fa}
+#case-library .case-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:auto;margin-bottom:1rem}
+#case-library .case-tag{padding:.3rem .5rem;border:1px solid rgba(255,255,255,.1);border-radius:4px;background:rgba(0,0,0,.18);color:#cbd5e1;font-size:.7rem;line-height:1.2rem}
+.case-card-footer{padding-top:1rem;border-top:1px solid rgba(255,255,255,.09)}
+.case-action{display:inline-flex;width:100%;min-height:2.7rem;align-items:center;justify-content:center;border:1px solid #fff;border-radius:6px;background:#fff;color:#111827;font-size:.82rem;font-weight:700}
+.case-action:hover{background:#e5e7eb}
+.case-action.is-disabled{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.035);color:#6b7280;cursor:not-allowed}
+.case-empty{display:none;margin-top:1.5rem;padding:2.5rem 1rem;border-top:1px solid rgba(255,255,255,.09);border-bottom:1px solid rgba(255,255,255,.09);color:#9ca3af;text-align:center}
+.case-empty.is-visible{display:block}
+.technology-library-wrap{margin-top:6rem;padding-top:5rem;border-top:1px solid rgba(255,255,255,.09)}
+.technology-section-heading{max-width:58rem;margin-bottom:2rem}
+.technology-section-heading h2{font-size:clamp(1.9rem,3vw,2.6rem);font-weight:700;line-height:1.2}
+.technology-section-heading p{margin-top:1rem;color:#9ca3af;line-height:1.8}
+#technology-library{display:grid;grid-template-columns:minmax(0,1fr);gap:1.25rem;align-items:start}
+#technology-library .case-card{border-radius:8px;transform:none}
+#technology-library .case-card:hover{transform:none}
+.technology-former-title{margin:-.35rem 0 .85rem;color:#9ca3af;font-size:.78rem}
+.technology-extra-copy{margin-top:.8rem;color:#9ca3af;font-size:.85rem;line-height:1.75}
+.portfolio-cta{padding:5rem 0;border-top:1px solid rgba(255,255,255,.1);background:rgba(30,58,138,.12)}
+.portfolio-cta-inner{display:flex;width:min(100% - 3rem,64rem);margin:0 auto;align-items:center;justify-content:space-between;gap:3rem}
+.portfolio-cta h2{font-size:clamp(1.9rem,3vw,2.7rem);font-weight:700;line-height:1.2}
+.portfolio-cta p{max-width:45rem;margin-top:1rem;color:#9ca3af;line-height:1.8}
+.portfolio-cta a{display:inline-flex;min-height:3rem;flex:0 0 auto;align-items:center;justify-content:center;padding:.7rem 1.2rem;border:1px solid #fff;border-radius:6px;background:#fff;color:#111827;font-weight:700;box-shadow:0 10px 28px rgba(255,255,255,.14)}
+.portfolio-cta a:hover{background:#e5e7eb}
+@media (min-width:680px){#case-library.case-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#technology-library{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1100px){#case-library.case-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:720px){.portfolio-problem-inner,.portfolio-cta-inner{width:min(100% - 2rem,80rem)}.portfolio-library{padding:0 1rem}.case-toolbar{align-items:stretch;flex-direction:column}.case-search-wrap{max-width:none}.case-count{padding:0}.case-filters{grid-template-columns:repeat(2,minmax(0,1fr))}#case-library .case-meta{flex-direction:column}#case-library .case-industry{text-align:left}.portfolio-cta-inner{align-items:flex-start;flex-direction:column}.portfolio-cta a{width:100%}}
+@media (max-width:390px){.case-filters{grid-template-columns:1fr}}

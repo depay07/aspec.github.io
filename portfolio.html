@@ -22,7 +22,68 @@
     <meta property="og:image" content="https://www.aspec-tech.co.kr/portfolio-hero.png">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>body{background:#0B0C15;color:#fff}.gradient-text{background:linear-gradient(to right,#60A5FA,#A78BFA);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.hero-overlay{background:linear-gradient(to bottom,rgba(11,12,21,.25),rgba(11,12,21,1))}.glass-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1)}.portfolio-img{transition:transform .5s ease}.group:hover .portfolio-img{transform:scale(1.04)}</style>
+    <style>
+        body{background:#0B0C15;color:#fff}
+        .gradient-text{background:linear-gradient(to right,#60A5FA,#A78BFA);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .hero-overlay{background:linear-gradient(to bottom,rgba(11,12,21,.25),rgba(11,12,21,1))}
+        .glass-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1)}
+        .portfolio-img{transition:transform .5s ease}
+        .group:hover .portfolio-img{transform:scale(1.04)}
+        .portfolio-library{max-width:80rem;margin:0 auto;padding:0 1.5rem}
+        .library-heading{max-width:52rem;margin-bottom:2rem}
+        .library-heading h2{font-size:2rem;line-height:1.2;font-weight:700;margin-bottom:.75rem}
+        .library-heading p{color:#9ca3af;line-height:1.7}
+        .case-filters{display:flex;flex-wrap:wrap;gap:.65rem;margin-bottom:2rem}
+        .case-filter{min-height:2.75rem;padding:.65rem 1rem;border:1px solid rgba(255,255,255,.14);border-radius:8px;background:rgba(255,255,255,.045);color:#d1d5db;font:inherit;font-size:.875rem;font-weight:600;letter-spacing:0;cursor:pointer;transition:background-color .2s ease,border-color .2s ease,color .2s ease,box-shadow .2s ease}
+        .case-filter:hover{border-color:rgba(147,197,253,.55);color:#fff;background:rgba(59,130,246,.1)}
+        .case-filter:focus-visible{outline:2px solid #93c5fd;outline-offset:3px}
+        .case-filter[aria-pressed="true"]{color:#fff;border-color:rgba(96,165,250,.75);background:linear-gradient(135deg,rgba(59,130,246,.32),rgba(139,92,246,.28));box-shadow:0 8px 24px rgba(37,99,235,.16)}
+        .case-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:1.5rem;align-items:start}
+        .case-card{display:flex;min-width:0;flex-direction:column;overflow:hidden;border-radius:8px;scroll-margin-top:7rem;transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+        .case-card:hover{border-color:rgba(147,197,253,.38);box-shadow:0 18px 46px rgba(0,0,0,.2);transform:translateY(-2px)}
+        .case-card:target{border-color:rgba(147,197,253,.75);box-shadow:0 0 0 3px rgba(59,130,246,.18),0 18px 50px rgba(0,0,0,.28)}
+        .case-card[hidden]{display:none}
+        .case-media{aspect-ratio:16/10;overflow:hidden;background:#050508;border-bottom:1px solid rgba(255,255,255,.09)}
+        .case-image{width:100%;height:100%;object-fit:cover}
+        .case-content{display:flex;flex:1;flex-direction:column;padding:1.5rem}
+        .case-meta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:1rem}
+        .case-category{font-size:.75rem;line-height:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+        .case-field{font-size:.75rem;line-height:1.5;color:#d1d5db}
+        .case-field span{color:#9ca3af;margin-right:.35rem}
+        .case-title{font-size:1.5rem;line-height:1.3;font-weight:700;margin-bottom:.85rem}
+        .case-summary{color:#9ca3af;line-height:1.7;margin-bottom:1.1rem}
+        .case-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.25rem}
+        .case-tag{padding:.35rem .6rem;border:1px solid rgba(255,255,255,.1);border-radius:6px;background:rgba(0,0,0,.2);color:#d1d5db;font-size:.75rem;line-height:1.25rem}
+        .case-details{margin-top:auto;border-top:1px solid rgba(255,255,255,.1)}
+        .case-details summary{display:flex;min-height:3.25rem;align-items:center;justify-content:space-between;gap:1rem;color:#fff;font-weight:700;cursor:pointer;list-style:none}
+        .case-details summary::-webkit-details-marker{display:none}
+        .case-details summary::after{content:"+";display:grid;width:1.65rem;height:1.65rem;place-items:center;border:1px solid rgba(255,255,255,.16);border-radius:50%;color:#bfdbfe;font-size:1rem;font-weight:400;flex:0 0 auto}
+        .case-details[open] summary::after{content:"−"}
+        .case-details summary:focus-visible{outline:2px solid #93c5fd;outline-offset:3px}
+        .case-detail-body{max-width:960px;margin:0 auto;padding:.35rem 0 .25rem}
+        .case-detail-section{padding:1rem 0;border-top:1px solid rgba(255,255,255,.07)}
+        .case-detail-section h4{color:#e5e7eb;font-size:.875rem;line-height:1.4;font-weight:700;margin-bottom:.45rem}
+        .case-detail-section p{color:#9ca3af;font-size:.875rem;line-height:1.7}
+        .case-detail-section p+p{margin-top:.75rem}
+        .case-detail-section ul,.case-detail-section ol{margin-top:.75rem;padding-left:1.25rem;color:#9ca3af;font-size:.875rem;line-height:1.7}
+        .case-detail-section ul{list-style:disc}
+        .case-detail-section ol{list-style:decimal}
+        .case-detail-section li+li{margin-top:.35rem}
+        @media (min-width:900px){
+            .case-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.75rem}
+            .case-content{padding:1.75rem}
+            .case-card:has(.case-details[open]){grid-column:1/-1;display:grid;grid-template-columns:minmax(0,38%) minmax(0,62%)}
+            .case-card:has(.case-details[open]) .case-media{grid-column:1;grid-row:1/5;min-height:22rem;aspect-ratio:auto;border-right:1px solid rgba(255,255,255,.09);border-bottom:0}
+            .case-card:has(.case-details[open]) .case-content{display:contents}
+            .case-card:has(.case-details[open]) .case-meta{grid-column:2;grid-row:1;margin-bottom:1rem;padding:1.75rem 1.75rem 0}
+            .case-card:has(.case-details[open]) .case-title{grid-column:2;grid-row:2;padding:0 1.75rem}
+            .case-card:has(.case-details[open]) .case-summary{grid-column:2;grid-row:3;padding:0 1.75rem}
+            .case-card:has(.case-details[open]) .case-tags{grid-column:2;grid-row:4;margin-bottom:0;padding:0 1.75rem 1.75rem}
+            .case-card:has(.case-details[open]) .case-details{grid-column:1/-1;grid-row:5;margin:0 1.75rem}
+        }
+        @media (max-width:640px){.library-heading h2{font-size:1.75rem}.case-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem}.case-filter{width:100%;padding:.6rem .65rem}.case-content{padding:1.25rem}.case-meta{align-items:flex-start;flex-direction:column}.case-title{font-size:1.3rem}}
+    </style>
+    <link rel="stylesheet" href="portfolio-hub.css">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -71,47 +132,423 @@
     </header>
 
     <main>
-        <section class="py-24">
-            <div class="max-w-7xl mx-auto px-6 space-y-24">
-                <article class="grid md:grid-cols-2 gap-12 items-center group">
-                    <div class="relative rounded-xl overflow-hidden border border-white/10"><img src="portfolio-alignment.png" alt="코그넥스 VisionPro PatMax 정렬 검사 사례" class="w-full portfolio-img"></div>
-                    <div>
-                        <p class="text-blue-300 font-semibold mb-3 uppercase">Alignment · Cognex VisionPro</p>
-                        <h2 class="text-3xl font-bold mb-5">초정밀 비전 정렬 검사</h2>
-                        <p class="text-gray-400 leading-relaxed mb-5">디스플레이, 반도체, 전자부품 공정에서 코그넥스 VisionPro와 PatMax 패턴 매칭을 적용해 위치 보정, 치수검사, 로봇 좌표 보정을 수행합니다.</p>
-                        <p class="text-sm text-gray-300">패턴 매칭, 좌표 보정, 로봇 가이드, 조명 조건까지 함께 검토한 정렬 검사 사례입니다.</p>
+        <section class="portfolio-problem-intro" aria-labelledby="problem-solving-title">
+            <div class="portfolio-problem-inner">
+                <h2 id="problem-solving-title">기술보다 중요한 것은 현장의 문제 해결입니다</h2>
+                <p>작업자 휴먼에러, OCR 인식 불량, 바코드 미판독, 제품 위치 편차, 난반사, 빠른 택타임 등은 실제 제조 현장에서 반복적으로 발생하는 문제입니다. ASPEC은 단순한 장비 공급이 아니라 카메라, 조명, 렌즈, AI 툴, 로봇·PLC·MES 연동까지 함께 고려하여 실제 생산라인에서 사용할 수 있는 검사 시스템을 구축합니다.</p>
+            </div>
+        </section>
+
+        <section class="py-24" aria-labelledby="portfolio-library-title">
+            <div class="portfolio-library">
+                <div class="library-heading">
+                    <p class="text-blue-300 font-semibold mb-3 uppercase tracking-wider">Project Library</p>
+                    <h2 id="portfolio-library-title">ASPEC 머신비전 구축사례</h2>
+                    <p>AI 비전검사, OCR·OCV, 바코드 판독, 로봇비전, 광학 개선 등 제조 현장에서 적용한 머신비전 프로젝트를 유형별로 확인할 수 있습니다.</p>
+                </div>
+
+                <div class="case-toolbar">
+                    <label class="case-search-wrap" for="case-search">
+                        <span class="case-search-label">구축사례 검색</span>
+                        <input id="case-search" class="case-search" type="search" placeholder="구축사례 검색 (예: AI 검사, OCR, 바코드, 자동차)" autocomplete="off">
+                    </label>
+                    <p id="case-count" class="case-count" aria-live="polite">6개 사례</p>
+                </div>
+
+                <div class="case-filters" role="group" aria-label="구축사례 카테고리 필터">
+                    <button type="button" class="case-filter" data-filter="all" aria-pressed="true">전체</button>
+                    <button type="button" class="case-filter" data-filter="ai" aria-pressed="false">AI 비전검사</button>
+                    <button type="button" class="case-filter" data-filter="ocr" aria-pressed="false">OCR · OCV</button>
+                    <button type="button" class="case-filter" data-filter="barcode" aria-pressed="false">바코드</button>
+                    <button type="button" class="case-filter" data-filter="robot" aria-pressed="false">로봇비전</button>
+                    <button type="button" class="case-filter" data-filter="alignment" aria-pressed="false">얼라인먼트</button>
+                    <button type="button" class="case-filter" data-filter="software" aria-pressed="false">소프트웨어 · 연동</button>
+                    <button type="button" class="case-filter" data-filter="optics" aria-pressed="false">광학 · 조명</button>
+                </div>
+
+                <div class="case-grid" id="case-library">
+                    <!-- CASE_STUDIES:START -->
+                <article class="case-card" data-category="ocr optics" data-search="제약 필름 고속 비전검사 제약 · ocr · 고속검사 제약 · 필름 roll to roll 필름 이물, 귀퉁이 손상, 위치·치수, 생산일자 ocr, 포장지 인쇄 및 커팅 상태를 4대 카메라로 자동 검사한 사례입니다. 제약 필름 검사 고속 비전검사 생산일자 ocr ocr 고속 비전검사 4대 카메라" id="case-pharmaceutical-film-high-speed-vision">
+                    <div class="case-media">
+                        <img src="portfolio-inspection.png" alt="ASPEC 제약 필름 고속 비전검사 대표 이미지" class="portfolio-img case-image" loading="lazy" decoding="async">
+                    </div>
+                    <div class="case-content">
+                        <div class="case-meta">
+                            <p class="case-category">제약 · OCR · 고속검사</p>
+                            <p class="case-industry"><span>산업</span>제약 · 필름</p>
+                        </div>
+                        <h3 class="case-title">제약 필름 고속 비전검사</h3>
+                        <p class="case-summary">Roll to Roll 필름 이물, 귀퉁이 손상, 위치·치수, 생산일자 OCR, 포장지 인쇄 및 커팅 상태를 4대 카메라로 자동 검사한 사례입니다.</p>
+                        <ul class="case-highlights" aria-label="핵심 포인트">
+                            <li>초당 약 3개 고속 검사</li>
+                            <li>생산일자 OCR 및 인쇄 검증</li>
+                            <li>작업자 육안 검사 최소화</li>
+                        </ul>
+                        <ul class="case-tags" aria-label="사용 기술">
+                            <li class="case-tag">OCR</li>
+                            <li class="case-tag">고속 비전검사</li>
+                            <li class="case-tag">4대 카메라</li>
+                        </ul>
+                        <div class="case-card-footer"><span class="case-action is-disabled" aria-disabled="true">상세 준비중</span></div>
                     </div>
                 </article>
 
-                <article class="grid md:grid-cols-2 gap-12 items-center group">
-                    <div class="md:order-2 relative rounded-xl overflow-hidden border border-white/10"><img src="portfolio-inspection.png" alt="AI 비전검사 딥러닝 외관검사 사례" class="w-full portfolio-img"></div>
-                    <div class="md:order-1">
-                        <p class="text-purple-300 font-semibold mb-3 uppercase">AI Inspection · Deep Learning</p>
-                        <h2 class="text-3xl font-bold mb-5">AI 외관검사와 불량 분류</h2>
-                        <p class="text-gray-400 leading-relaxed mb-5">스크래치, 찍힘, 얼룩, 오염, 이물, 누락처럼 규칙 정의가 어려운 불량을 ai비전검사와 딥러닝 외관검사로 분류하고 작업자 판정 편차를 줄입니다.</p>
-                        <p class="text-sm text-gray-300">불량 형태가 일정하지 않은 제품에 딥러닝 판정을 적용한 외관검사 사례입니다.</p>
+                <article class="case-card" data-category="ocr barcode software" data-search="의료기기 라벨 ocr·바코드 리딩 의료기기 · ocr · 바코드 의료기기 · 라벨 구겨지거나 상태가 좋지 않은 라벨에서도 ai ocr과 바코드 리딩을 동시에 수행하고 mes로 데이터를 자동 전송한 사례입니다. 의료기기 라벨 검사 ai ocr 바코드 리딩 mes 연동 ai ocr 바코드 2d 코드 mes" id="case-medical-label-ocr-barcode">
+                    <div class="case-media">
+                        <img src="portfolio-deeplearning.png" alt="ASPEC 의료기기 라벨 OCR 및 바코드 리딩 대표 이미지" class="portfolio-img case-image" loading="lazy" decoding="async">
+                    </div>
+                    <div class="case-content">
+                        <div class="case-meta">
+                            <p class="case-category">의료기기 · OCR · 바코드</p>
+                            <p class="case-industry"><span>산업</span>의료기기 · 라벨</p>
+                        </div>
+                        <h3 class="case-title">의료기기 라벨 OCR·바코드 리딩</h3>
+                        <p class="case-summary">구겨지거나 상태가 좋지 않은 라벨에서도 AI OCR과 바코드 리딩을 동시에 수행하고 MES로 데이터를 자동 전송한 사례입니다.</p>
+                        <ul class="case-highlights" aria-label="핵심 포인트">
+                            <li>AI OCR 문자 인식</li>
+                            <li>바코드·2D 코드 판독</li>
+                            <li>Traceability 및 생산 이력 관리</li>
+                        </ul>
+                        <ul class="case-tags" aria-label="사용 기술">
+                            <li class="case-tag">AI OCR</li>
+                            <li class="case-tag">바코드</li>
+                            <li class="case-tag">2D 코드</li>
+                            <li class="case-tag">MES</li>
+                        </ul>
+                        <div class="case-card-footer"><span class="case-action is-disabled" aria-disabled="true">상세 준비중</span></div>
                     </div>
                 </article>
 
-                <article class="grid md:grid-cols-2 gap-12 items-center group">
-                    <div class="relative rounded-xl overflow-hidden border border-white/10"><img src="portfolio-deeplearning.png" alt="OCR검사 유통기한 LOT 문자 인식 사례" class="w-full portfolio-img"></div>
-                    <div>
-                        <p class="text-pink-300 font-semibold mb-3 uppercase">OCR · OCV · Label Inspection</p>
-                        <h2 class="text-3xl font-bold mb-5">제약·식품 포장 OCR검사</h2>
-                        <p class="text-gray-400 leading-relaxed mb-5">유통기한, 제조일자, LOT 번호, 라벨 인쇄, 각인 문자를 OCR검사와 OCV검사로 판독해 오인쇄, 누락, 흐림, 위치 틀어짐을 검사합니다.</p>
-                        <p class="text-sm text-gray-300">문자 판독과 인쇄 검증을 함께 적용해 포장 품질을 안정화한 사례입니다.</p>
+                <article class="case-card" data-category="ai" data-search="자동차 부품 ai 검사 자동차 · ai 비전검사 자동차 부품 미션 부품 나사탭 유무와 개수 차이, 제품 위치 편차로 룰베이스 검사가 어려운 조건을 cognex ai classification으로 해결한 사례입니다. 자동차 부품 ai 검사 cognex ai classification 나사탭 검사 cognex ai classification ai 비전검사" id="case-automotive-parts-ai-inspection">
+                    <div class="case-media">
+                        <img src="portfolio-inspection.png" alt="ASPEC 자동차 부품 AI 비전검사 대표 이미지" class="portfolio-img case-image" loading="lazy" decoding="async">
+                    </div>
+                    <div class="case-content">
+                        <div class="case-meta">
+                            <p class="case-category">자동차 · AI 비전검사</p>
+                            <p class="case-industry"><span>산업</span>자동차 부품</p>
+                        </div>
+                        <h3 class="case-title">자동차 부품 AI 검사</h3>
+                        <p class="case-summary">미션 부품 나사탭 유무와 개수 차이, 제품 위치 편차로 룰베이스 검사가 어려운 조건을 Cognex AI Classification으로 해결한 사례입니다.</p>
+                        <ul class="case-highlights" aria-label="핵심 포인트">
+                            <li>나사탭 1~6개 제품 대응</li>
+                            <li>10장 미만 이미지 학습</li>
+                            <li>1초 미만 빠른 판정</li>
+                        </ul>
+                        <ul class="case-tags" aria-label="사용 기술">
+                            <li class="case-tag">Cognex</li>
+                            <li class="case-tag">AI Classification</li>
+                            <li class="case-tag">AI 비전검사</li>
+                        </ul>
+                        <div class="case-card-footer"><span class="case-action is-disabled" aria-disabled="true">상세 준비중</span></div>
                     </div>
                 </article>
 
-                <article class="grid md:grid-cols-2 gap-12 items-center group">
-                    <div class="md:order-2 relative rounded-xl overflow-hidden border border-white/10"><img src="barcode.jpg" alt="DataMan 바코드리더기 QR코드 DPM 판독 사례" class="w-full portfolio-img"></div>
-                    <div class="md:order-1">
-                        <p class="text-cyan-300 font-semibold mb-3 uppercase">Barcode · DataMan · Traceability</p>
-                        <h2 class="text-3xl font-bold mb-5">바코드리더기와 생산 이력 추적</h2>
-                        <p class="text-gray-400 leading-relaxed mb-5">코그넥스 DataMan 바코드리더기, QR코드 리더기, DPM 판독 시스템을 적용해 고속 컨베이어와 다면 판독 환경에서 제품 추적성을 확보합니다.</p>
-                        <p class="text-sm text-gray-300">바코드 판독 결과를 생산 이력과 연결해 추적성을 확보한 사례입니다.</p>
+                <article class="case-card" data-category="ocr ai optics" data-search="식품 유통기한 ocr·포장 검사 식품 · ocr · 포장검사 식품 · 포장 난반사가 심한 포장재에서 플랫돔 조명과 ai ocr을 적용해 유통기한을 인식하고, ai classification으로 박스 포장 상태까지 검사한 사례입니다. 식품 유통기한 ocr 포장 검사 플랫돔 조명 ai classification ai ocr ai classification 플랫돔 조명" id="case-food-expiry-ocr-package-inspection">
+                    <div class="case-media">
+                        <img src="portfolio-deeplearning.png" alt="ASPEC 식품 유통기한 OCR 및 포장 검사 대표 이미지" class="portfolio-img case-image" loading="lazy" decoding="async">
+                    </div>
+                    <div class="case-content">
+                        <div class="case-meta">
+                            <p class="case-category">식품 · OCR · 포장검사</p>
+                            <p class="case-industry"><span>산업</span>식품 · 포장</p>
+                        </div>
+                        <h3 class="case-title">식품 유통기한 OCR·포장 검사</h3>
+                        <p class="case-summary">난반사가 심한 포장재에서 플랫돔 조명과 AI OCR을 적용해 유통기한을 인식하고, AI Classification으로 박스 포장 상태까지 검사한 사례입니다.</p>
+                        <ul class="case-highlights" aria-label="핵심 포인트">
+                            <li>유통기한 OCR 자동 검사</li>
+                            <li>박스 열림 NG 분류</li>
+                            <li>빠른 식품 라인 대응</li>
+                        </ul>
+                        <ul class="case-tags" aria-label="사용 기술">
+                            <li class="case-tag">AI OCR</li>
+                            <li class="case-tag">AI Classification</li>
+                            <li class="case-tag">플랫돔 조명</li>
+                        </ul>
+                        <div class="case-card-footer"><span class="case-action is-disabled" aria-disabled="true">상세 준비중</span></div>
                     </div>
                 </article>
+
+                <article class="case-card" data-category="barcode optics" data-search="난반사 비닐 2d 바코드 리딩 바코드 · data matrix · 조명 비닐 · 레이저 마킹 레이저 마킹된 data matrix 코드가 난반사로 읽혔다 안 읽혔다 하던 문제를 플랫돔 조명으로 개선하여 판독 속도를 단축한 사례입니다. 난반사 바코드 data matrix cognex 바코드 리더기 플랫돔 조명 cognex 바코드 리더기 data matrix 플랫돔 조명" id="case-reflective-film-2d-barcode-reading">
+                    <div class="case-media">
+                        <img src="barcode.jpg" alt="ASPEC 난반사 비닐 2D 바코드 리딩 대표 이미지" class="portfolio-img case-image" loading="lazy" decoding="async">
+                    </div>
+                    <div class="case-content">
+                        <div class="case-meta">
+                            <p class="case-category">바코드 · Data Matrix · 조명</p>
+                            <p class="case-industry"><span>산업</span>비닐 · 레이저 마킹</p>
+                        </div>
+                        <h3 class="case-title">난반사 비닐 2D 바코드 리딩</h3>
+                        <p class="case-summary">레이저 마킹된 Data Matrix 코드가 난반사로 읽혔다 안 읽혔다 하던 문제를 플랫돔 조명으로 개선하여 판독 속도를 단축한 사례입니다.</p>
+                        <ul class="case-highlights" aria-label="핵심 포인트">
+                            <li>Cognex 바코드 리더기 적용</li>
+                            <li>100~200ms → 30ms 이하</li>
+                            <li>광학 조건 최적화</li>
+                        </ul>
+                        <ul class="case-tags" aria-label="사용 기술">
+                            <li class="case-tag">Cognex 바코드 리더기</li>
+                            <li class="case-tag">Data Matrix</li>
+                            <li class="case-tag">플랫돔 조명</li>
+                        </ul>
+                        <div class="case-card-footer"><span class="case-action is-disabled" aria-disabled="true">상세 준비중</span></div>
+                    </div>
+                </article>
+
+                <article class="case-card" data-category="robot alignment software" data-search="로봇 pick &amp; place 비전 로봇비전 · pick &amp; place 포장 · 패키징 자동화 카메라와 로봇 좌표계를 캘리브레이션하고, 제품의 x·y·θ 좌표를 로봇에 전달하여 포장·패키징 자동화를 구현합니다. 로봇 pick and place 로봇비전 카메라 캘리브레이션 좌표 보정 로봇비전 캘리브레이션 x·y·θ 좌표" id="case-robot-pick-and-place-vision">
+                    <div class="case-media">
+                        <img src="portfolio-alignment.png" alt="ASPEC 로봇 Pick and Place 비전 대표 이미지" class="portfolio-img case-image" loading="lazy" decoding="async">
+                    </div>
+                    <div class="case-content">
+                        <div class="case-meta">
+                            <p class="case-category">로봇비전 · Pick &amp; Place</p>
+                            <p class="case-industry"><span>산업</span>포장 · 패키징 자동화</p>
+                        </div>
+                        <h3 class="case-title">로봇 Pick &amp; Place 비전</h3>
+                        <p class="case-summary">카메라와 로봇 좌표계를 캘리브레이션하고, 제품의 X·Y·θ 좌표를 로봇에 전달하여 포장·패키징 자동화를 구현합니다.</p>
+                        <ul class="case-highlights" aria-label="핵심 포인트">
+                            <li>로봇·카메라 캘리브레이션</li>
+                            <li>박스·제품 위치 인식</li>
+                            <li>합리적인 예산의 비전 시스템</li>
+                        </ul>
+                        <ul class="case-tags" aria-label="사용 기술">
+                            <li class="case-tag">로봇비전</li>
+                            <li class="case-tag">캘리브레이션</li>
+                            <li class="case-tag">X·Y·θ 좌표</li>
+                        </ul>
+                        <div class="case-card-footer"><span class="case-action is-disabled" aria-disabled="true">상세 준비중</span></div>
+                    </div>
+                </article>
+                <!-- CASE_STUDIES:END -->
+                </div>
+                <p id="case-empty" class="case-empty">검색 조건에 맞는 구축사례가 없습니다.</p>
+
+                <div class="technology-library-wrap">
+                    <div class="technology-section-heading">
+                        <p class="text-blue-300 font-semibold mb-3 uppercase tracking-wider">Core Engineering</p>
+                        <h2>ASPEC 주요 머신비전 기술</h2>
+                        <p>얼라인먼트, AI 딥러닝, OCR·OCV, 바코드·DPM 판독, 전용 검사 소프트웨어와 PLC·MES·로봇 연동까지 프로젝트에 필요한 기술을 함께 구성합니다.</p>
+                    </div>
+
+                <div class="case-grid" id="technology-library">
+                    <!-- =========================================
+                         CASE TEMPLATE
+                         새 구축사례 추가 시 아래 article 구조를 복사
+                         data-category와 id는 반드시 변경
+                         ========================================= -->
+                    <article class="case-card glass-card group" data-category="vision" id="case-vision-alignment-01">
+                        <div class="case-media">
+                            <img src="portfolio-alignment.png" alt="코그넥스 VisionPro PatMax 정렬 검사 사례" class="portfolio-img case-image">
+                        </div>
+                        <div class="case-content">
+                            <div class="case-meta">
+                                <p class="case-category text-blue-300">Alignment · Cognex VisionPro</p>
+                                <p class="case-field"><span>적용 분야</span>디스플레이 · 반도체 · 전자부품 공정</p>
+                            </div>
+                            <h3 class="case-title">초정밀 얼라인먼트 및 로봇 가이던스</h3>
+                            <p class="technology-former-title">초정밀 비전 정렬 검사</p>
+                            <p class="case-summary">디스플레이, 반도체, 전자부품 공정에서 코그넥스 VisionPro와 PatMax 패턴 매칭을 적용해 위치 보정, 치수검사, 로봇 좌표 보정을 수행합니다.</p>
+                            <p class="technology-extra-copy">디스플레이, 반도체, 전자부품 공정에서는 미세한 위치 오차가 품질 문제로 이어질 수 있습니다. ASPEC은 패턴매칭, 캘리브레이션, 로봇 좌표 변환을 통해 제품 위치와 회전각을 정밀하게 계산하고 스테이지·로봇·모터와 연동합니다.</p>
+                            <ul class="case-tags" aria-label="사용 기술 및 장비">
+                                <li class="case-tag">Cognex VisionPro</li>
+                                <li class="case-tag">PatMax</li>
+                                <li class="case-tag">패턴 매칭</li>
+                                <li class="case-tag">로봇 가이드</li>
+                            </ul>
+                            <details class="case-details">
+                                <summary>상세보기</summary>
+                                <div class="case-detail-body">
+                                    <div class="case-detail-section">
+                                        <h4>검사 대상 및 요구사항</h4>
+                                        <p>디스플레이, 반도체, 전자부품 공정의 위치 보정, 치수검사, 로봇 좌표 보정</p>
+                                    </div>
+                                    <div class="case-detail-section">
+                                        <h4>현장의 주요 문제</h4>
+                                        <p>위치 보정, 치수검사, 로봇 좌표 보정</p>
+                                    </div>
+                                    <div class="case-detail-section">
+                                        <h4>시스템 구성</h4>
+                                        <p>코그넥스 VisionPro와 PatMax 패턴 매칭</p>
+                                    </div>
+                                    <div class="case-detail-section">
+                                        <h4>검사 방식</h4>
+                                        <p>패턴 매칭, 좌표 보정, 로봇 가이드, 조명 조건</p>
+                                    </div>
+                                    <div class="case-detail-section">
+                                        <h4>적용 결과</h4>
+                                        <p>패턴 매칭, 좌표 보정, 로봇 가이드, 조명 조건까지 함께 검토한 정렬 검사 사례입니다.</p>
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    </article>
+
+                    <article class="case-card glass-card group" data-category="ai" id="case-ai-inspection-01">
+                        <div class="case-media">
+                            <img src="portfolio-inspection.png" alt="AI 비전검사 딥러닝 외관검사 사례" class="portfolio-img case-image">
+                        </div>
+                        <div class="case-content">
+                            <div class="case-meta">
+                                <p class="case-category text-purple-300">AI Inspection · Deep Learning</p>
+                                <p class="case-field"><span>적용 분야</span>불량 형태가 일정하지 않은 제품</p>
+                            </div>
+                            <h3 class="case-title">AI 비전검사 및 딥러닝 분류</h3>
+                            <p class="technology-former-title">AI 외관검사와 불량 분류</p>
+                            <p class="case-summary">스크래치, 찍힘, 얼룩, 오염, 이물, 누락처럼 규칙 정의가 어려운 불량을 ai비전검사와 딥러닝 외관검사로 분류하고 작업자 판정 편차를 줄입니다.</p>
+                            <p class="technology-extra-copy">제품 위치가 일정하지 않거나 색상·형상 편차가 큰 경우 기존 룰베이스 검사만으로는 안정적인 판정이 어렵습니다. ASPEC은 AI Classification, Object Detection, Segmentation, AI OCR 등을 활용해 현장 조건에 맞는 검사 시스템을 구축합니다.</p>
+                            <ul class="case-tags" aria-label="사용 기술 및 장비">
+                                <li class="case-tag">AI 비전검사</li>
+                                <li class="case-tag">딥러닝 외관검사</li>
+                                <li class="case-tag">불량 분류</li>
+                                <li class="case-tag">딥러닝 판정</li>
+                            </ul>
+                            <details class="case-details">
+                                <summary>상세보기</summary>
+                                <div class="case-detail-body">
+                                    <div class="case-detail-section">
+                                        <h4>검사 대상 및 요구사항</h4>
+                                        <p>스크래치, 찍힘, 얼룩, 오염, 이물, 누락</p>
+                                    </div>
+                                    <div class="case-detail-section">
+                                        <h4>현장의 주요 문제</h4>
+                                        <p>불량 형태가 일정하지 않고 규칙 정의가 어려운 제품</p>
+                                    </div>
+                                    <div class="case-detail-section">
+                                        <h4>시스템 구성</h4>
+                                        <p>ai비전검사와 딥러닝 외관검사</p>
+                                    </div>
+                                    <div class="case-detail-section">
+                                        <h4>검사 방식</h4>
+                                        <p>딥러닝 판정을 적용한 외관검사와 불량 분류</p>
+                                    </div>
+                                    <div class="case-detail-section">
+                                        <h4>적용 결과</h4>
+                                        <p>불량 형태가 일정하지 않은 제품에 딥러닝 판정을 적용한 외관검사 사례입니다.</p>
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    </article>
+
+                    <article class="case-card glass-card group" data-category="ocr" id="case-ocr-package-01">
+                        <div class="case-media">
+                            <img src="portfolio-deeplearning.png" alt="OCR검사 유통기한 LOT 문자 인식 사례" class="portfolio-img case-image">
+                        </div>
+                        <div class="case-content">
+                            <div class="case-meta">
+                                <p class="case-category text-pink-300">OCR · OCV · Label Inspection</p>
+                                <p class="case-field"><span>적용 분야</span>제약 · 식품 포장</p>
+                            </div>
+                            <h3 class="case-title">제약·식품 포장 OCR검사</h3>
+                            <p class="case-summary">유통기한, 제조일자, LOT 번호, 라벨 인쇄, 각인 문자를 OCR검사와 OCV검사로 판독해 오인쇄, 누락, 흐림, 위치 틀어짐을 검사합니다.</p>
+                            <ul class="case-tags" aria-label="사용 기술 및 장비">
+                                <li class="case-tag">OCR검사</li>
+                                <li class="case-tag">OCV검사</li>
+                                <li class="case-tag">문자 판독</li>
+                                <li class="case-tag">인쇄 검증</li>
+                            </ul>
+                            <details class="case-details">
+                                <summary>상세보기</summary>
+                                <div class="case-detail-body">
+                                    <div class="case-detail-section">
+                                        <h4>검사 대상 및 요구사항</h4>
+                                        <p>유통기한, 제조일자, LOT 번호, 라벨 인쇄, 각인 문자</p>
+                                    </div>
+                                    <div class="case-detail-section">
+                                        <h4>현장의 주요 문제</h4>
+                                        <p>오인쇄, 누락, 흐림, 위치 틀어짐</p>
+                                    </div>
+                                    <div class="case-detail-section">
+                                        <h4>시스템 구성</h4>
+                                        <p>OCR검사와 OCV검사</p>
+                                    </div>
+                                    <div class="case-detail-section">
+                                        <h4>검사 방식</h4>
+                                        <p>문자 판독과 인쇄 검증</p>
+                                    </div>
+                                    <div class="case-detail-section">
+                                        <h4>적용 결과</h4>
+                                        <p>문자 판독과 인쇄 검증을 함께 적용해 포장 품질을 안정화한 사례입니다.</p>
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    </article>
+
+                    <article class="case-card glass-card group" data-category="barcode" id="case-barcode-traceability-01">
+                        <div class="case-media">
+                            <img src="barcode.jpg" alt="DataMan 바코드리더기 QR코드 DPM 판독 사례" class="portfolio-img case-image">
+                        </div>
+                        <div class="case-content">
+                            <div class="case-meta">
+                                <p class="case-category text-cyan-300">Barcode · DataMan · Traceability</p>
+                                <p class="case-field"><span>적용 분야</span>고속 컨베이어 · 다면 판독 환경</p>
+                            </div>
+                            <h3 class="case-title">바코드·2D 코드·DPM 판독 시스템</h3>
+                            <p class="technology-former-title">바코드리더기와 생산 이력 추적</p>
+                            <p class="case-summary">코그넥스 DataMan 바코드리더기, QR코드 리더기, DPM 판독 시스템을 적용해 고속 컨베이어와 다면 판독 환경에서 제품 추적성을 확보합니다.</p>
+                            <p class="technology-extra-copy">제조 이력 관리와 MES 연동을 위해 1D/2D 바코드, Data Matrix, DPM 코드를 안정적으로 판독합니다. 난반사, 레이저 마킹, 제품 방향 불규칙, 고속 컨베이어 등 까다로운 환경에서는 리더기 성능뿐 아니라 조명과 설치 구조까지 함께 설계합니다.</p>
+                            <ul class="case-tags" aria-label="사용 기술 및 장비">
+                                <li class="case-tag">Cognex DataMan</li>
+                                <li class="case-tag">QR코드 리더기</li>
+                                <li class="case-tag">DPM 판독</li>
+                                <li class="case-tag">생산 이력</li>
+                            </ul>
+                            <details class="case-details">
+                                <summary>상세보기</summary>
+                                <div class="case-detail-body">
+                                    <div class="case-detail-section">
+                                        <h4>검사 대상 및 요구사항</h4>
+                                        <p>고속 컨베이어와 다면 판독 환경의 바코드, QR코드, DPM 판독</p>
+                                    </div>
+                                    <div class="case-detail-section">
+                                        <h4>현장의 주요 문제</h4>
+                                        <p>고속 컨베이어와 다면 판독 환경에서 제품 추적성 확보</p>
+                                    </div>
+                                    <div class="case-detail-section">
+                                        <h4>시스템 구성</h4>
+                                        <p>코그넥스 DataMan 바코드리더기, QR코드 리더기, DPM 판독 시스템</p>
+                                    </div>
+                                    <div class="case-detail-section">
+                                        <h4>판독 방식</h4>
+                                        <p>바코드 판독 결과를 생산 이력과 연결</p>
+                                    </div>
+                                    <div class="case-detail-section">
+                                        <h4>적용 결과</h4>
+                                        <p>바코드 판독 결과를 생산 이력과 연결해 추적성을 확보한 사례입니다.</p>
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    </article>
+                    <article class="case-card glass-card group" id="technology-software-integration">
+                        <div class="case-media">
+                            <img src="portfolio-software.png" alt="머신비전 검사 소프트웨어와 MES 연동 시스템 이미지" class="portfolio-img case-image" loading="lazy" decoding="async">
+                        </div>
+                        <div class="case-content">
+                            <div class="case-meta">
+                                <p class="case-category text-cyan-300">Software · Integration</p>
+                                <p class="case-field"><span>적용 분야</span>검사 결과 저장 · 생산 이력 · 설비 연동</p>
+                            </div>
+                            <h3 class="case-title">전용 검사 소프트웨어 및 시스템 연동</h3>
+                            <p class="case-summary">검사 결과는 현장에서 바로 확인하고 추적할 수 있어야 합니다. ASPEC은 C#, SDK, PLC 통신, MES/POP 연동, 이미지 로그 저장, 통계 화면 등 고객 공정에 맞는 전용 소프트웨어를 개발합니다.</p>
+                            <ul class="case-tags" aria-label="사용 기술 및 장비">
+                                <li class="case-tag">C#</li>
+                                <li class="case-tag">PLC 통신</li>
+                                <li class="case-tag">MES·POP 연동</li>
+                                <li class="case-tag">이미지 로그</li>
+                            </ul>
+                            <details class="case-details">
+                                <summary>상세보기</summary>
+                                <div class="case-detail-body">
+                                    <div class="case-detail-section"><h4>검사 데이터</h4><p>검사 결과, 이미지, 시간, LOT 정보를 저장합니다.</p></div>
+                                    <div class="case-detail-section"><h4>시스템 연동</h4><p>MES, POP, PLC, 로봇과 검사 시스템을 연동합니다.</p></div>
+                                    <div class="case-detail-section"><h4>현장 UI</h4><p>현장 작업자가 사용하기 쉬운 화면과 통계 기능을 구성합니다.</p></div>
+                                </div>
+                            </details>
+                        </div>
+                    </article>
+                </div>
+                </div>
             </div>
         </section>
 
@@ -146,10 +583,88 @@
                 </div>
             </div>
         </section>
+
+        <section class="portfolio-cta" aria-labelledby="portfolio-contact-title">
+            <div class="portfolio-cta-inner">
+                <div>
+                    <h2 id="portfolio-contact-title">비슷한 문제를 겪고 계신가요?</h2>
+                    <p>작업자 육안 검사, OCR 인식 불량, 바코드 미판독, 로봇 위치 보정, AI 비전검사 적용 가능성 검토가 필요하다면 ASPEC이 현장 조건에 맞는 솔루션을 제안해 드립니다.</p>
+                </div>
+                <a href="contact.html#contact-form">프로젝트 문의</a>
+            </div>
+        </section>
     </main>
 
     <footer class="border-t border-white/10 py-8 text-center text-gray-500 text-sm">
         <p>&copy; 2026 ASPEC. All rights reserved.</p>
     </footer>
+    <script>
+        (function () {
+            const filterButtons = Array.from(document.querySelectorAll('.case-filter'));
+            const caseCards = Array.from(document.querySelectorAll('#case-library > .case-card'));
+            const searchInput = document.getElementById('case-search');
+            const countLabel = document.getElementById('case-count');
+            const emptyState = document.getElementById('case-empty');
+            let activeFilter = 'all';
+
+            function applyFilters() {
+                const query = searchInput ? searchInput.value.trim().toLocaleLowerCase('ko-KR') : '';
+                let visibleCount = 0;
+
+                filterButtons.forEach(function (button) {
+                    button.setAttribute('aria-pressed', String(button.dataset.filter === activeFilter));
+                });
+
+                caseCards.forEach(function (card) {
+                    const categories = (card.dataset.category || '').split(/\s+/);
+                    const categoryMatches = activeFilter === 'all' || categories.includes(activeFilter);
+                    const searchText = (card.dataset.search || card.textContent).toLocaleLowerCase('ko-KR');
+                    const searchMatches = !query || searchText.includes(query);
+                    const isVisible = categoryMatches && searchMatches;
+                    card.hidden = !isVisible;
+                    if (isVisible) visibleCount += 1;
+                });
+
+                if (countLabel) countLabel.textContent = visibleCount + '개 사례';
+                if (emptyState) emptyState.classList.toggle('is-visible', visibleCount === 0);
+            }
+
+            function setFilter(filter) {
+                activeFilter = filter;
+                applyFilters();
+            }
+
+            function revealHashCase() {
+                if (!window.location.hash) return;
+
+                const target = document.querySelector(window.location.hash);
+                if (!target || !target.classList.contains('case-card')) return;
+
+                setFilter('all');
+                if (searchInput) searchInput.value = '';
+                applyFilters();
+
+                window.requestAnimationFrame(function () {
+                    target.scrollIntoView({ block: 'start' });
+                });
+            }
+
+            filterButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    setFilter(button.dataset.filter);
+                });
+            });
+
+            if (searchInput) searchInput.addEventListener('input', applyFilters);
+
+            const requestedCategory = new URLSearchParams(window.location.search).get('category');
+            const hasRequestedFilter = filterButtons.some(function (button) {
+                return button.dataset.filter === requestedCategory;
+            });
+            setFilter(hasRequestedFilter ? requestedCategory : 'all');
+            revealHashCase();
+            window.addEventListener('hashchange', revealHashCase);
+        }());
+    </script>
 </body>
 </html>
