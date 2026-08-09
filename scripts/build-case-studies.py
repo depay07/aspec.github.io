@@ -336,6 +336,26 @@ def inspection_detail_sections(detail: dict[str, Any]) -> str:
     return "".join(sections)
 
 
+def process_photo_gallery(detail: dict[str, Any]) -> str:
+    figures = []
+    for section in detail["inspectionSections"]:
+        for image in section.get("images", []):
+            figures.append(
+                f'<a class="process-photo-card" href="#inspection-{escape(section["number"])}-heading">'
+                f'<figure><img src="{escape(nested_asset(image["src"]))}" alt="{escape(image["alt"])}" '
+                f'loading="eager" decoding="async"><figcaption>{escape(image["caption"])}</figcaption></figure></a>'
+            )
+    if not figures:
+        return ""
+    return (
+        '<section class="process-photo-gallery-section" aria-labelledby="process-photo-gallery-heading">'
+        '<div class="case-study-inner"><div class="process-photo-gallery-heading">'
+        '<p class="case-study-kicker">Project Photos</p>'
+        '<h2 id="process-photo-gallery-heading">실제 구축 현장 및 검사 화면</h2></div>'
+        f'<div class="process-photo-gallery">{"".join(figures)}</div></div></section>'
+    )
+
+
 def render_process_detail(case: dict[str, Any], template: str) -> str:
     detail = case["processDetail"]
     canonical = f"https://www.aspec-tech.co.kr/case-studies/{case['slug']}.html"
@@ -376,7 +396,8 @@ def render_process_detail(case: dict[str, Any], template: str) -> str:
         "HERO_DESCRIPTION": detail["heroDescription"], "HERO_IMAGE": nested_asset(case["heroImage"]),
         "HERO_IMAGE_ALT": case.get("heroImageAlt") or case["title"],
         "HERO_IMAGE_CAPTION": case.get("heroImageCaption") or case["title"],
-        "PROCESS_FACTS": process_fact_items(detail), "OVERVIEW": text_blocks(case["overview"]),
+        "PROCESS_FACTS": process_fact_items(detail), "PROCESS_PHOTO_GALLERY": process_photo_gallery(detail),
+        "OVERVIEW": text_blocks(case["overview"]),
         "PROBLEM": text_blocks(case["problem"]), "CHALLENGES": challenges,
         "SOLUTION": text_blocks(case["solution"]), "CAMERA_PROCESS": camera_process_items(detail),
         "INSPECTION_SECTIONS": inspection_detail_sections(detail),
