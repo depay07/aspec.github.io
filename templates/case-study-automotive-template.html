@@ -43,7 +43,7 @@
         </div>
     </nav>
 
-    <main class="case-study-page process-case-page">
+    <main class="case-study-page process-case-page automotive-case-page">
         <div class="case-breadcrumb-wrap">
             <nav class="case-study-inner case-breadcrumb" aria-label="Breadcrumb">
                 <a href="/">홈</a><span aria-hidden="true">›</span>
@@ -55,7 +55,7 @@
         <header class="case-study-hero process-case-hero">
             <div class="case-study-inner case-study-hero-grid">
                 <div>
-                    <p class="case-study-kicker">{{CATEGORY_LABEL}}</p>
+                    <p class="case-study-kicker">Automotive · Cognex AI Classification</p>
                     <h1 class="case-study-title">{{PAGE_HEADING}}</h1>
                     <p class="process-hero-subheading">{{HERO_SUBHEADING}}</p>
                     <p class="case-study-lead">{{HERO_DESCRIPTION}}</p>
@@ -85,50 +85,60 @@
 
         <section class="case-story-section is-alt" aria-labelledby="problem-heading">
             <div class="case-study-inner">
-                <div class="case-story-heading"><p class="case-story-index">02 · Problem</p><h2 id="problem-heading">프로젝트에서 해결해야 했던 문제</h2></div>
-                <div class="process-problem-layout">
-                    <div class="case-story-copy">{{PROBLEM}}</div>
-                    <ul class="process-challenge-list">{{CHALLENGES}}</ul>
-                </div>
+                <div class="case-story-heading"><p class="case-story-index">02 · Challenge</p><h2 id="problem-heading">검사 자동화에서 해결해야 했던 문제</h2></div>
+                <div class="process-problem-layout"><div class="case-story-copy">{{PROBLEM}}</div><ul class="process-challenge-list">{{CHALLENGES}}</ul></div>
             </div>
         </section>
 
-        <section class="case-story-section process-camera-section" aria-labelledby="camera-process-heading">
+        <section class="case-story-section" aria-labelledby="rule-based-heading">
             <div class="case-study-inner">
-                <div class="case-story-heading"><p class="case-story-index">03 · System</p><h2 id="camera-process-heading">{{SYSTEM_HEADING}}</h2></div>
-                <div class="case-story-copy">{{SOLUTION}}</div>
-                <div class="camera-process-grid{{SYSTEM_GRID_CLASS}}">{{CAMERA_PROCESS}}</div>
+                <div class="case-story-heading"><p class="case-story-index">03 · Rule-Based</p><h2 id="rule-based-heading">룰베이스 검사로 접근했을 때의 한계</h2></div>
+                <div class="case-story-copy">{{RULE_BASED}}</div>
             </div>
         </section>
 
         {{INSPECTION_SECTIONS}}
 
-        <section class="process-speed-section" aria-labelledby="speed-heading">
+        <section class="process-speed-section automotive-speed-section" aria-labelledby="speed-heading">
             <div class="case-study-inner process-speed-grid">
-                <div>
-                    <p class="case-story-index">{{SPEED_INDEX}}</p>
-                    <h2 id="speed-heading">{{SPEED_TITLE}}</h2>
-                    <div class="process-speed-copy">{{SPEED_BODY}}</div>
-                </div>
-                <ul class="process-speed-list">{{SPEED_ITEMS}}</ul>
+                <div><p class="case-story-index">08 · Inspection Speed</p><h2 id="speed-heading">{{SPEED_TITLE}}</h2><div class="process-speed-copy">{{SPEED_BODY}}</div></div>
+                <div><div class="automotive-speed-stat"><strong>&lt; 1 sec</strong><span>AI Classification 검사시간<br>제품 1개 기준</span></div><ul class="process-speed-list">{{SPEED_ITEMS}}</ul></div>
+            </div>
+        </section>
+
+        <section class="case-story-section is-alt" aria-labelledby="maintenance-heading">
+            <div class="case-study-inner">
+                <div class="case-story-heading"><p class="case-story-index">09 · Maintenance</p><h2 id="maintenance-heading">현장 유지보수를 고려한 검사 구성</h2></div>
+                <div class="case-story-copy">{{MAINTENANCE}}</div>
+            </div>
+        </section>
+
+        <section class="case-story-section process-camera-section" aria-labelledby="camera-process-heading">
+            <div class="case-study-inner">
+                <div class="case-story-heading"><p class="case-story-index">10 · Workflow</p><h2 id="camera-process-heading">{{SYSTEM_HEADING}}</h2></div>
+                <div class="camera-process-grid{{SYSTEM_GRID_CLASS}}">{{CAMERA_PROCESS}}</div>
             </div>
         </section>
 
         <section class="case-story-section" aria-labelledby="results-heading">
             <div class="case-study-inner">
-                <div class="case-story-heading"><p class="case-story-index">09 · Result</p><h2 id="results-heading">{{RESULTS_HEADING}}</h2></div>
+                <div class="case-story-heading"><p class="case-story-index">11 · Result</p><h2 id="results-heading">{{RESULTS_HEADING}}</h2></div>
                 <div class="process-result-grid">{{RESULT_CARDS}}</div>
                 <ul class="process-result-list">{{RESULT_DETAILS}}</ul>
             </div>
         </section>
 
-        <section class="case-story-section is-alt" aria-labelledby="engineering-heading">
+        <section class="case-story-section is-alt" aria-labelledby="classification-fit-heading">
             <div class="case-study-inner">
-                <div class="case-story-heading"><p class="case-story-index">10 · Engineering</p><h2 id="engineering-heading">{{ENGINEERING_HEADING}}</h2></div>
-                <div class="process-engineering-grid">
-                    <div class="case-story-copy">{{ENGINEERING_INTRO}}</div>
-                    <ul class="process-engineering-list">{{ENGINEERING_ITEMS}}</ul>
-                </div>
+                <div class="case-story-heading"><p class="case-story-index">12 · Application</p><h2 id="classification-fit-heading">AI Classification이 적합한 검사</h2></div>
+                <div class="process-engineering-grid"><div class="case-story-copy">{{CLASSIFICATION_FIT}}</div><ul class="process-engineering-list">{{CLASSIFICATION_FIT_ITEMS}}</ul></div>
+            </div>
+        </section>
+
+        <section class="case-story-section" aria-labelledby="engineering-heading">
+            <div class="case-study-inner">
+                <div class="case-story-heading"><p class="case-story-index">13 · Engineering</p><h2 id="engineering-heading">{{ENGINEERING_HEADING}}</h2></div>
+                <div class="process-engineering-grid"><div class="case-story-copy">{{ENGINEERING_INTRO}}</div><ul class="process-engineering-list">{{ENGINEERING_ITEMS}}</ul></div>
             </div>
         </section>
 
@@ -147,8 +157,6 @@
         </section>
     </main>
 
-    <footer class="border-t border-white/10 py-8 text-center text-gray-500 text-sm">
-        <p>&copy; 2026 ASPEC. All rights reserved.</p>
-    </footer>
+    <footer class="border-t border-white/10 py-8 text-center text-gray-500 text-sm"><p>&copy; 2026 ASPEC. All rights reserved.</p></footer>
 </body>
 </html>

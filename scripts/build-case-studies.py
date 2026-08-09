@@ -17,6 +17,7 @@ DATA_PATH = ROOT / "data" / "case-studies.json"
 PORTFOLIO_PATH = ROOT / "portfolio.html"
 TEMPLATE_PATH = ROOT / "templates" / "case-study-template.html"
 PROCESS_TEMPLATE_PATH = ROOT / "templates" / "case-study-process-template.html"
+AUTOMOTIVE_TEMPLATE_PATH = ROOT / "templates" / "case-study-automotive-template.html"
 OUTPUT_DIR = ROOT / "case-studies"
 SITEMAP_PATH = ROOT / "sitemap.xml"
 
@@ -119,7 +120,7 @@ def validate_cases(cases: list[dict[str, Any]]) -> None:
             raise BuildError(f"projectSummary must be an object for {slug}")
 
         detail_template = case.get("detailTemplate", "default")
-        if detail_template not in {"default", "process"}:
+        if detail_template not in {"default", "process", "automotive"}:
             raise BuildError(f"Invalid detailTemplate for {slug}: {detail_template}")
         if detail_template == "process":
             detail = case.get("processDetail")
@@ -404,6 +405,7 @@ def render_process_detail(case: dict[str, Any], lookup: dict[str, dict[str, Any]
         "PROCESS_FACTS": process_fact_items(detail), "PROCESS_PHOTO_GALLERY": process_photo_gallery(detail),
         "OVERVIEW": text_blocks(case["overview"]),
         "PROBLEM": text_blocks(case["problem"]), "CHALLENGES": challenges,
+        "RULE_BASED": text_blocks(detail.get("ruleBased", "")),
         "SOLUTION": text_blocks(case["solution"]), "CAMERA_PROCESS": camera_process_items(detail),
         "SYSTEM_HEADING": detail.get("systemHeading", "4대의 카메라로 공정별 검사 구성"),
         "SYSTEM_GRID_CLASS": (" " + detail["systemGridClass"]) if detail.get("systemGridClass") else "",
@@ -414,6 +416,9 @@ def render_process_detail(case: dict[str, Any], lookup: dict[str, dict[str, Any]
         "RESULTS_HEADING": detail.get("resultsHeading", "구축 후 개선된 품질관리"),
         "ENGINEERING_INTRO": text_blocks(detail["engineeringIntro"]), "ENGINEERING_ITEMS": engineering_items,
         "ENGINEERING_HEADING": detail.get("engineeringHeading", "ASPEC의 머신비전 시스템 설계 방식"),
+        "MAINTENANCE": text_blocks(detail.get("maintenance", "")),
+        "CLASSIFICATION_FIT": text_blocks(detail.get("classificationFit", "")),
+        "CLASSIFICATION_FIT_ITEMS": "".join(f'<li>{escape(item)}</li>' for item in detail.get("classificationFitItems", [])),
         "TECHNOLOGY_LINKS": technology_links, "CTA_TITLE": detail["cta"]["title"],
         "CTA_BODY": detail["cta"]["body"], "CTA_LABEL": detail["cta"]["label"], "CTA_URL": detail["cta"]["url"],
         "RELATED_CASES_SECTION": related_cases_section(case, lookup),
@@ -494,13 +499,19 @@ def render_detail(case: dict[str, Any], lookup: dict[str, dict[str, Any]], templ
 def expected_detail_pages(cases: list[dict[str, Any]]) -> dict[Path, str]:
     template = TEMPLATE_PATH.read_text(encoding="utf-8")
     process_template = PROCESS_TEMPLATE_PATH.read_text(encoding="utf-8")
+    automotive_template = AUTOMOTIVE_TEMPLATE_PATH.read_text(encoding="utf-8")
     lookup = {case["slug"]: case for case in cases}
     pages: dict[Path, str] = {}
     for case in cases:
         if not case["published"]:
             continue
         selected = case.get("detailTemplate", "default")
-        content = render_process_detail(case, lookup, process_template) if selected == "process" else render_detail(case, lookup, template)
+        if selected == "process":
+            content = render_process_detail(case, lookup, process_template)
+        elif selected == "automotive":
+            content = render_process_detail(case, lookup, automotive_template)
+        else:
+            content = render_detail(case, lookup, template)
         pages[OUTPUT_DIR / f"{case['slug']}.html"] = content
     return pages
 

@@ -437,19 +437,22 @@
       }
     },
     {
-      "slug": "automotive-parts-ai-inspection",
-      "published": false,
+      "slug": "automotive-transmission-tap-ai-inspection",
+      "cardId": "automotive-parts-ai-inspection",
+      "published": true,
       "title": "자동차 부품 AI 검사",
       "category": "ai",
       "categoryLabel": "자동차 · AI 비전검사",
       "filters": ["ai"],
       "industry": "자동차 부품",
       "summary": "미션 부품 나사탭 유무와 개수 차이, 제품 위치 편차로 룰베이스 검사가 어려운 조건을 Cognex AI Classification으로 해결한 사례입니다.",
-      "heroImage": "",
-      "cardImage": "portfolio-inspection.png",
-      "cardImageAlt": "ASPEC 자동차 부품 AI 비전검사 대표 이미지",
+      "heroImage": "images/case-studies/automotive-transmission-tap-ai-inspection/ok_1.png",
+      "heroImageAlt": "자동차 미션 부품 나사탭 정상 판정 이미지",
+      "heroImageCaption": "자동차 미션 부품 나사탭 AI Classification 정상 판정 화면",
+      "cardImage": "images/case-studies/automotive-transmission-tap-ai-inspection/ok_1.png",
+      "cardImageAlt": "자동차 미션 부품 나사탭 AI 비전검사 정상 판정 이미지",
       "keywords": ["자동차 부품 AI 검사", "Cognex AI Classification", "나사탭 검사"],
-      "highlights": ["나사탭 1~6개 제품 대응", "10장 미만 이미지 학습", "1초 미만 빠른 판정"],
+      "highlights": ["나사탭 0~6개 제품 대응", "10장 미만 이미지 학습", "1초 미만 빠른 판정"],
       "technologies": ["Cognex", "AI Classification", "AI 비전검사"],
       "projectSummary": {
         "inspectionTarget": "미션 부품 나사탭 유무와 개수",
@@ -461,15 +464,124 @@
         "integration": "",
         "cycleTime": "1초 미만"
       },
-      "overview": "",
-      "problem": "",
-      "difficulty": "",
-      "solution": "",
-      "inspectionMethod": "",
-      "results": [],
-      "images": [],
-      "relatedProducts": [],
-      "relatedCases": []
+      "overview": "자동차 부품 생산에서는 동일한 외형처럼 보여도 제품 사양에 따라 가공 상태가 달라지는 경우가 많습니다. 이번 프로젝트의 검사 대상은 자동차 미션 부품으로, 제품별로 필요한 나사탭(Tap)의 개수가 서로 달랐습니다.\n\n탭이 없는 제품부터 1개, 2개를 거쳐 최대 6개의 탭이 존재하는 제품까지 다양한 종류가 한 검사 시스템에서 처리되어야 했습니다. 기존 공정에서는 작업자가 직접 제품을 확인해 나사탭의 가공 상태를 판정하고 있었습니다.\n\nASPEC은 제품마다 달라지는 나사탭 형태와 실제 공급 과정에서 발생하는 위치·방향 변화를 함께 고려하여 Cognex AI Classification을 이용한 자동 비전검사 시스템을 구축했습니다.",
+      "problem": "이번 프로젝트는 단순히 특정 위치에 구멍이 있는지를 확인하는 검사와는 달랐습니다. 제품 종류마다 나사탭 개수가 다르고 탭이 없는 제품부터 최대 6개의 탭이 존재하는 제품까지 검사해야 했습니다.\n\n제품 공급 위치와 방향에도 일부 편차가 있었고, 작업자 육안검사에 의존하던 공정을 생산속도를 유지하면서 자동 판정해야 했습니다. 여러 제품 Variation과 공급 편차를 동시에 고려하면 검사 조건과 예외 처리가 계속 증가할 수 있어 이미지 특징을 이용해 상태를 판별하는 방식을 검토했습니다.",
+      "difficulty": "제품 종류마다 나사탭 개수가 다름\n탭이 없는 제품부터 최대 6개 탭 제품까지 검사\n제품 공급 위치가 매번 완전히 동일하지 않음\n제품 방향과 회전 상태에 일부 편차 발생\n기존 공정이 작업자 육안검사에 의존\n생산속도를 유지하면서 자동 판정 필요",
+      "solution": "Cognex AI Classification을 적용하여 정상(OK) 이미지와 불량(NG) 이미지의 특징을 학습하고 나사탭 가공 상태를 자동 판정하도록 구성했습니다. 모든 탭 위치마다 개별 조건을 추가하기보다 제품 이미지의 전체적인 특징을 기반으로 정상과 불량을 분류하도록 검사 구조를 단순화했습니다.\n\n실제 생산환경에서 발생하는 제품 위치와 방향의 정상적인 Variation을 학습 및 검사 조건에 반영하고, 제품 1개당 1초 미만의 검사시간으로 기존 생산속도를 유지하도록 구성했습니다.",
+      "inspectionMethod": "자동차 미션 부품 투입\n검사용 이미지 취득\nCognex AI Classification 판정\n나사탭 가공 상태 OK·NG 분류\n검사 결과 출력",
+      "results": ["육안검사 비중 감소", "휴먼에러 가능성 감소", "검사 기준 표준화", "복잡한 룰베이스 검사 로직 감소", "현장 운영 및 유지보수 부담 완화", "자동차 부품 품질관리 안정화"],
+      "images": [
+        {"src": "images/case-studies/automotive-transmission-tap-ai-inspection/ok_1.png", "alt": "자동차 미션 부품 나사탭 정상 판정 이미지 1", "caption": "OK 판정 이미지 1"},
+        {"src": "images/case-studies/automotive-transmission-tap-ai-inspection/ng_1.png", "alt": "자동차 미션 부품 나사탭 불량 판정 이미지 1", "caption": "NG 판정 이미지 1"},
+        {"src": "images/case-studies/automotive-transmission-tap-ai-inspection/ok_2.png", "alt": "자동차 미션 부품 나사탭 정상 판정 이미지 2", "caption": "OK 판정 이미지 2"},
+        {"src": "images/case-studies/automotive-transmission-tap-ai-inspection/ng_2.png", "alt": "자동차 미션 부품 나사탭 불량 판정 이미지 2", "caption": "NG 판정 이미지 2"},
+        {"src": "images/case-studies/automotive-transmission-tap-ai-inspection/ok_3.png", "alt": "자동차 미션 부품 나사탭 정상 판정 이미지 3", "caption": "OK 판정 이미지 3"},
+        {"src": "images/case-studies/automotive-transmission-tap-ai-inspection/ng_3.png", "alt": "자동차 미션 부품 나사탭 불량 판정 이미지 3", "caption": "NG 판정 이미지 3"}
+      ],
+      "relatedProducts": [
+        {"name": "AI 비전검사", "url": "/ai-vision.html"},
+        {"name": "머신비전 조명·렌즈", "url": "/vision-accessories.html"},
+        {"name": "검사 소프트웨어", "url": "/vision-software.html"}
+      ],
+      "relatedCases": ["pharmaceutical-film-vision-inspection", "medical-device-label-ocr-barcode-mes"],
+      "detailTemplate": "automotive",
+      "seoTitle": "자동차 미션 부품 나사탭 AI 비전검사 구축사례 | Cognex Classification | ASPEC",
+      "metaDescription": "자동차 미션 부품의 나사탭 가공 여부를 Cognex AI Classification으로 자동 판정한 비전검사 구축사례입니다. 위치·방향 편차와 최대 6개까지 달라지는 탭 구성에 대응하고 1초 미만 검사로 생산라인 택타임을 유지했습니다.",
+      "lastmod": "2026-08-09",
+      "pageHeading": "자동차 미션 부품 나사탭 AI 비전검사 시스템 구축",
+      "ogImage": "images/case-studies/automotive-transmission-tap-ai-inspection/ok_1.png",
+      "processDetail": {
+        "heroSubheading": "제품별로 달라지는 나사탭과 위치 편차를 Cognex AI Classification으로 판정한 자동차 부품 자동검사 사례",
+        "heroDescription": "자동차 미션 부품의 나사탭(Tap) 가공 여부를 작업자가 직접 확인하던 공정에 Cognex AI Classification을 적용했습니다. 제품마다 탭 개수가 0개부터 최대 6개까지 달라지고 공급 위치와 방향에도 편차가 있어 룰베이스 검사 구성이 복잡했던 공정을 AI 이미지 분류 방식으로 단순화하고, 제품 1개당 1초 미만의 검사시간으로 기존 생산속도를 유지하도록 구축한 프로젝트입니다.",
+        "facts": [
+          {"label": "산업", "value": "자동차"},
+          {"label": "검사 대상", "value": "미션 부품"},
+          {"label": "검사 항목", "value": "나사탭 가공 여부"},
+          {"label": "적용 기술", "value": "Cognex AI Classification"},
+          {"label": "제품 Variation", "value": "나사탭 0개 ~ 최대 6개"},
+          {"label": "학습 데이터", "value": "10장 미만 · 이번 프로젝트 기준"},
+          {"label": "검사 시간", "value": "제품 1개당 1초 미만"},
+          {"label": "핵심 과제", "value": "위치·방향 편차 대응 · 검사 로직 단순화"}
+        ],
+        "galleryHeading": "실제 AI Classification OK·NG 판정 이미지",
+        "cameras": [],
+        "systemHeading": "전체 AI 검사 흐름",
+        "systemGridClass": "is-automotive-flow",
+        "systemSteps": [
+          {"label": "PART INPUT", "title": "미션 부품 투입", "items": ["제품 공급", "검사 위치 진입"]},
+          {"label": "IMAGE ACQUISITION", "title": "검사용 이미지 취득", "items": ["나사탭 영역 촬영"]},
+          {"label": "AI CLASSIFICATION", "title": "Cognex AI 판정", "items": ["학습 클래스 기준 분류"]},
+          {"label": "OK / NG", "title": "가공 상태 분류", "items": ["정상·불량 판정"]},
+          {"label": "RESULT", "title": "검사 결과 출력", "items": ["판정 결과 확인"]}
+        ],
+        "ruleBased": "룰베이스 방식은 검사 위치와 특징이 일정한 공정에서 매우 효과적입니다. 하지만 이번 검사에서는 제품 종류마다 탭의 개수와 형상이 다르고, 실제 생산라인에서 제품 위치와 회전 상태에도 일부 변화가 발생했습니다.\n\n각 탭 위치마다 개별 검사 영역을 만들고 제품별 조건을 구분하면 Recipe, 위치 보정 로직, Variation별 조건 분기와 예외 처리가 계속 늘어날 수 있습니다. 신규 제품 추가 시 프로그램 수정과 장기 유지보수 부담도 함께 고려해야 했습니다.\n\n이 때문에 복잡한 규칙을 계속 추가하는 대신 이미지의 전체적인 특징을 학습하여 상태를 구분하는 AI Classification 방식이 더 적합하다고 판단했습니다.",
+        "inspectionSections": [
+          {
+            "number": "04", "title": "Cognex AI Classification 적용",
+            "body": "이번 시스템에는 Cognex AI Classification을 적용했습니다. 정상(OK) 이미지와 불량(NG) 이미지를 학습하여 나사탭 가공 상태를 자동으로 판정하도록 구성했습니다.\n\n모든 탭 위치마다 복잡한 판정 조건을 개별 설정하기보다 제품 이미지의 특징을 기반으로 정상과 불량을 구분하고, 생산환경에서 발생하는 정상적인 위치와 방향 Variation을 학습 및 검사 조건에 반영했습니다.",
+            "items": ["정상·불량 이미지 학습", "나사탭 가공 상태 분류", "제품 특징 기반 판정", "Cognex AI Classification"],
+            "imagePosition": "left",
+            "images": [
+              {"src": "images/case-studies/automotive-transmission-tap-ai-inspection/ok_1.png", "alt": "나사탭 정상 가공 AI Classification OK 판정", "caption": "정상 나사탭 형상을 분류한 OK 판정 이미지"},
+              {"src": "images/case-studies/automotive-transmission-tap-ai-inspection/ng_1.png", "alt": "나사탭 미가공 AI Classification NG 판정", "caption": "나사탭 가공 상태를 분류한 NG 판정 이미지"}
+            ]
+          },
+          {
+            "number": "05", "title": "나사탭 0개부터 최대 6개까지 다양한 제품 대응",
+            "body": "이번 검사는 하나의 고정된 제품만 대상으로 하지 않았습니다. 생산되는 미션 부품은 제품 종류에 따라 나사탭 구성이 달랐고, 탭이 없는 제품부터 최대 6개의 탭이 있는 제품까지 하나의 검사 시스템에서 처리해야 했습니다.\n\n정확한 제품 TYPE 번호를 임의로 만들지 않고 실제 확인된 탭 개수 범위만 검사 Variation으로 반영했습니다.",
+            "items": ["0 TAP", "1 TAP", "2 TAP", "3~5 TAP Variation", "UP TO 6 TAP"],
+            "imagePosition": "right",
+            "images": [
+              {"src": "images/case-studies/automotive-transmission-tap-ai-inspection/ok_2.png", "alt": "다른 위치의 나사탭 정상 판정 이미지", "caption": "제품 Variation을 반영한 OK 판정 이미지"},
+              {"src": "images/case-studies/automotive-transmission-tap-ai-inspection/ng_2.png", "alt": "다른 위치의 나사탭 불량 판정 이미지", "caption": "제품 Variation을 반영한 NG 판정 이미지"}
+            ]
+          },
+          {
+            "number": "06", "title": "10장 미만의 이미지로 구성한 AI 학습",
+            "body": "AI 검사에 필요한 학습 이미지 수는 검사 대상과 불량 형태, 제품 Variation, 촬영 안정성 등에 따라 크게 달라집니다. 모든 프로젝트가 적은 이미지로 학습할 수 있는 것은 아닙니다.\n\n이번 자동차 미션 부품 프로젝트에서는 검사 특징이 비교적 명확했고 촬영조건을 적절하게 구성할 수 있어 10장 미만의 학습 이미지로 Classification 모델을 구성했습니다. 이는 이번 프로젝트에서 실제로 가능했던 결과이며 다른 프로젝트에도 동일하게 적용된다는 의미는 아닙니다.\n\n이미지 수 자체보다 검사에 영향을 주는 실제 Variation이 학습 데이터에 포함되어 있는지를 확인하며 생산 이미지를 기준으로 학습 결과와 검사 조건을 조정했습니다.",
+            "items": ["이번 프로젝트 기준 10장 미만", "정상·불량 특징 반영", "생산 Variation 포함", "학습 결과 확인 및 조정"],
+            "imagePosition": "left",
+            "images": [
+              {"src": "images/case-studies/automotive-transmission-tap-ai-inspection/ok_3.png", "alt": "AI 학습과 검증에 사용한 정상 나사탭 이미지", "caption": "실제 Classification 정상 판정 이미지"},
+              {"src": "images/case-studies/automotive-transmission-tap-ai-inspection/ng_3.png", "alt": "AI 학습과 검증에 사용한 불량 나사탭 이미지", "caption": "실제 Classification 불량 판정 이미지"}
+            ]
+          },
+          {
+            "number": "07", "title": "제품 위치와 방향 편차 대응",
+            "body": "생산라인에서는 제품이 항상 동일한 좌표와 각도로 공급되는 것은 아닙니다. 이번 프로젝트에서도 제품 위치가 조금 달라지거나 일부 회전된 상태로 공급되는 경우가 있었습니다.\n\n실제 생산 과정에서 발생하는 위치 및 방향 Variation을 고려하여 AI Classification 검사를 구성하고, 학습 및 검증된 생산범위 안에서 정상과 불량을 분류하도록 검사 조건을 조정했습니다. 어떤 위치나 회전에도 무관하다는 의미로 과장하지 않았습니다.",
+            "items": ["위치 편차 반영", "방향·회전 Variation 반영", "생산범위 내 검증", "고정 좌표 의존도 감소"],
+            "imagePosition": "right",
+            "images": [
+              {"src": "images/case-studies/automotive-transmission-tap-ai-inspection/ok_2.png", "alt": "위치 편차가 있는 나사탭 정상 판정 이미지", "caption": "위치 Variation이 있는 제품의 OK 판정 이미지"},
+              {"src": "images/case-studies/automotive-transmission-tap-ai-inspection/ng_3.png", "alt": "위치 편차가 있는 나사탭 불량 판정 이미지", "caption": "위치 Variation이 있는 제품의 NG 판정 이미지"}
+            ]
+          }
+        ],
+        "speed": {
+          "title": "제품 1개당 1초 미만의 AI 검사",
+          "body": "AI를 적용할 때 판정 성능과 함께 반드시 검토해야 하는 것이 처리시간입니다. 이번 프로젝트에서는 제품 1개를 Classification하여 판정하는 검사시간을 1초 미만으로 구성했습니다.\n\n이를 통해 기존 생산라인의 택타임을 크게 변경하지 않고 AI 비전검사를 적용하도록 최적화했습니다. 이미지 취득, AI 추론과 판정 처리 조건은 프로젝트마다 달라지므로 별도의 성능 검증이 필요합니다.",
+          "items": ["이미지 취득", "AI 추론", "판정 처리", "기존 생산속도 고려"]
+        },
+        "maintenance": "자동검사 시스템은 구축 당시의 성능뿐 아니라 현장에서 얼마나 쉽게 관리할 수 있는지도 중요합니다. AI Classification 방식은 새로운 생산 Variation이 발생할 경우 해당 이미지를 검토하고 필요한 학습 데이터를 추가해 모델을 조정할 수 있습니다.\n\n이번 현장은 외국인 작업자가 근무하는 생산라인이었기 때문에 전문적인 검사 프로그램 지식이 없는 작업자도 일상적인 운영을 수행할 수 있도록 사용성과 유지보수 부담을 고려했습니다. 다만 모델이나 검사조건 변경에는 적절한 검증이 필요합니다.",
+        "resultsHeading": "구축 후 개선된 검사 공정",
+        "resultCards": [
+          {"title": "AI 자동 판정", "body": "Cognex AI Classification으로 나사탭 가공 상태를 자동 분류하도록 구성했습니다."},
+          {"title": "제품 Variation 대응", "body": "탭이 없는 제품부터 최대 6개의 탭이 있는 제품까지 서로 다른 구성을 대응했습니다."},
+          {"title": "위치 편차 대응", "body": "생산라인에서 발생하는 일정 범위의 위치와 방향 변화를 학습 조건에 반영했습니다."},
+          {"title": "생산속도 유지", "body": "제품 1개당 1초 미만의 검사시간으로 기존 생산라인 택타임을 고려했습니다."}
+        ],
+        "classificationFit": "AI Classification은 제품 종류별 형상 차이가 있거나 정상과 불량의 특징은 보이지만 규칙으로 표현하기 어려운 검사에 유용할 수 있습니다. 제품 위치와 형태에 일정한 Variation이 존재하고 Rule-Based 조건과 예외처리가 계속 증가하는 공정도 검토 대상입니다.\n\n다만 AI가 모든 검사에서 룰베이스보다 우수한 것은 아닙니다. 치수 측정, 정밀 위치 측정과 명확한 형상 조건은 룰베이스 방식이 더 적합할 수 있으며 검사 특성에 따라 두 방식을 조합할 수 있습니다.",
+        "classificationFitItems": ["제품별 형상 차이", "규칙 정의가 어려운 특징", "위치·형태 Variation", "Recipe 증가", "예외처리 증가", "Rule-Based와 AI 조합"],
+        "engineeringHeading": "ASPEC의 AI 비전검사 적용 방식",
+        "engineeringIntro": "AI 비전검사는 소프트웨어 기능을 켜는 것만으로 완성되지 않습니다. ASPEC은 샘플 이미지를 먼저 확인하고 기존 Rule-Based 방식과 AI 방식 중 어떤 접근이 적합한지 검토한 후 Classification, Detection, Segmentation 등 검사 목적에 맞는 방법을 선정합니다.\n\n이번 프로젝트에서는 제품별 나사탭 Variation과 위치 변화에 대응하면서 검사 구조를 단순화할 수 있는 Classification 방식이 적합하다고 판단했습니다.",
+        "engineeringItems": ["불량 특징", "정상 Variation", "제품 위치·방향", "카메라 FOV", "최소 검출 대상", "렌즈·조명", "노출조건", "학습 이미지", "검사시간", "생산라인 택타임", "현장 유지보수"],
+        "cta": {
+          "title": "자동차 부품 AI 비전검사를 검토하고 계신가요?",
+          "body": "제품 종류가 많거나 위치·방향 편차 때문에 Rule-Based 검사 조건이 복잡해지는 경우 AI Classification을 포함한 머신비전 검사를 검토할 수 있습니다. 실제 제품 이미지와 정상·불량 샘플, 생산속도, 검사 항목을 알려주시면 기존 비전검사 방식과 AI 방식의 적용 가능성을 비교하여 적합한 검사 구성을 검토해드립니다.",
+          "label": "프로젝트 문의",
+          "url": "/contact.html#contact-form"
+        }
+      }
     },
     {
       "slug": "food-expiry-ocr-package-inspection",
