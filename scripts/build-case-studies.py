@@ -290,10 +290,11 @@ def process_fact_items(detail: dict[str, Any]) -> str:
 
 def camera_process_items(detail: dict[str, Any]) -> str:
     cards = []
-    for camera in detail["cameras"]:
+    for camera in detail.get("systemSteps", detail["cameras"]):
         items = "".join(f"<li>{escape(item)}</li>" for item in camera["items"])
+        label = camera.get("label") or f'CAMERA {camera["number"]}'
         cards.append(
-            f'<article class="camera-process-card"><span>CAMERA {escape(camera["number"])}</span>'
+            f'<article class="camera-process-card"><span>{escape(label)}</span>'
             f'<h3>{escape(camera["title"])}</h3><ul>{items}</ul></article>'
         )
     return "".join(cards)
@@ -338,8 +339,12 @@ def inspection_detail_sections(detail: dict[str, Any]) -> str:
 
 def process_photo_gallery(detail: dict[str, Any]) -> str:
     figures = []
+    seen: set[str] = set()
     for section in detail["inspectionSections"]:
         for image in section.get("images", []):
+            if image["src"] in seen:
+                continue
+            seen.add(image["src"])
             figures.append(
                 f'<a class="process-photo-card" href="#inspection-{escape(section["number"])}-heading">'
                 f'<figure><img src="{escape(nested_asset(image["src"]))}" alt="{escape(image["alt"])}" '
@@ -351,12 +356,12 @@ def process_photo_gallery(detail: dict[str, Any]) -> str:
         '<section class="process-photo-gallery-section" aria-labelledby="process-photo-gallery-heading">'
         '<div class="case-study-inner"><div class="process-photo-gallery-heading">'
         '<p class="case-study-kicker">Project Photos</p>'
-        '<h2 id="process-photo-gallery-heading">실제 구축 현장 및 검사 화면</h2></div>'
+        f'<h2 id="process-photo-gallery-heading">{escape(detail.get("galleryHeading", "실제 구축 현장 및 검사 화면"))}</h2></div>'
         f'<div class="process-photo-gallery">{"".join(figures)}</div></div></section>'
     )
 
 
-def render_process_detail(case: dict[str, Any], template: str) -> str:
+def render_process_detail(case: dict[str, Any], lookup: dict[str, dict[str, Any]], template: str) -> str:
     detail = case["processDetail"]
     canonical = f"https://www.aspec-tech.co.kr/case-studies/{case['slug']}.html"
     title = case.get("seoTitle") or f"{case['title']} 구축사례 | ASPEC"
@@ -400,15 +405,21 @@ def render_process_detail(case: dict[str, Any], template: str) -> str:
         "OVERVIEW": text_blocks(case["overview"]),
         "PROBLEM": text_blocks(case["problem"]), "CHALLENGES": challenges,
         "SOLUTION": text_blocks(case["solution"]), "CAMERA_PROCESS": camera_process_items(detail),
+        "SYSTEM_HEADING": detail.get("systemHeading", "4대의 카메라로 공정별 검사 구성"),
+        "SYSTEM_GRID_CLASS": (" " + detail["systemGridClass"]) if detail.get("systemGridClass") else "",
         "INSPECTION_SECTIONS": inspection_detail_sections(detail),
+        "SPEED_INDEX": detail.get("speedIndex", "08 · High Speed"),
         "SPEED_TITLE": detail["speed"]["title"], "SPEED_BODY": text_blocks(detail["speed"]["body"]),
         "SPEED_ITEMS": speed_items, "RESULT_CARDS": result_cards, "RESULT_DETAILS": result_details,
+        "RESULTS_HEADING": detail.get("resultsHeading", "구축 후 개선된 품질관리"),
         "ENGINEERING_INTRO": text_blocks(detail["engineeringIntro"]), "ENGINEERING_ITEMS": engineering_items,
+        "ENGINEERING_HEADING": detail.get("engineeringHeading", "ASPEC의 머신비전 시스템 설계 방식"),
         "TECHNOLOGY_LINKS": technology_links, "CTA_TITLE": detail["cta"]["title"],
         "CTA_BODY": detail["cta"]["body"], "CTA_LABEL": detail["cta"]["label"], "CTA_URL": detail["cta"]["url"],
+        "RELATED_CASES_SECTION": related_cases_section(case, lookup),
     }
     output = template
-    escaped_tokens = {"TITLE", "META_DESCRIPTION", "CANONICAL", "OG_IMAGE", "CATEGORY_LABEL", "CASE_TITLE", "PAGE_HEADING", "HERO_SUBHEADING", "HERO_DESCRIPTION", "HERO_IMAGE", "HERO_IMAGE_ALT", "HERO_IMAGE_CAPTION", "SPEED_TITLE", "CTA_TITLE", "CTA_BODY", "CTA_LABEL", "CTA_URL"}
+    escaped_tokens = {"TITLE", "META_DESCRIPTION", "CANONICAL", "OG_IMAGE", "CATEGORY_LABEL", "CASE_TITLE", "PAGE_HEADING", "HERO_SUBHEADING", "HERO_DESCRIPTION", "HERO_IMAGE", "HERO_IMAGE_ALT", "HERO_IMAGE_CAPTION", "SYSTEM_HEADING", "SYSTEM_GRID_CLASS", "SPEED_INDEX", "SPEED_TITLE", "RESULTS_HEADING", "ENGINEERING_HEADING", "CTA_TITLE", "CTA_BODY", "CTA_LABEL", "CTA_URL"}
     for key, value in replacements.items():
         output = output.replace("{{" + key + "}}", escape(value) if key in escaped_tokens else value)
     if re.search(r"{{[A-Z0-9_]+}}", output):
@@ -489,7 +500,7 @@ def expected_detail_pages(cases: list[dict[str, Any]]) -> dict[Path, str]:
         if not case["published"]:
             continue
         selected = case.get("detailTemplate", "default")
-        content = render_process_detail(case, process_template) if selected == "process" else render_detail(case, lookup, template)
+        content = render_process_detail(case, lookup, process_template) if selected == "process" else render_detail(case, lookup, template)
         pages[OUTPUT_DIR / f"{case['slug']}.html"] = content
     return pages
 
@@ -503,7 +514,8 @@ def build_sitemap(cases: list[dict[str, Any]]) -> str:
 
     rows = [SITEMAP_START]
     for case in published:
-        rows.append(f'  <url><loc>https://www.aspec-tech.co.kr/case-studies/{case["slug"]}.html</loc><priority>0.8</priority></url>')
+        lastmod = f'<lastmod>{escape(case["lastmod"])}</lastmod>' if case.get("lastmod") else ""
+        rows.append(f'  <url><loc>https://www.aspec-tech.co.kr/case-studies/{case["slug"]}.html</loc>{lastmod}<priority>0.8</priority></url>')
     rows.append(SITEMAP_END)
     block = newline + newline.join(rows)
     if pattern.search(content):

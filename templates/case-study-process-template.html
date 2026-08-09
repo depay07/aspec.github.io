@@ -20,7 +20,7 @@
     <meta property="og:url" content="{{CANONICAL}}">
     <meta property="og:image" content="{{OG_IMAGE}}">
     <link rel="stylesheet" href="/styles.css">
-    <link rel="stylesheet" href="/case-study-pages.css?v=20260809-1">
+    <link rel="stylesheet" href="/case-study-pages.css?v=20260809-3">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script type="application/ld+json">{{WEBPAGE_JSON_LD}}</script>
     <script type="application/ld+json">{{BREADCRUMB_JSON_LD}}</script>
@@ -95,9 +95,9 @@
 
         <section class="case-story-section process-camera-section" aria-labelledby="camera-process-heading">
             <div class="case-study-inner">
-                <div class="case-story-heading"><p class="case-story-index">03 · System</p><h2 id="camera-process-heading">4대의 카메라로 공정별 검사 구성</h2></div>
+                <div class="case-story-heading"><p class="case-story-index">03 · System</p><h2 id="camera-process-heading">{{SYSTEM_HEADING}}</h2></div>
                 <div class="case-story-copy">{{SOLUTION}}</div>
-                <div class="camera-process-grid">{{CAMERA_PROCESS}}</div>
+                <div class="camera-process-grid{{SYSTEM_GRID_CLASS}}">{{CAMERA_PROCESS}}</div>
             </div>
         </section>
 
@@ -106,7 +106,7 @@
         <section class="process-speed-section" aria-labelledby="speed-heading">
             <div class="case-study-inner process-speed-grid">
                 <div>
-                    <p class="case-story-index">08 · High Speed</p>
+                    <p class="case-story-index">{{SPEED_INDEX}}</p>
                     <h2 id="speed-heading">{{SPEED_TITLE}}</h2>
                     <div class="process-speed-copy">{{SPEED_BODY}}</div>
                 </div>
@@ -116,7 +116,7 @@
 
         <section class="case-story-section" aria-labelledby="results-heading">
             <div class="case-study-inner">
-                <div class="case-story-heading"><p class="case-story-index">09 · Result</p><h2 id="results-heading">구축 후 개선된 품질관리</h2></div>
+                <div class="case-story-heading"><p class="case-story-index">09 · Result</p><h2 id="results-heading">{{RESULTS_HEADING}}</h2></div>
                 <div class="process-result-grid">{{RESULT_CARDS}}</div>
                 <ul class="process-result-list">{{RESULT_DETAILS}}</ul>
             </div>
@@ -124,7 +124,7 @@
 
         <section class="case-story-section is-alt" aria-labelledby="engineering-heading">
             <div class="case-study-inner">
-                <div class="case-story-heading"><p class="case-story-index">10 · Engineering</p><h2 id="engineering-heading">ASPEC의 머신비전 시스템 설계 방식</h2></div>
+                <div class="case-story-heading"><p class="case-story-index">10 · Engineering</p><h2 id="engineering-heading">{{ENGINEERING_HEADING}}</h2></div>
                 <div class="process-engineering-grid">
                     <div class="case-story-copy">{{ENGINEERING_INTRO}}</div>
                     <ul class="process-engineering-list">{{ENGINEERING_ITEMS}}</ul>
@@ -138,7 +138,7 @@
                 <div class="process-related-links">{{TECHNOLOGY_LINKS}}</div>
             </div>
         </section>
-
+{{RELATED_CASES_SECTION}}
         <section class="case-study-cta">
             <div class="case-study-inner case-study-cta-inner">
                 <div><h2>{{CTA_TITLE}}</h2><p>{{CTA_BODY}}</p></div>
