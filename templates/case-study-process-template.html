@@ -20,7 +20,7 @@
     <meta property="og:url" content="{{CANONICAL}}">
     <meta property="og:image" content="{{OG_IMAGE}}">
     <link rel="stylesheet" href="/styles.css">
-    <link rel="stylesheet" href="/case-study-pages.css?v=20260809-4">
+    <link rel="stylesheet" href="/case-study-pages.css?v=20260809-5">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script type="application/ld+json">{{WEBPAGE_JSON_LD}}</script>
     <script type="application/ld+json">{{BREADCRUMB_JSON_LD}}</script>
@@ -101,13 +101,13 @@
             </div>
         </section>
 
-        {{INSPECTION_SECTIONS}}
+        {{INSPECTION_SECTIONS}}{{PROCESS_BEFORE_AFTER}}
 
         <section class="process-speed-section" aria-labelledby="speed-heading">
             <div class="case-study-inner process-speed-grid">
                 <div>
                     <p class="case-story-index">{{SPEED_INDEX}}</p>
-                    <h2 id="speed-heading">{{SPEED_TITLE}}</h2>
+                    <h2 id="speed-heading">{{SPEED_TITLE}}</h2>{{SPEED_STAT}}
                     <div class="process-speed-copy">{{SPEED_BODY}}</div>
                 </div>
                 <ul class="process-speed-list">{{SPEED_ITEMS}}</ul>

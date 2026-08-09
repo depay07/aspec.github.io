@@ -362,6 +362,43 @@ def process_photo_gallery(detail: dict[str, Any]) -> str:
     )
 
 
+def process_before_after(detail: dict[str, Any]) -> str:
+    comparison = detail.get("beforeAfter")
+    if not comparison:
+        return ""
+    panels = []
+    for item in comparison["items"]:
+        points = "".join(f"<li>{escape(point)}</li>" for point in item["points"])
+        panels.append(
+            f'<article class="process-comparison-card is-{escape(item["type"])}">'
+            f'<div class="process-comparison-label">{escape(item["label"])}</div>'
+            f'<figure><img src="{escape(nested_asset(item["image"]))}" alt="{escape(item["imageAlt"])}" '
+            f'loading="lazy" decoding="async"><figcaption>{escape(item["caption"])}</figcaption></figure>'
+            f'<h3>{escape(item["title"])}</h3><ul>{points}</ul></article>'
+        )
+    return (
+        '<section class="process-comparison-section" aria-labelledby="before-after-heading">'
+        '<div class="case-study-inner"><div class="case-story-heading">'
+        '<p class="case-story-index">07 · Before / After</p>'
+        f'<h2 id="before-after-heading">{escape(comparison["heading"])}</h2></div>'
+        f'<div class="process-comparison-grid">{"".join(panels)}</div>'
+        f'<p class="process-comparison-note">{escape(comparison["note"])}</p></div></section>'
+    )
+
+
+def process_speed_stat(detail: dict[str, Any]) -> str:
+    stat = detail.get("speedStat")
+    if not stat:
+        return ""
+    return (
+        '<div class="process-speed-stat" aria-label="판독시간 개선 비교">'
+        f'<div><span>Before</span><strong>{escape(stat["before"])}</strong><small>{escape(stat["beforeNote"])}</small></div>'
+        '<b aria-hidden="true">→</b>'
+        f'<div class="is-after"><span>After</span><strong>{escape(stat["after"])}</strong><small>{escape(stat["afterNote"])}</small></div>'
+        '</div>'
+    )
+
+
 def render_process_detail(case: dict[str, Any], lookup: dict[str, dict[str, Any]], template: str) -> str:
     detail = case["processDetail"]
     canonical = f"https://www.aspec-tech.co.kr/case-studies/{case['slug']}.html"
@@ -410,9 +447,11 @@ def render_process_detail(case: dict[str, Any], lookup: dict[str, dict[str, Any]
         "SYSTEM_HEADING": detail.get("systemHeading", "4대의 카메라로 공정별 검사 구성"),
         "SYSTEM_GRID_CLASS": (" " + detail["systemGridClass"]) if detail.get("systemGridClass") else "",
         "INSPECTION_SECTIONS": inspection_detail_sections(detail),
+        "PROCESS_BEFORE_AFTER": process_before_after(detail),
         "SPEED_INDEX": detail.get("speedIndex", "08 · High Speed"),
         "SPEED_TITLE": detail["speed"]["title"], "SPEED_BODY": text_blocks(detail["speed"]["body"]),
-        "SPEED_ITEMS": speed_items, "RESULT_CARDS": result_cards, "RESULT_DETAILS": result_details,
+        "SPEED_STAT": process_speed_stat(detail), "SPEED_ITEMS": speed_items,
+        "RESULT_CARDS": result_cards, "RESULT_DETAILS": result_details,
         "RESULTS_HEADING": detail.get("resultsHeading", "구축 후 개선된 품질관리"),
         "ENGINEERING_INTRO": text_blocks(detail["engineeringIntro"]), "ENGINEERING_ITEMS": engineering_items,
         "ENGINEERING_HEADING": detail.get("engineeringHeading", "ASPEC의 머신비전 시스템 설계 방식"),
