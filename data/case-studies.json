@@ -14,8 +14,9 @@
       ],
       "industry": "제약 · 필름",
       "summary": "Roll to Roll 필름 이물, 귀퉁이 손상, 위치·치수, 생산일자 OCR, 포장지 인쇄 및 커팅 상태를 4대 카메라로 자동 검사한 사례입니다.",
-      "heroImage": "portfolio-inspection.png",
-      "heroImageAlt": "제약 필름 고속 비전검사 시스템 대표 이미지",
+      "heroImage": "images/case-studies/pharmaceutical-film-vision-inspection/01.jpg",
+      "heroImageAlt": "Roll to Roll 제약 필름 검사 구간의 카메라와 조명 설치 모습",
+      "heroImageCaption": "Roll to Roll 필름 검사 구간의 카메라·조명 설치 모습",
       "cardImage": "portfolio-inspection.png",
       "cardImageAlt": "ASPEC 제약 필름 고속 비전검사 대표 이미지",
       "keywords": [
@@ -154,16 +155,36 @@
             "title": "Roll to Roll 필름 이물 및 손상 검사",
             "body": "첫 번째 검사 구간은 필름이 연속적으로 이동하는 Roll to Roll 공정입니다.\n\n이 공정에서는 필름 표면에 발생할 수 있는 이물과 가장자리·귀퉁이의 손상 여부를 생산 중 자동으로 확인합니다.\n\nRoll to Roll 공정은 검사 대상이 멈춰 있지 않고 계속 이동하기 때문에 단순히 높은 해상도의 카메라를 사용하는 것만으로 안정적인 검사가 이루어지지 않습니다.\n\n필름의 이동 속도에 맞춰 영상을 취득하고, 흔들림이나 모션 블러를 최소화하면서 작은 이상을 판별할 수 있도록 촬영 조건을 맞추는 것이 중요합니다.\n\nASPEC은 생산 흐름을 중단하지 않으면서 필름의 이상 여부를 연속적으로 판정할 수 있도록 영상 취득 타이밍과 검사 조건을 구성했습니다.",
             "imagePosition": "left",
-            "imageAlt": "Roll to Roll 필름 검사 화면",
-            "imageCaption": "Roll to Roll 필름 검사 화면 · 실제 이미지 제공 후 삽입"
+            "images": [
+              {
+                "src": "images/case-studies/pharmaceutical-film-vision-inspection/02.jpg",
+                "alt": "제약 필름 표면 검사 정상 판정 화면",
+                "caption": "필름 표면 검사 정상 판정 화면"
+              },
+              {
+                "src": "images/case-studies/pharmaceutical-film-vision-inspection/03.jpg",
+                "alt": "제약 필름 표면 결함 검출 NG 판정 화면",
+                "caption": "필름 표면 결함 검출 NG 판정 화면"
+              }
+            ]
           },
           {
             "number": "05",
             "title": "필름 위치 및 치수 검사",
             "body": "절단 이후에는 두 번째 카메라를 이용해 필름의 위치와 좌우 치수를 검사합니다.\n\n필름 자체에 이상이 없어도 제품 위치가 기준에서 벗어나면 이후 포장 단계에서 한쪽으로 치우치거나 커팅 위치와 맞지 않는 문제가 발생할 수 있습니다.\n\n따라서 이 공정에서는 단순 유무검사가 아니라 제품의 위치와 치수를 수치화하여 허용범위를 벗어나는지를 판정하도록 구성했습니다.\n\n검사 결과가 설정된 기준을 벗어나는 경우 NG로 판정하여 이후 공정으로 잘못된 상태의 제품이 이동하는 것을 방지합니다.",
             "imagePosition": "right",
-            "imageAlt": "필름 위치 및 치수 측정 화면",
-            "imageCaption": "필름 위치 및 치수 측정 화면 · 실제 이미지 제공 후 삽입"
+            "images": [
+              {
+                "src": "images/case-studies/pharmaceutical-film-vision-inspection/04.jpg",
+                "alt": "제약 필름 위치와 치수 검사를 위한 촬영 구간",
+                "caption": "필름 위치·치수 검사를 위한 촬영 구간"
+              },
+              {
+                "src": "images/case-studies/pharmaceutical-film-vision-inspection/05.jpg",
+                "alt": "제약 필름 위치와 치수 측정 NG 판정 화면",
+                "caption": "필름 위치·치수 측정 NG 판정 화면"
+              }
+            ]
           },
           {
             "number": "06",
@@ -176,8 +197,13 @@
               "정상 기준과 다른 문자"
             ],
             "imagePosition": "left",
-            "imageAlt": "생산일자 OCR 검사 화면",
-            "imageCaption": "OCR 검사 화면 · 실제 이미지 제공 후 삽입"
+            "images": [
+              {
+                "src": "images/case-studies/pharmaceutical-film-vision-inspection/06.jpg",
+                "alt": "제약 필름 레이저 마킹 생산정보 판독 검사 화면",
+                "caption": "레이저 마킹 생산정보 판독 검사 화면"
+              }
+            ]
           },
           {
             "number": "07",
@@ -190,8 +216,18 @@
               "포장지 치수"
             ],
             "imagePosition": "right",
-            "imageAlt": "포장지 인쇄 및 커팅 검사 화면",
-            "imageCaption": "포장지 인쇄 및 커팅 검사 화면 · 실제 이미지 제공 후 삽입"
+            "images": [
+              {
+                "src": "images/case-studies/pharmaceutical-film-vision-inspection/07.jpg",
+                "alt": "제약 필름 최종 포장 검사 구간의 카메라 설치 모습",
+                "caption": "최종 포장 검사 구간의 카메라 설치 모습"
+              },
+              {
+                "src": "images/case-studies/pharmaceutical-film-vision-inspection/08.jpg",
+                "alt": "제약 필름 포장지 인쇄와 커팅 위치 검사 화면",
+                "caption": "포장지 인쇄·커팅 위치 검사 화면"
+              }
+            ]
           }
         ],
         "speed": {

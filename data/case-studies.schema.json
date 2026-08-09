@@ -73,6 +73,7 @@
         "summary": { "type": "string", "minLength": 1 },
         "heroImage": { "type": "string" },
         "heroImageAlt": { "type": "string" },
+        "heroImageCaption": { "type": "string" },
         "cardImage": { "type": "string", "minLength": 1 },
         "cardImageAlt": { "type": "string", "minLength": 1 },
         "keywords": { "type": "array", "items": { "type": "string", "minLength": 1 } },

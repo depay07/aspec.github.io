@@ -305,10 +305,19 @@ def inspection_detail_sections(detail: dict[str, Any]) -> str:
         items = ""
         if section.get("items"):
             items = '<ul class="inspection-point-list">' + "".join(f"<li>{escape(item)}</li>" for item in section["items"]) + "</ul>"
-        if section.get("imageSrc"):
+        if section.get("images"):
+            figures = []
+            for image in section["images"]:
+                figures.append(
+                    f'<figure class="inspection-media"><img src="{escape(nested_asset(image["src"]))}" '
+                    f'alt="{escape(image["alt"])}" loading="lazy" decoding="async">'
+                    f'<figcaption>{escape(image["caption"])}</figcaption></figure>'
+                )
+            media = f'<div class="inspection-media-stack">{"".join(figures)}</div>'
+        elif section.get("imageSrc"):
             media = (
                 f'<figure class="inspection-media"><img src="{escape(nested_asset(section["imageSrc"]))}" '
-                f'alt="{escape(section["imageAlt"])}" loading="lazy"><figcaption>{escape(section["imageCaption"])}</figcaption></figure>'
+                f'alt="{escape(section["imageAlt"])}" loading="lazy" decoding="async"><figcaption>{escape(section["imageCaption"])}</figcaption></figure>'
             )
         else:
             media = (
@@ -366,6 +375,7 @@ def render_process_detail(case: dict[str, Any], template: str) -> str:
         "PAGE_HEADING": case.get("pageHeading") or case["title"], "HERO_SUBHEADING": detail["heroSubheading"],
         "HERO_DESCRIPTION": detail["heroDescription"], "HERO_IMAGE": nested_asset(case["heroImage"]),
         "HERO_IMAGE_ALT": case.get("heroImageAlt") or case["title"],
+        "HERO_IMAGE_CAPTION": case.get("heroImageCaption") or case["title"],
         "PROCESS_FACTS": process_fact_items(detail), "OVERVIEW": text_blocks(case["overview"]),
         "PROBLEM": text_blocks(case["problem"]), "CHALLENGES": challenges,
         "SOLUTION": text_blocks(case["solution"]), "CAMERA_PROCESS": camera_process_items(detail),
@@ -377,7 +387,7 @@ def render_process_detail(case: dict[str, Any], template: str) -> str:
         "CTA_BODY": detail["cta"]["body"], "CTA_LABEL": detail["cta"]["label"], "CTA_URL": detail["cta"]["url"],
     }
     output = template
-    escaped_tokens = {"TITLE", "META_DESCRIPTION", "CANONICAL", "OG_IMAGE", "CATEGORY_LABEL", "CASE_TITLE", "PAGE_HEADING", "HERO_SUBHEADING", "HERO_DESCRIPTION", "HERO_IMAGE", "HERO_IMAGE_ALT", "SPEED_TITLE", "CTA_TITLE", "CTA_BODY", "CTA_LABEL", "CTA_URL"}
+    escaped_tokens = {"TITLE", "META_DESCRIPTION", "CANONICAL", "OG_IMAGE", "CATEGORY_LABEL", "CASE_TITLE", "PAGE_HEADING", "HERO_SUBHEADING", "HERO_DESCRIPTION", "HERO_IMAGE", "HERO_IMAGE_ALT", "HERO_IMAGE_CAPTION", "SPEED_TITLE", "CTA_TITLE", "CTA_BODY", "CTA_LABEL", "CTA_URL"}
     for key, value in replacements.items():
         output = output.replace("{{" + key + "}}", escape(value) if key in escaped_tokens else value)
     if re.search(r"{{[A-Z0-9_]+}}", output):
