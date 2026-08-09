@@ -584,39 +584,162 @@
       }
     },
     {
-      "slug": "food-expiry-ocr-package-inspection",
-      "published": false,
-      "title": "식품 유통기한 OCR·포장 검사",
-      "category": "ocr",
-      "categoryLabel": "식품 · OCR · 포장검사",
-      "filters": ["ocr", "ai", "optics"],
-      "industry": "식품 · 포장",
-      "summary": "난반사가 심한 포장재에서 플랫돔 조명과 AI OCR을 적용해 유통기한을 인식하고, AI Classification으로 박스 포장 상태까지 검사한 사례입니다.",
-      "heroImage": "",
-      "cardImage": "portfolio-deeplearning.png",
-      "cardImageAlt": "ASPEC 식품 유통기한 OCR 및 포장 검사 대표 이미지",
-      "keywords": ["식품 유통기한 OCR", "포장 검사", "플랫돔 조명", "AI Classification"],
-      "highlights": ["유통기한 OCR 자동 검사", "박스 열림 NG 분류", "빠른 식품 라인 대응"],
-      "technologies": ["AI OCR", "AI Classification", "플랫돔 조명"],
+      "slug": "filter-o-ring-ai-classification",
+      "published": true,
+      "lastmod": "2026-08-09",
+      "title": "필터 O-Ring 조립 AI 검사",
+      "category": "ai",
+      "categoryLabel": "Manufacturing · AI Vision",
+      "filters": ["ai"],
+      "industry": "제조",
+      "summary": "Fixture 없이 제품 위치와 방향이 달라지는 생산환경에서 Cognex AI Classification으로 O-Ring 유무와 조립 상태를 자동 판정한 사례입니다.",
+      "heroImage": "images/case-studies/filter-o-ring-ai-classification/ok_1.png",
+      "heroImageAlt": "필터 O-Ring 조립 상태 Cognex AI Classification OK 판정 이미지",
+      "heroImageCaption": "실제 필터 O-Ring 조립 상태 AI 검사 OK 판정 이미지",
+      "cardImage": "images/case-studies/filter-o-ring-ai-classification/ok_1.png",
+      "cardImageAlt": "필터 O-Ring 조립 AI 검사 OK 판정 이미지",
+      "keywords": ["필터 O-Ring 검사", "O-Ring 조립 검사", "Cognex AI Classification", "Fixture 없는 비전검사"],
+      "highlights": ["Cognex AI Classification", "Fixture 없는 위치 변화 대응", "10장 미만 학습 이미지", "생산라인 택타임 유지"],
+      "technologies": ["Cognex", "AI Classification", "O-Ring"],
+      "seoTitle": "필터 O-Ring 조립 AI 비전검사 구축사례 | Cognex Classification | ASPEC",
+      "metaDescription": "Fixture 없이 위치와 방향이 달라지는 필터 제품의 O-Ring 조립 상태를 Cognex AI Classification으로 자동 판정한 구축사례입니다. Rule-Based 검사의 복잡성을 줄이고 10장 미만의 이미지로 실제 생산라인용 AI 검사를 구성했습니다.",
+      "pageHeading": "필터 O-Ring 조립 상태 AI 비전검사 시스템 구축",
+      "detailTemplate": "automotive",
       "projectSummary": {
-        "inspectionTarget": "난반사가 심한 식품 포장재와 박스 포장 상태",
-        "inspectionPurpose": "유통기한 OCR과 박스 열림 상태 검사",
+        "inspectionTarget": "필터 제품의 O-Ring",
+        "inspectionPurpose": "O-Ring 유무 및 조립 상태 자동 판정",
         "camera": "",
         "lens": "",
-        "lighting": "플랫돔 조명",
-        "software": "AI OCR, AI Classification",
+        "lighting": "",
+        "software": "Cognex AI Classification",
         "integration": "",
-        "cycleTime": ""
+        "cycleTime": "기존 생산라인 택타임 유지"
       },
-      "overview": "",
-      "problem": "",
-      "difficulty": "",
-      "solution": "",
-      "inspectionMethod": "",
-      "results": [],
-      "images": [],
-      "relatedProducts": [],
-      "relatedCases": []
+      "overview": "O-Ring과 같은 소형 조립부품은 제품 성능과 밀폐 품질에 직접 영향을 줄 수 있기 때문에 조립 유무와 상태를 안정적으로 확인해야 합니다.\n\n이번 프로젝트의 검사 대상은 필터 제품에 조립되는 O-Ring이었습니다. 기존 공정에서는 작업자가 직접 O-Ring 상태를 확인하거나 Rule-Based 머신비전 검사를 사용하는 방식을 검토하고 있었습니다.\n\n그러나 제품을 정밀하게 고정하는 Fixture가 없는 구조였기 때문에 촬영할 때마다 제품 위치와 방향, 촬영 영역에 미세한 편차가 반복적으로 발생했습니다.\n\nASPEC은 고정된 검사영역과 다수의 조건을 계속 추가하는 것보다 이미지 특징을 학습해 정상과 불량을 구분하는 AI Classification 방식이 적합하다고 판단하고, 필터 O-Ring 조립 상태를 자동 판정하는 시스템을 구축했습니다.",
+      "problem": "이번 프로젝트의 핵심은 O-Ring 자체를 찾는 것뿐 아니라 제품의 위치와 방향이 달라지는 상황에서도 검사 기준을 일정하게 유지하는 것이었습니다.\n\n제품 위치를 완전히 고정할 수 있다면 특정 좌표에 검사영역을 설정하는 방식으로 접근할 수 있지만, 이번 공정에서는 실제 생산 과정에서 발생하는 위치와 방향 Variation을 검사 시스템이 일정 범위 안에서 받아들일 수 있어야 했습니다.",
+      "difficulty": "O-Ring 유무 자동 판정\nO-Ring 조립 상태 확인\nFixture가 없어 일정하지 않은 제품 위치\n제품 방향의 미세한 변화\n촬영 위치와 FOV의 미세한 편차\n영상 조건 변화에 따른 Rule-Based 검사 편차\n복잡한 검사 조건과 현장 유지보수 부담\n기존 생산라인 속도 유지",
+      "solution": "실제 생산환경에서 취득한 정상 및 불량 이미지를 이용해 Cognex AI Classification 모델을 구성했습니다. Fixture가 없는 환경에서 발생하는 정상 범위의 위치와 방향 Variation을 학습과 검증 과정에 반영하고 O-Ring 유무와 조립 상태를 분류하도록 설정했습니다.\n\n이번 프로젝트에서는 10장 미만의 이미지로 모델을 구성할 수 있었지만 이는 해당 제품의 특징과 촬영환경에서 얻은 실제 결과이며, 다른 AI 프로젝트에 필요한 이미지 수를 의미하지 않습니다.",
+      "inspectionMethod": "필터 제품 투입\n제품 이미지 취득\nCognex AI Classification\nO-Ring 조립 상태 판정\nOK·NG 검사 결과 출력",
+      "results": ["작업자 육안검사 비중 감소", "휴먼에러 가능성 감소", "검사 기준 표준화", "Rule-Based 예외조건 감소", "유지보수 부담 완화", "생산 품질 관리 안정화"],
+      "images": [
+        {"src": "images/case-studies/filter-o-ring-ai-classification/ok_1.png", "alt": "필터 O-Ring 조립 상태 AI 검사 OK 판정 이미지 1", "caption": "O-Ring 정상 조립 OK 판정 이미지 1"},
+        {"src": "images/case-studies/filter-o-ring-ai-classification/ng_1.png", "alt": "필터 O-Ring 조립 상태 AI 검사 NG 판정 이미지 1", "caption": "O-Ring 검사 기준상 NG 판정 이미지 1"},
+        {"src": "images/case-studies/filter-o-ring-ai-classification/ok_2.png", "alt": "필터 O-Ring 조립 상태 AI 검사 OK 판정 이미지 2", "caption": "위치 Variation이 있는 OK 판정 이미지 2"},
+        {"src": "images/case-studies/filter-o-ring-ai-classification/ng_2.png", "alt": "필터 O-Ring 조립 상태 AI 검사 NG 판정 이미지 2", "caption": "위치 Variation이 있는 NG 판정 이미지 2"}
+      ],
+      "relatedProducts": [
+        {"name": "AI 비전검사", "url": "/ai-vision.html"},
+        {"name": "머신비전 조명·렌즈", "url": "/vision-accessories.html"},
+        {"name": "검사 소프트웨어", "url": "/vision-software.html"}
+      ],
+      "relatedCases": ["automotive-transmission-tap-ai-inspection", "pharmaceutical-film-vision-inspection", "medical-device-label-ocr-barcode-mes"],
+      "processDetail": {
+        "heroKicker": "Manufacturing · Cognex AI Classification",
+        "heroSubheading": "Fixture 없이 위치와 방향이 달라지는 필터 제품의 O-Ring 조립 상태를 Cognex AI Classification으로 판정한 사례",
+        "heroDescription": "필터에 조립되는 O-Ring의 유무와 조립 상태를 자동 판정하기 위해 Cognex AI Classification을 적용했습니다. 제품을 정밀하게 고정하는 Fixture가 없어 촬영할 때마다 위치와 방향에 편차가 발생했고, 고정 좌표와 조건에 의존하는 Rule-Based 검사로는 안정적인 판정과 유지보수가 어려웠습니다. 실제 생산 이미지를 기반으로 정상·불량을 학습하여 위치 Variation에 대응하면서 기존 생산라인의 택타임을 유지할 수 있도록 AI 비전검사 시스템을 구성했습니다.",
+        "facts": [
+          {"label": "산업", "value": "제조"},
+          {"label": "검사 대상", "value": "필터 제품"},
+          {"label": "검사 항목", "value": "O-Ring 유무·조립 상태"},
+          {"label": "적용 기술", "value": "Cognex AI Classification"},
+          {"label": "설비 조건", "value": "제품 고정 Fixture 없음"},
+          {"label": "Variation", "value": "위치·방향·촬영 위치 변화"},
+          {"label": "학습 데이터", "value": "10장 미만 · 이번 프로젝트 기준"},
+          {"label": "핵심 목표", "value": "조립검사 자동화·생산속도 유지"}
+        ],
+        "galleryHeading": "실제 O-Ring AI Classification OK·NG 판정 이미지",
+        "cameras": [],
+        "systemHeading": "전체 O-Ring AI 검사 흐름",
+        "systemGridClass": "is-automotive-flow",
+        "systemSteps": [
+          {"label": "PART INPUT", "title": "필터 제품 투입", "items": ["검사 위치 진입"]},
+          {"label": "IMAGE ACQUISITION", "title": "제품 이미지 취득", "items": ["O-Ring 영역 촬영"]},
+          {"label": "AI CLASSIFICATION", "title": "Cognex AI 분류", "items": ["학습 이미지 기준 판정"]},
+          {"label": "ASSEMBLY JUDGMENT", "title": "조립 상태 판정", "items": ["O-Ring 유무·상태 확인"]},
+          {"label": "OK / NG", "title": "검사 결과 출력", "items": ["정상·불량 결과 확인"]}
+        ],
+        "ruleBased": "Fixture를 이용해 제품 위치와 각도를 일정하게 유지하면 검사 영역을 고정하기 쉬워집니다. 반대로 제품이 자유롭게 놓이는 환경에서는 촬영할 때마다 O-Ring의 위치와 방향이 이미지상에서 달라질 수 있습니다.\n\n이번 생산라인에서는 제품 중심 위치, 방향, 촬영영역과 외관의 변화가 함께 발생할 수 있었습니다. Rule-Based 방식으로 대응하려면 제품 위치 검색, 좌표와 회전각 보정, O-Ring 검사영역 재설정, 밝기 보정과 예외조건이 계속 늘어날 수 있었습니다.\n\nRule-Based 검사가 적합하지 않다는 의미가 아니라 이번 공정의 위치 Variation과 유지보수 구조를 고려했을 때 정상과 불량의 시각적 차이를 이미지 Classification으로 학습하는 방식이 더 적합하다고 판단했습니다.",
+        "ruleComparison": {
+          "items": [
+            {"type": "rule", "label": "RULE-BASED", "title": "조건과 좌표 중심 검사", "points": ["고정 검사영역", "위치·회전 보정", "조건 분기", "예외처리"]},
+            {"type": "ai", "label": "AI CLASSIFICATION", "title": "실제 생산 이미지 기반 분류", "points": ["OK·NG 이미지 학습", "정상 Variation 반영", "O-Ring 상태 분류"]}
+          ],
+          "note": "검사 특성에 따라 Rule-Based 방식이 더 적합한 경우도 있으며, 이번 프로젝트에서는 위치 Variation과 검사 구조를 고려해 AI Classification을 선정했습니다."
+        },
+        "highlightStat": {
+          "value": "< 10 IMAGES",
+          "label": "이번 O-Ring 프로젝트 실제 학습 데이터 기준",
+          "note": "※ 필요한 학습 이미지 수는 제품 및 검사 난이도에 따라 달라집니다."
+        },
+        "inspectionSections": [
+          {
+            "number": "04", "title": "Cognex AI Classification 적용",
+            "body": "이번 시스템에는 Cognex AI Classification을 적용했습니다. 실제 생산환경에서 취득한 정상(OK) 이미지와 불량(NG) 이미지를 사용하여 O-Ring 조립 상태를 학습했습니다.\n\n고정된 검사 위치 하나만 보는 대신 정상 제품과 불량 제품에서 나타나는 이미지 특징을 기반으로 상태를 분류하고, Fixture가 없는 생산조건에서 발생하는 정상적인 위치와 방향 Variation을 학습 및 검증 과정에 반영했습니다.\n\n확인되지 않은 Confidence Score나 정확도 수치는 사용하지 않았습니다.",
+            "items": ["실제 OK·NG 이미지 학습", "O-Ring 조립 상태 분류", "정상 Variation 반영", "Cognex AI Classification"],
+            "imagePosition": "left",
+            "images": [
+              {"src": "images/case-studies/filter-o-ring-ai-classification/ok_1.png", "alt": "필터 O-Ring 정상 조립 AI Classification OK 판정", "caption": "실제 O-Ring 정상 조립 OK 판정 이미지"},
+              {"src": "images/case-studies/filter-o-ring-ai-classification/ng_1.png", "alt": "필터 O-Ring 검사 기준상 AI Classification NG 판정", "caption": "실제 O-Ring 검사 기준상 NG 판정 이미지"}
+            ]
+          },
+          {
+            "number": "05", "title": "O-Ring 유무 및 조립 상태 판정",
+            "body": "이번 프로젝트의 검사 목적은 단순한 제품 분류가 아니라 필터에 조립되는 O-Ring의 유무와 조립 상태를 자동으로 판단하는 것이었습니다.\n\n현재 확인된 범위인 O-Ring 정상 조립과 O-Ring 미조립 또는 검사 기준상 불량 상태만 표현했으며, 제공되지 않은 세부 불량 유형은 추가하지 않았습니다.",
+            "items": ["O-Ring 정상 조립", "O-Ring 미조립 또는 검사 기준상 불량", "OK·NG 자동 판정"],
+            "imagePosition": "right",
+            "images": [
+              {"src": "images/case-studies/filter-o-ring-ai-classification/ok_2.png", "alt": "다른 위치의 필터 O-Ring 정상 조립 OK 판정", "caption": "위치가 달라진 제품의 실제 OK 판정 이미지"},
+              {"src": "images/case-studies/filter-o-ring-ai-classification/ng_2.png", "alt": "다른 위치의 필터 O-Ring 검사 기준상 NG 판정", "caption": "위치가 달라진 제품의 실제 NG 판정 이미지"}
+            ]
+          },
+          {
+            "number": "06", "title": "10장 미만의 이미지로 구성한 AI 학습",
+            "body": "AI 비전검사에 필요한 이미지 수는 제품 특징, 불량 종류, 정상 Variation, 촬영환경과 검사 난이도에 따라 크게 달라집니다. 모든 AI 프로젝트를 동일한 이미지 수로 학습할 수 있는 것은 아닙니다.\n\n이번 필터 O-Ring 검사에서는 정상과 불량을 구분하는 특징이 비교적 명확했고 실제 생산환경의 촬영조건을 적절하게 구성할 수 있어 10장 미만의 학습 이미지로 Classification 모델을 구성했습니다. 이는 이번 프로젝트의 실제 결과이며 다른 프로젝트의 일반적인 학습 기준을 의미하지 않습니다.\n\n이미지 개수보다 검사 중 발생하는 중요한 Variation이 학습 데이터에 포함되는지를 확인하고 실제 생산 이미지로 분류 결과를 검증하며 모델을 조정했습니다.",
+            "items": ["10장 미만 · 이번 프로젝트 기준", "정상·불량 특징 반영", "생산 Variation 포함", "실제 이미지 기반 검증"],
+            "imagePosition": "left",
+            "images": [
+              {"src": "images/case-studies/filter-o-ring-ai-classification/ok_1.png", "alt": "O-Ring AI 학습과 검증에 사용한 정상 판정 이미지", "caption": "실제 Classification 정상 판정 이미지"},
+              {"src": "images/case-studies/filter-o-ring-ai-classification/ng_1.png", "alt": "O-Ring AI 학습과 검증에 사용한 불량 판정 이미지", "caption": "실제 Classification 불량 판정 이미지"}
+            ]
+          },
+          {
+            "number": "07", "title": "제품 위치와 방향 변화에 대응",
+            "body": "제품이 Fixture로 완전히 고정되지 않았기 때문에 촬영될 때마다 이미지상의 위치와 방향이 조금씩 달라졌습니다. 고정 좌표에 강하게 의존하는 검사는 이러한 변화가 안정성에 영향을 줄 수 있습니다.\n\n이번 AI 모델은 실제 생산환경에서 발생하는 정상 범위의 위치 및 방향 변화를 학습과 검증 과정에 포함하여 해당 Variation 안에서 O-Ring 조립 상태를 판별하도록 구성했습니다. 제품이 어디에 있어도 검사할 수 있다는 의미가 아니라 검증된 생산 범위의 Variation에 대응한 것입니다.",
+            "items": ["POSITION · 중심 위치 변화", "ROTATION · 방향 변화", "FOV · 촬영영역의 미세한 이동", "APPEARANCE · 외관 변화"],
+            "imagePosition": "right",
+            "images": [
+              {"src": "images/case-studies/filter-o-ring-ai-classification/ok_1.png", "alt": "첫 번째 위치의 필터 O-Ring OK 판정", "caption": "실제 생산환경의 위치 Variation · OK 이미지 1"},
+              {"src": "images/case-studies/filter-o-ring-ai-classification/ok_2.png", "alt": "다른 위치와 방향의 필터 O-Ring OK 판정", "caption": "실제 생산환경의 위치 Variation · OK 이미지 2"}
+            ]
+          }
+        ],
+        "speedIndex": "08 · Production Tact Time",
+        "speed": {
+          "title": "AI 적용 후에도 기존 생산 택타임 유지",
+          "body": "생산라인에 AI 검사를 적용하려면 분류 성능뿐 아니라 처리시간도 함께 검토해야 합니다. AI 검사시간이 기존 설비의 택타임보다 길면 실제 자동화 공정에 적용하기 어렵습니다.\n\n이번 프로젝트에서는 Cognex AI Classification 적용 후에도 기존 Rule-Based 검사와 비교해 생산에 영향을 줄 정도의 큰 처리시간 차이가 발생하지 않도록 시스템을 구성했습니다. 이를 통해 기존 생산라인의 택타임을 유지하면서 AI 기반 O-Ring 검사를 적용했습니다.\n\n현재 제공된 프로젝트 자료에는 정확한 ms, 초 또는 FPS 수치가 없어 임의의 검사시간은 표시하지 않았습니다.",
+          "items": ["이미지 취득", "AI Classification", "조립 상태 판정", "기존 생산속도 고려"]
+        },
+        "speedStatCard": {"value": "PRODUCTION TACT TIME", "label": "기존 생산속도 유지", "note": "실제 생산라인 기준"},
+        "maintenance": "생산용 비전검사는 초기 구축뿐 아니라 이후 제품이나 생산조건이 변할 때 어떻게 대응할지도 중요합니다. Rule-Based 조건이 복잡해질수록 검사영역과 파라미터를 수정해야 하는 항목이 늘어날 수 있습니다.\n\nAI Classification은 새로운 정상 Variation이나 검사 조건 변화가 발생했을 때 실제 이미지를 검토하고 필요한 경우 모델에 반영할 수 있습니다. 다만 이미지를 추가하기만 하면 되는 것은 아니며 변경된 모델이 실제 생산조건에서 정상적으로 동작하는지 재검증해야 합니다.",
+        "resultsHeading": "구축 후 개선된 검사 공정",
+        "resultCards": [
+          {"title": "O-Ring 자동검사", "body": "필터에 조립되는 O-Ring의 유무와 조립 상태를 머신비전으로 자동 판정하도록 구성했습니다."},
+          {"title": "위치 Variation 대응", "body": "Fixture가 없는 환경에서 발생하는 정상 범위의 제품 위치와 방향 변화를 고려해 AI 모델을 구성했습니다."},
+          {"title": "검사 로직 단순화", "body": "다수의 위치 보정과 예외조건을 계속 추가하는 대신 AI Classification으로 검사 구조를 단순화했습니다."},
+          {"title": "생산속도 유지", "body": "AI 검사를 적용하면서도 기존 생산라인의 택타임을 유지하도록 시스템을 구성했습니다."}
+        ],
+        "classificationFit": "이번 프로젝트는 AI가 Rule-Based 검사보다 항상 우수하다는 사례가 아닙니다. 치수 측정, 정밀 위치 측정, 명확한 Edge 검사처럼 조건을 수치나 규칙으로 정의할 수 있는 경우에는 Rule-Based 방식이 더 효율적일 수 있습니다.\n\n반면 Fixture가 없어 제품 위치와 방향이 일정하지 않고, 정상과 불량은 이미지로 구분되지만 Rule-Based 예외조건이 계속 증가하는 이번 환경에서는 Classification 방식이 효과적인 대안이었습니다. ASPEC은 프로젝트마다 실제 제품과 검사 조건을 기준으로 적합한 방법을 선택합니다.",
+        "classificationFitItems": ["Fixture 없는 위치 변화", "제품 방향 Variation", "촬영 형상 변화", "이미지로 구분되는 OK·NG", "Rule-Based 예외조건 증가", "검증 범위 내 Classification"],
+        "engineeringHeading": "ASPEC의 AI 비전검사 적용 방식",
+        "engineeringIntro": "AI 비전검사는 AI Tool을 선택하는 것으로 끝나지 않습니다. ASPEC은 실제 샘플과 생산환경을 기준으로 Rule-Based 방식과 AI 방식의 적용 가능성을 먼저 비교합니다.\n\nAI가 적합한 경우에도 검사 목적에 따라 Classification, Detection, Segmentation 등 서로 다른 방식을 검토합니다. 이번 프로젝트에서는 Fixture가 없는 환경의 위치·방향 Variation과 복잡해지는 Rule-Based 조건을 고려하여 Cognex AI Classification을 적용했습니다.",
+        "engineeringItems": ["검사 대상", "정상·불량 차이", "제품 Variation", "Fixture 유무", "FOV와 WD", "카메라·렌즈·조명", "노출조건", "학습 이미지", "검사시간", "생산라인 택타임", "현장 유지보수", "모델 재검증"],
+        "cta": {
+          "title": "Rule-Based 검사로 안정적인 판정이 어려운가요?",
+          "body": "제품 위치나 방향이 일정하지 않거나 정상·불량의 차이를 규칙으로 정의하기 어려워 검사 조건이 계속 복잡해지는 경우 AI Classification을 포함한 비전검사 방식을 검토할 수 있습니다. 실제 정상·불량 샘플과 생산환경, 검사 항목, FOV, WD 및 택타임을 알려주시면 Rule-Based 방식과 AI 방식의 적용 가능성을 비교하여 적합한 검사 구성을 검토해드립니다.",
+          "label": "프로젝트 문의",
+          "url": "/contact.html#contact-form"
+        }
+      }
     },
     {
       "slug": "reflective-vinyl-datamatrix-flat-dome",

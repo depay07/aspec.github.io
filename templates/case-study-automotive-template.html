@@ -20,7 +20,7 @@
     <meta property="og:url" content="{{CANONICAL}}">
     <meta property="og:image" content="{{OG_IMAGE}}">
     <link rel="stylesheet" href="/styles.css">
-    <link rel="stylesheet" href="/case-study-pages.css?v=20260809-5">
+    <link rel="stylesheet" href="/case-study-pages.css?v=20260809-6">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script type="application/ld+json">{{WEBPAGE_JSON_LD}}</script>
     <script type="application/ld+json">{{BREADCRUMB_JSON_LD}}</script>
@@ -55,7 +55,7 @@
         <header class="case-study-hero process-case-hero">
             <div class="case-study-inner case-study-hero-grid">
                 <div>
-                    <p class="case-study-kicker">Automotive · Cognex AI Classification</p>
+                    <p class="case-study-kicker">{{HERO_KICKER}}</p>
                     <h1 class="case-study-title">{{PAGE_HEADING}}</h1>
                     <p class="process-hero-subheading">{{HERO_SUBHEADING}}</p>
                     <p class="case-study-lead">{{HERO_DESCRIPTION}}</p>
@@ -93,16 +93,16 @@
         <section class="case-story-section" aria-labelledby="rule-based-heading">
             <div class="case-study-inner">
                 <div class="case-story-heading"><p class="case-story-index">03 · Rule-Based</p><h2 id="rule-based-heading">룰베이스 검사로 접근했을 때의 한계</h2></div>
-                <div class="case-story-copy">{{RULE_BASED}}</div>
+                <div class="case-story-copy">{{RULE_BASED}}</div>{{RULE_COMPARISON}}
             </div>
         </section>
 
-        {{INSPECTION_SECTIONS}}
+        {{PROCESS_HIGHLIGHT_STAT}}{{INSPECTION_SECTIONS}}
 
         <section class="process-speed-section automotive-speed-section" aria-labelledby="speed-heading">
             <div class="case-study-inner process-speed-grid">
-                <div><p class="case-story-index">08 · Inspection Speed</p><h2 id="speed-heading">{{SPEED_TITLE}}</h2><div class="process-speed-copy">{{SPEED_BODY}}</div></div>
-                <div><div class="automotive-speed-stat"><strong>&lt; 1 sec</strong><span>AI Classification 검사시간<br>제품 1개 기준</span></div><ul class="process-speed-list">{{SPEED_ITEMS}}</ul></div>
+                <div><p class="case-story-index">{{AUTOMOTIVE_SPEED_INDEX}}</p><h2 id="speed-heading">{{SPEED_TITLE}}</h2><div class="process-speed-copy">{{SPEED_BODY}}</div></div>
+                <div>{{AUTOMOTIVE_SPEED_STAT}}<ul class="process-speed-list">{{SPEED_ITEMS}}</ul></div>
             </div>
         </section>
 

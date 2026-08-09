@@ -154,7 +154,7 @@ def render_list(items: list[str], class_name: str, label: str | None = None) -> 
 def render_card(case: dict[str, Any]) -> str:
     filters = " ".join(case["filters"])
     search_terms = " ".join([case["title"], case["categoryLabel"], case["industry"], case["summary"], *case["keywords"], *case["technologies"]])
-    highlights = "\n".join(f'                            <li>{escape(item)}</li>' for item in case["highlights"][:3])
+    highlights = "\n".join(f'                            <li>{escape(item)}</li>' for item in case["highlights"])
     tags = "\n".join(f'                            <li class="case-tag">{escape(item)}</li>' for item in case["technologies"])
     if case["published"]:
         action = f'<a class="case-action" href="case-studies/{escape(case["slug"])}.html">상세보기</a>'
@@ -399,6 +399,46 @@ def process_speed_stat(detail: dict[str, Any]) -> str:
     )
 
 
+def rule_comparison(detail: dict[str, Any]) -> str:
+    comparison = detail.get("ruleComparison")
+    if not comparison:
+        return ""
+    panels = []
+    for item in comparison["items"]:
+        points = "".join(f"<li>{escape(point)}</li>" for point in item["points"])
+        panels.append(
+            f'<article class="rule-comparison-card is-{escape(item["type"])}">'
+            f'<span>{escape(item["label"])}</span><h3>{escape(item["title"])}</h3><ul>{points}</ul></article>'
+        )
+    return (
+        f'<div class="rule-comparison-grid">{"".join(panels)}</div>'
+        f'<p class="rule-comparison-note">{escape(comparison["note"])}</p>'
+    )
+
+
+def process_highlight_stat(detail: dict[str, Any]) -> str:
+    stat = detail.get("highlightStat")
+    if not stat:
+        return ""
+    return (
+        '<section class="process-highlight-stat-section" aria-label="AI 학습 데이터">'
+        '<div class="case-study-inner process-highlight-stat">'
+        f'<strong>{escape(stat["value"])}</strong><div><span>{escape(stat["label"])}</span>'
+        f'<p>{escape(stat["note"])}</p></div></div></section>'
+    )
+
+
+def automotive_speed_stat(detail: dict[str, Any]) -> str:
+    stat = detail.get("speedStatCard") or {
+        "value": "< 1 sec", "label": "AI Classification 검사시간", "note": "제품 1개 기준"
+    }
+    return (
+        '<div class="automotive-speed-stat">'
+        f'<strong>{escape(stat["value"])}</strong><span>{escape(stat["label"])}'
+        f'<br>{escape(stat["note"])}</span></div>'
+    )
+
+
 def render_process_detail(case: dict[str, Any], lookup: dict[str, dict[str, Any]], template: str) -> str:
     detail = case["processDetail"]
     canonical = f"https://www.aspec-tech.co.kr/case-studies/{case['slug']}.html"
@@ -443,6 +483,8 @@ def render_process_detail(case: dict[str, Any], lookup: dict[str, dict[str, Any]
         "OVERVIEW": text_blocks(case["overview"]),
         "PROBLEM": text_blocks(case["problem"]), "CHALLENGES": challenges,
         "RULE_BASED": text_blocks(detail.get("ruleBased", "")),
+        "RULE_COMPARISON": rule_comparison(detail),
+        "PROCESS_HIGHLIGHT_STAT": process_highlight_stat(detail),
         "SOLUTION": text_blocks(case["solution"]), "CAMERA_PROCESS": camera_process_items(detail),
         "SYSTEM_HEADING": detail.get("systemHeading", "4대의 카메라로 공정별 검사 구성"),
         "SYSTEM_GRID_CLASS": (" " + detail["systemGridClass"]) if detail.get("systemGridClass") else "",
@@ -451,6 +493,7 @@ def render_process_detail(case: dict[str, Any], lookup: dict[str, dict[str, Any]
         "SPEED_INDEX": detail.get("speedIndex", "08 · High Speed"),
         "SPEED_TITLE": detail["speed"]["title"], "SPEED_BODY": text_blocks(detail["speed"]["body"]),
         "SPEED_STAT": process_speed_stat(detail), "SPEED_ITEMS": speed_items,
+        "AUTOMOTIVE_SPEED_STAT": automotive_speed_stat(detail),
         "RESULT_CARDS": result_cards, "RESULT_DETAILS": result_details,
         "RESULTS_HEADING": detail.get("resultsHeading", "구축 후 개선된 품질관리"),
         "ENGINEERING_INTRO": text_blocks(detail["engineeringIntro"]), "ENGINEERING_ITEMS": engineering_items,
@@ -461,9 +504,11 @@ def render_process_detail(case: dict[str, Any], lookup: dict[str, dict[str, Any]
         "TECHNOLOGY_LINKS": technology_links, "CTA_TITLE": detail["cta"]["title"],
         "CTA_BODY": detail["cta"]["body"], "CTA_LABEL": detail["cta"]["label"], "CTA_URL": detail["cta"]["url"],
         "RELATED_CASES_SECTION": related_cases_section(case, lookup),
+        "HERO_KICKER": detail.get("heroKicker", "Automotive · Cognex AI Classification"),
+        "AUTOMOTIVE_SPEED_INDEX": detail.get("speedIndex", "08 · Inspection Speed"),
     }
     output = template
-    escaped_tokens = {"TITLE", "META_DESCRIPTION", "CANONICAL", "OG_IMAGE", "CATEGORY_LABEL", "CASE_TITLE", "PAGE_HEADING", "HERO_SUBHEADING", "HERO_DESCRIPTION", "HERO_IMAGE", "HERO_IMAGE_ALT", "HERO_IMAGE_CAPTION", "SYSTEM_HEADING", "SYSTEM_GRID_CLASS", "SPEED_INDEX", "SPEED_TITLE", "RESULTS_HEADING", "ENGINEERING_HEADING", "CTA_TITLE", "CTA_BODY", "CTA_LABEL", "CTA_URL"}
+    escaped_tokens = {"TITLE", "META_DESCRIPTION", "CANONICAL", "OG_IMAGE", "CATEGORY_LABEL", "CASE_TITLE", "PAGE_HEADING", "HERO_SUBHEADING", "HERO_DESCRIPTION", "HERO_IMAGE", "HERO_IMAGE_ALT", "HERO_IMAGE_CAPTION", "SYSTEM_HEADING", "SYSTEM_GRID_CLASS", "SPEED_INDEX", "SPEED_TITLE", "RESULTS_HEADING", "ENGINEERING_HEADING", "CTA_TITLE", "CTA_BODY", "CTA_LABEL", "CTA_URL", "HERO_KICKER", "AUTOMOTIVE_SPEED_INDEX"}
     for key, value in replacements.items():
         output = output.replace("{{" + key + "}}", escape(value) if key in escaped_tokens else value)
     if re.search(r"{{[A-Z0-9_]+}}", output):
