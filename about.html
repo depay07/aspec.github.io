@@ -24,6 +24,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         body{background:#0B0C15;color:#fff}.gradient-text{background:linear-gradient(to right,#60A5FA,#A78BFA);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.glass-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1)}
+        .about-hero-content{max-width:64rem;border-left:1px solid rgba(148,163,184,.32);padding-left:2rem}
+        .about-eyebrow{display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;color:#93c5fd;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+        .about-eyebrow::before{width:2.5rem;height:1px;background:rgba(147,197,253,.7);content:""}
+        .about-title{max-width:60rem;margin-bottom:1.5rem;font-size:3rem;font-weight:700;line-height:1.18}
+        .about-intro{max-width:58rem;color:#d1d5db;font-size:1.0625rem;line-height:1.85}
+        .service-area{border-top:1px solid rgba(255,255,255,.1);padding:2rem 0;color:#9ca3af;font-size:.8rem;line-height:1.75}
+        .service-area-inner{max-width:80rem;margin:0 auto;padding:0 1.5rem}
+        .service-area h2{margin-bottom:.55rem;color:#d1d5db;font-size:.95rem;font-weight:700}
+        .service-area-summary{max-width:64rem;margin-bottom:1.25rem}
+        .service-area-list{display:grid;grid-template-columns:6rem 1fr;gap:.45rem 1rem}
+        .service-area-list dt{color:#cbd5e1;font-weight:600}
+        .service-area-list dd{margin:0}
+        @media(max-width:767px){.about-hero-content{border-left:0;padding-left:0}.about-eyebrow{margin-bottom:1.15rem;font-size:.66rem}.about-eyebrow::before{width:1.75rem}.about-title{margin-bottom:1.25rem;font-size:2.25rem;line-height:1.24}.about-intro{font-size:.95rem;line-height:1.75}.service-area-list{grid-template-columns:1fr;gap:.15rem}.service-area-list dd{margin-bottom:.55rem}}
     </style>
     <script type="application/ld+json">
     {
@@ -57,12 +70,12 @@
     <header class="relative pt-36 pb-20 overflow-hidden">
         <div class="absolute inset-0 bg-[url('office.png')] bg-cover bg-center opacity-25"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/50 to-brand-dark"></div>
-        <div class="relative max-w-6xl mx-auto px-6 text-center">
-            <p class="text-blue-300 font-semibold mb-4 uppercase tracking-wider">About ASPEC</p>
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">코그넥스 대리점·화성 머신비전 업체 <span class="gradient-text">ASPEC</span></h1>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                ASPEC은 Cognex 코그넥스 기반 비전검사 시스템을 설계·구축하는 머신비전 전문기업입니다. AI 외관검사, OCR·OCV, 바코드 판독, 조명·케이블 선정, PLC·MES 연동까지 생산라인 조건에 맞춰 통합합니다.
-            </p>
+        <div class="relative max-w-7xl mx-auto px-6">
+            <div class="about-hero-content">
+                <p class="about-eyebrow">About ASPEC</p>
+                <h1 class="about-title">현장에서 답을 찾는 머신비전 엔지니어링, ASPEC</h1>
+                <p class="about-intro">Cognex(코그넥스) 공식 대리점 ASPEC은 In-Sight, VisionPro, DataMan을 비롯해 산업용 카메라와 머신비전 렌즈·조명·케이블까지 검사 대상과 현장 조건에 맞춰 함께 검토해드립니다. OCR·OCV, AI 비전검사, 바코드, 로봇비전이 필요하거나 PLC·MES 연동까지 이어져야 하는 현장이라면 필요한 범위를 같이 살펴보고 구축을 도와드리겠습니다.</p>
+            </div>
         </div>
     </header>
 
@@ -72,9 +85,9 @@
                 <div>
                     <h2 class="text-3xl md:text-4xl font-bold mb-7">장비보다 먼저 공정 조건을 읽습니다</h2>
                     <div class="space-y-5 text-gray-400 leading-relaxed">
-                        <p>ASPEC은 카메라와 조명을 납품하는 데서 끝나지 않습니다. 제품 재질, 반사, 택타임, 불량 유형, 설치 공간, PLC 신호, MES 데이터 흐름까지 확인한 뒤 머신비전 시스템을 설계합니다.</p>
-                        <p>룰 기반 검사로 어려운 표면 불량, 스크래치, 얼룩, 이물, 누락, 조립 오류는 ai비전검사와 딥러닝 외관검사로 접근하고, 문자와 라벨은 OCR검사·OCV검사, 추적성 관리는 바코드리더기와 QR코드 리더기로 구성합니다.</p>
-                        <p>코그넥스(Cognex) In-Sight, VisionPro, PatMax, DataMan과 Hikrobot 산업용 카메라, 머신비전 조명, 머신비전 케이블, 비전 렌즈, 조명 컨트롤러, 전용 검사 소프트웨어를 조합해 제조 라인에서 지속적으로 운영 가능한 솔루션을 제공합니다. 기존 장비와 연동이 필요한 경우도 현장 조건을 기준으로 비교 상담합니다.</p>
+                        <p>ASPEC은 카메라와 조명을 납품하는 데서 끝나지 않습니다. 제품 재질, 반사, 택타임, 불량 유형, 설치 공간, PLC 신호, MES 데이터 흐름까지 확인한 뒤 머신비전 시스템의 구성 방향을 잡습니다.</p>
+                        <p>룰 기반 검사로 어려운 표면 불량, 스크래치, 얼룩, 이물, 누락, 조립 오류는 ai비전검사와 딥러닝 외관검사로 접근합니다. 문자와 라벨은 OCR검사·OCV검사로, 추적성 관리는 바코드리더기와 QR코드 리더기로 나눠 살펴봅니다.</p>
+                        <p>코그넥스(Cognex) In-Sight, VisionPro, PatMax, DataMan과 Hikrobot 산업용 카메라, 머신비전 조명, 머신비전 케이블, 비전 렌즈, 조명 컨트롤러, 전용 검사 소프트웨어를 조합해 제조 라인에서 계속 사용할 수 있는 구성을 맞춰갑니다. 기존 장비와 연결해야 하는 경우에도 현장 조건과 유지보수 범위를 함께 검토해드립니다.</p>
                     </div>
                 </div>
                 <div class="grid sm:grid-cols-2 gap-5">
@@ -100,8 +113,31 @@
         <section class="py-24">
             <div class="max-w-4xl mx-auto px-6 text-center">
                 <h2 class="text-3xl font-bold mb-5">머신비전 업체 선정 전, 샘플과 공정 조건부터 검토하세요</h2>
-                <p class="text-gray-400 mb-8">화성, 수원, 오산, 평택, 안산, 시흥, 천안 등 제조 현장의 AI 비전검사와 코그넥스 비전검사 프로젝트를 상담합니다.</p>
+                <p class="text-gray-400 mb-8">검사 샘플, 택타임, 불량 유형과 연동 조건을 알려주시면 AI 비전검사와 코그넥스 비전검사 적용 범위를 함께 검토해드립니다.</p>
                 <a href="contact.html" class="inline-flex px-7 py-3 rounded-lg bg-white text-slate-950 hover:bg-slate-200 border border-white font-bold shadow-[0_10px_28px_rgba(255,255,255,0.16)] transition-colors">상담 문의</a>
+            </div>
+        </section>
+
+        <section class="service-area" aria-labelledby="service-area-title">
+            <div class="service-area-inner">
+                <h2 id="service-area-title">서비스 가능 지역</h2>
+                <p class="service-area-summary">ASPEC은 화성·수원·평택·용인·안산·시흥을 포함한 경기권과 서울·인천을 비롯해 충청·강원·경상·전라권의 제조 현장까지 머신비전 시스템 구축과 현장 대응을 검토해드립니다.</p>
+                <dl class="service-area-list">
+                    <dt>경기</dt>
+                    <dd>경기도 · 화성 · 수원 · 평택 · 용인 · 안산 · 시흥 · 안양 · 군포 · 의왕 · 오산 · 성남 · 광주(경기) · 이천 · 안성 · 김포 · 부천 · 광명 · 고양 · 파주 · 남양주</dd>
+                    <dt>서울·인천</dt>
+                    <dd>서울특별시 · 인천광역시</dd>
+                    <dt>충청</dt>
+                    <dd>대전광역시 · 세종특별자치시 · 충청북도 · 충청남도 · 청주 · 충주 · 음성 · 진천 · 제천 · 천안 · 아산 · 당진 · 서산 · 공주</dd>
+                    <dt>경상</dt>
+                    <dd>부산광역시 · 대구광역시 · 울산광역시 · 경상북도 · 경상남도 · 창원 · 김해 · 양산 · 구미 · 포항 · 경주</dd>
+                    <dt>전라</dt>
+                    <dd>광주광역시 · 전북특별자치도 · 전라남도 · 전주 · 익산 · 군산 · 여수 · 순천 · 광양</dd>
+                    <dt>강원</dt>
+                    <dd>강원특별자치도 · 원주 · 춘천 · 강릉</dd>
+                    <dt>기타</dt>
+                    <dd>제주특별자치도 및 기타 지역은 프로젝트 조건에 따라 협의합니다.</dd>
+                </dl>
             </div>
         </section>
     </main>
