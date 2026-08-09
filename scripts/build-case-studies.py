@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "data" / "case-studies.json"
 PORTFOLIO_PATH = ROOT / "portfolio.html"
 TEMPLATE_PATH = ROOT / "templates" / "case-study-template.html"
+PROCESS_TEMPLATE_PATH = ROOT / "templates" / "case-study-process-template.html"
 OUTPUT_DIR = ROOT / "case-studies"
 SITEMAP_PATH = ROOT / "sitemap.xml"
 
@@ -117,6 +118,15 @@ def validate_cases(cases: list[dict[str, Any]]) -> None:
         if not isinstance(case["projectSummary"], dict):
             raise BuildError(f"projectSummary must be an object for {slug}")
 
+        detail_template = case.get("detailTemplate", "default")
+        if detail_template not in {"default", "process"}:
+            raise BuildError(f"Invalid detailTemplate for {slug}: {detail_template}")
+        if detail_template == "process":
+            detail = case.get("processDetail")
+            required_detail = {"heroSubheading", "heroDescription", "facts", "cameras", "inspectionSections", "speed", "resultCards", "engineeringIntro", "engineeringItems", "cta"}
+            if not isinstance(detail, dict) or required_detail - set(detail):
+                raise BuildError(f"Incomplete processDetail for {slug}")
+
         if case["published"]:
             publish_required = ("heroImage", "overview", "problem", "difficulty", "solution", "inspectionMethod")
             empty = [field for field in publish_required if not str(case[field]).strip()]
@@ -150,7 +160,7 @@ def render_card(case: dict[str, Any]) -> str:
     else:
         action = '<span class="case-action is-disabled" aria-disabled="true">상세 준비중</span>'
 
-    return f'''                <article class="case-card" data-category="{escape(filters)}" data-search="{escape(search_terms.lower())}" id="case-{escape(case["slug"])}">
+    return f'''                <article class="case-card" data-category="{escape(filters)}" data-search="{escape(search_terms.lower())}" id="case-{escape(case.get("cardId", case["slug"]))}">
                     <div class="case-media">
                         <img src="{escape(case["cardImage"])}" alt="{escape(case["cardImageAlt"])}" class="portfolio-img case-image" loading="lazy" decoding="async">
                     </div>
@@ -271,6 +281,109 @@ def related_cases_section(case: dict[str, Any], lookup: dict[str, dict[str, Any]
             </div>
         </section>'''
 
+def process_fact_items(detail: dict[str, Any]) -> str:
+    return "".join(
+        f'<div class="process-fact"><dt>{escape(item["label"])}</dt><dd>{escape(item["value"])}</dd></div>'
+        for item in detail["facts"]
+    )
+
+
+def camera_process_items(detail: dict[str, Any]) -> str:
+    cards = []
+    for camera in detail["cameras"]:
+        items = "".join(f"<li>{escape(item)}</li>" for item in camera["items"])
+        cards.append(
+            f'<article class="camera-process-card"><span>CAMERA {escape(camera["number"])}</span>'
+            f'<h3>{escape(camera["title"])}</h3><ul>{items}</ul></article>'
+        )
+    return "".join(cards)
+
+
+def inspection_detail_sections(detail: dict[str, Any]) -> str:
+    sections = []
+    for section in detail["inspectionSections"]:
+        items = ""
+        if section.get("items"):
+            items = '<ul class="inspection-point-list">' + "".join(f"<li>{escape(item)}</li>" for item in section["items"]) + "</ul>"
+        if section.get("imageSrc"):
+            media = (
+                f'<figure class="inspection-media"><img src="{escape(nested_asset(section["imageSrc"]))}" '
+                f'alt="{escape(section["imageAlt"])}" loading="lazy"><figcaption>{escape(section["imageCaption"])}</figcaption></figure>'
+            )
+        else:
+            media = (
+                f'<figure class="inspection-media is-placeholder" aria-label="{escape(section["imageAlt"])}">'
+                f'<div><span>Image Area</span><strong>{escape(section["imageAlt"])}</strong>'
+                f'<p>실제 검사 이미지 제공 후 삽입</p></div><figcaption>{escape(section["imageCaption"])}</figcaption></figure>'
+            )
+        reverse = " is-reversed" if section.get("imagePosition") == "right" else ""
+        sections.append(
+            f'<section class="process-inspection-section{reverse}" aria-labelledby="inspection-{escape(section["number"])}-heading">'
+            f'<div class="case-study-inner process-inspection-grid">{media}<div class="process-inspection-copy">'
+            f'<p class="case-story-index">{escape(section["number"])} · Inspection</p>'
+            f'<h2 id="inspection-{escape(section["number"])}-heading">{escape(section["title"])}</h2>'
+            f'{text_blocks(section["body"])}{items}</div></div></section>'
+        )
+    return "".join(sections)
+
+
+def render_process_detail(case: dict[str, Any], template: str) -> str:
+    detail = case["processDetail"]
+    canonical = f"https://www.aspec-tech.co.kr/case-studies/{case['slug']}.html"
+    title = case.get("seoTitle") or f"{case['title']} 구축사례 | ASPEC"
+    meta_description = case.get("metaDescription") or case["summary"]
+    og_image = case.get("ogImage") or case["heroImage"]
+    if not re.match(r"^https?://", og_image):
+        og_image = "https://www.aspec-tech.co.kr/" + og_image.lstrip("/")
+    webpage = {
+        "@context": "https://schema.org", "@type": "WebPage", "name": case.get("pageHeading") or case["title"],
+        "description": meta_description, "url": canonical, "primaryImageOfPage": og_image,
+        "publisher": {"@type": "Organization", "name": "ASPEC", "url": "https://www.aspec-tech.co.kr/"},
+    }
+    breadcrumb = {
+        "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "홈", "item": "https://www.aspec-tech.co.kr/"},
+            {"@type": "ListItem", "position": 2, "name": "구축사례", "item": "https://www.aspec-tech.co.kr/portfolio.html"},
+            {"@type": "ListItem", "position": 3, "name": case["title"], "item": canonical},
+        ],
+    }
+    challenges = "".join(f'<li>{escape(item.strip())}</li>' for item in re.split(r"\n+", case["difficulty"]) if item.strip())
+    speed_items = "".join(f'<li>{escape(item)}</li>' for item in detail["speed"]["items"])
+    result_cards = "".join(
+        f'<article class="result-card"><h3>{escape(item["title"])}</h3><p>{escape(item["body"])}</p></article>'
+        for item in detail["resultCards"]
+    )
+    result_details = "".join(f'<li>{escape(item)}</li>' for item in case["results"])
+    engineering_items = "".join(f'<li>{escape(item)}</li>' for item in detail["engineeringItems"])
+    technology_links = "".join(
+        f'<a href="{escape(item["url"])}">{escape(item["name"])}</a>' for item in case["relatedProducts"]
+    )
+    replacements = {
+        "TITLE": title, "META_DESCRIPTION": meta_description, "CANONICAL": canonical, "OG_IMAGE": og_image,
+        "WEBPAGE_JSON_LD": json.dumps(webpage, ensure_ascii=False, separators=(",", ":")),
+        "BREADCRUMB_JSON_LD": json.dumps(breadcrumb, ensure_ascii=False, separators=(",", ":")),
+        "CATEGORY_LABEL": case["categoryLabel"], "CASE_TITLE": case["title"],
+        "PAGE_HEADING": case.get("pageHeading") or case["title"], "HERO_SUBHEADING": detail["heroSubheading"],
+        "HERO_DESCRIPTION": detail["heroDescription"], "HERO_IMAGE": nested_asset(case["heroImage"]),
+        "HERO_IMAGE_ALT": case.get("heroImageAlt") or case["title"],
+        "PROCESS_FACTS": process_fact_items(detail), "OVERVIEW": text_blocks(case["overview"]),
+        "PROBLEM": text_blocks(case["problem"]), "CHALLENGES": challenges,
+        "SOLUTION": text_blocks(case["solution"]), "CAMERA_PROCESS": camera_process_items(detail),
+        "INSPECTION_SECTIONS": inspection_detail_sections(detail),
+        "SPEED_TITLE": detail["speed"]["title"], "SPEED_BODY": text_blocks(detail["speed"]["body"]),
+        "SPEED_ITEMS": speed_items, "RESULT_CARDS": result_cards, "RESULT_DETAILS": result_details,
+        "ENGINEERING_INTRO": text_blocks(detail["engineeringIntro"]), "ENGINEERING_ITEMS": engineering_items,
+        "TECHNOLOGY_LINKS": technology_links, "CTA_TITLE": detail["cta"]["title"],
+        "CTA_BODY": detail["cta"]["body"], "CTA_LABEL": detail["cta"]["label"], "CTA_URL": detail["cta"]["url"],
+    }
+    output = template
+    escaped_tokens = {"TITLE", "META_DESCRIPTION", "CANONICAL", "OG_IMAGE", "CATEGORY_LABEL", "CASE_TITLE", "PAGE_HEADING", "HERO_SUBHEADING", "HERO_DESCRIPTION", "HERO_IMAGE", "HERO_IMAGE_ALT", "SPEED_TITLE", "CTA_TITLE", "CTA_BODY", "CTA_LABEL", "CTA_URL"}
+    for key, value in replacements.items():
+        output = output.replace("{{" + key + "}}", escape(value) if key in escaped_tokens else value)
+    if re.search(r"{{[A-Z0-9_]+}}", output):
+        raise BuildError(f"Unresolved process template token for {case['slug']}")
+    return GENERATED_MARKER + "\n" + output
+
 
 def render_detail(case: dict[str, Any], lookup: dict[str, dict[str, Any]], template: str) -> str:
     canonical = f"https://www.aspec-tech.co.kr/case-studies/{case['slug']}.html"
@@ -338,11 +451,16 @@ def render_detail(case: dict[str, Any], lookup: dict[str, dict[str, Any]], templ
 
 def expected_detail_pages(cases: list[dict[str, Any]]) -> dict[Path, str]:
     template = TEMPLATE_PATH.read_text(encoding="utf-8")
+    process_template = PROCESS_TEMPLATE_PATH.read_text(encoding="utf-8")
     lookup = {case["slug"]: case for case in cases}
-    return {
-        OUTPUT_DIR / f"{case['slug']}.html": render_detail(case, lookup, template)
-        for case in cases if case["published"]
-    }
+    pages: dict[Path, str] = {}
+    for case in cases:
+        if not case["published"]:
+            continue
+        selected = case.get("detailTemplate", "default")
+        content = render_process_detail(case, process_template) if selected == "process" else render_detail(case, lookup, template)
+        pages[OUTPUT_DIR / f"{case['slug']}.html"] = content
+    return pages
 
 
 def build_sitemap(cases: list[dict[str, Any]]) -> str:

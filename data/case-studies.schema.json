@@ -58,6 +58,7 @@
       ],
       "properties": {
         "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "cardId": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
         "published": { "type": "boolean" },
         "title": { "type": "string", "minLength": 1 },
         "category": { "enum": ["ai", "ocr", "barcode", "robot", "alignment", "software", "optics"] },
@@ -88,6 +89,10 @@
         "relatedProducts": { "type": "array", "items": { "$ref": "#/$defs/link" } },
         "relatedCases": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" } },
         "metaDescription": { "type": "string" },
+        "seoTitle": { "type": "string" },
+        "pageHeading": { "type": "string" },
+        "detailTemplate": { "enum": ["default", "process"] },
+        "processDetail": { "type": "object" },
         "ogImage": { "type": "string" }
       }
     }

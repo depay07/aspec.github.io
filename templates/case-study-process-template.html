@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J4CN1T8SXW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-J4CN1T8SXW');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}}</title>
+    <meta name="description" content="{{META_DESCRIPTION}}">
+    <link rel="canonical" href="{{CANONICAL}}">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{TITLE}}">
+    <meta property="og:description" content="{{META_DESCRIPTION}}">
+    <meta property="og:url" content="{{CANONICAL}}">
+    <meta property="og:image" content="{{OG_IMAGE}}">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/case-study-pages.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">{{WEBPAGE_JSON_LD}}</script>
+    <script type="application/ld+json">{{BREADCRUMB_JSON_LD}}</script>
+</head>
+<body class="antialiased">
+    <nav class="fixed w-full z-50 bg-brand-dark/85 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">ASPEC<span class="text-blue-500">.</span></a>
+            <div class="hidden md:flex space-x-4 text-xs lg:text-sm font-medium text-gray-300">
+                <a href="/" class="hover:text-white">홈</a>
+                <a href="/about.html" class="hover:text-white">회사소개</a>
+                <a href="/products.html" class="hover:text-white">제품·솔루션</a>
+                <a href="/ai-vision.html" class="hover:text-white">AI검사</a>
+                <a href="/vision-accessories.html" class="hover:text-white">조명·케이블</a>
+                <a href="/barcode-reader.html" class="hover:text-white">바코드</a>
+                <a href="/vision-software.html" class="hover:text-white">SW개발</a>
+                <a href="/portfolio.html" class="text-white font-bold">구축사례</a>
+                <a href="https://blog.naver.com/aspec-tech" target="_blank" rel="noopener noreferrer" class="hover:text-white">블로그</a>
+                <a href="/contact.html" class="hover:text-white">문의</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="case-study-page process-case-page">
+        <div class="case-breadcrumb-wrap">
+            <nav class="case-study-inner case-breadcrumb" aria-label="Breadcrumb">
+                <a href="/">홈</a><span aria-hidden="true">›</span>
+                <a href="/portfolio.html">구축사례</a><span aria-hidden="true">›</span>
+                <span aria-current="page">{{CASE_TITLE}}</span>
+            </nav>
+        </div>
+
+        <header class="case-study-hero process-case-hero">
+            <div class="case-study-inner case-study-hero-grid">
+                <div>
+                    <p class="case-study-kicker">{{CATEGORY_LABEL}}</p>
+                    <h1 class="case-study-title">{{PAGE_HEADING}}</h1>
+                    <p class="process-hero-subheading">{{HERO_SUBHEADING}}</p>
+                    <p class="case-study-lead">{{HERO_DESCRIPTION}}</p>
+                </div>
+                <figure class="case-study-hero-media process-hero-media">
+                    <img src="{{HERO_IMAGE}}" alt="{{HERO_IMAGE_ALT}}" fetchpriority="high">
+                    <figcaption>ASPEC 머신비전 시스템 대표 이미지</figcaption>
+                </figure>
+            </div>
+        </header>
+
+        <section class="process-facts" aria-labelledby="project-summary-heading">
+            <div class="case-study-inner">
+                <div class="process-facts-heading"><p class="case-study-kicker">Project Summary</p><h2 id="project-summary-heading">프로젝트 핵심 구성</h2></div>
+                <dl class="process-facts-grid">{{PROCESS_FACTS}}</dl>
+            </div>
+        </section>
+
+        <section class="case-story-section" aria-labelledby="overview-heading">
+            <div class="case-study-inner">
+                <div class="case-story-heading"><p class="case-story-index">01 · Overview</p><h2 id="overview-heading">프로젝트 개요</h2></div>
+                <div class="case-story-copy">{{OVERVIEW}}</div>
+            </div>
+        </section>
+
+        <section class="case-story-section is-alt" aria-labelledby="problem-heading">
+            <div class="case-study-inner">
+                <div class="case-story-heading"><p class="case-story-index">02 · Problem</p><h2 id="problem-heading">프로젝트에서 해결해야 했던 문제</h2></div>
+                <div class="process-problem-layout">
+                    <div class="case-story-copy">{{PROBLEM}}</div>
+                    <ul class="process-challenge-list">{{CHALLENGES}}</ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="case-story-section process-camera-section" aria-labelledby="camera-process-heading">
+            <div class="case-study-inner">
+                <div class="case-story-heading"><p class="case-story-index">03 · System</p><h2 id="camera-process-heading">4대의 카메라로 공정별 검사 구성</h2></div>
+                <div class="case-story-copy">{{SOLUTION}}</div>
+                <div class="camera-process-grid">{{CAMERA_PROCESS}}</div>
+            </div>
+        </section>
+
+        {{INSPECTION_SECTIONS}}
+
+        <section class="process-speed-section" aria-labelledby="speed-heading">
+            <div class="case-study-inner process-speed-grid">
+                <div>
+                    <p class="case-story-index">08 · High Speed</p>
+                    <h2 id="speed-heading">{{SPEED_TITLE}}</h2>
+                    <div class="process-speed-copy">{{SPEED_BODY}}</div>
+                </div>
+                <ul class="process-speed-list">{{SPEED_ITEMS}}</ul>
+            </div>
+        </section>
+
+        <section class="case-story-section" aria-labelledby="results-heading">
+            <div class="case-study-inner">
+                <div class="case-story-heading"><p class="case-story-index">09 · Result</p><h2 id="results-heading">구축 후 개선된 품질관리</h2></div>
+                <div class="process-result-grid">{{RESULT_CARDS}}</div>
+                <ul class="process-result-list">{{RESULT_DETAILS}}</ul>
+            </div>
+        </section>
+
+        <section class="case-story-section is-alt" aria-labelledby="engineering-heading">
+            <div class="case-study-inner">
+                <div class="case-story-heading"><p class="case-story-index">10 · Engineering</p><h2 id="engineering-heading">ASPEC의 머신비전 시스템 설계 방식</h2></div>
+                <div class="process-engineering-grid">
+                    <div class="case-story-copy">{{ENGINEERING_INTRO}}</div>
+                    <ul class="process-engineering-list">{{ENGINEERING_ITEMS}}</ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="process-related-section" aria-labelledby="technology-heading">
+            <div class="case-study-inner process-related-inner">
+                <div><p class="case-study-kicker">Related Technology</p><h2 id="technology-heading">관련 기술</h2></div>
+                <div class="process-related-links">{{TECHNOLOGY_LINKS}}</div>
+            </div>
+        </section>
+
+        <section class="case-study-cta">
+            <div class="case-study-inner case-study-cta-inner">
+                <div><h2>{{CTA_TITLE}}</h2><p>{{CTA_BODY}}</p></div>
+                <a class="case-study-button" href="{{CTA_URL}}">{{CTA_LABEL}}</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-white/10 py-8 text-center text-gray-500 text-sm">
+        <p>&copy; 2026 ASPEC. All rights reserved.</p>
+    </footer>
+</body>
+</html>
