@@ -119,6 +119,36 @@ body{background:#0b0c15;color:#fff}
 .rule-comparison-card li{position:relative;padding-left:1rem}
 .rule-comparison-card li::before{position:absolute;top:.65em;left:0;width:.35rem;height:.35rem;border-radius:50%;background:#60a5fa;content:""}
 .rule-comparison-note{margin-top:1rem;color:#9ca3af;font-size:.82rem;line-height:1.65}
+.ocr-case-page .process-facts-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.optical-comparison-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin-top:2rem;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.1)}
+.optical-comparison-card{padding:1.4rem;background:#0b0c15}
+.optical-comparison-card.is-after{background:rgba(34,197,94,.06)}
+.optical-comparison-card>span{color:#fca5a5;font-size:.72rem;font-weight:700;letter-spacing:.08em}
+.optical-comparison-card.is-after>span{color:#86efac}
+.optical-comparison-card h3{margin-top:.55rem;font-size:1.15rem;font-weight:700}
+.optical-comparison-card ul{display:grid;gap:.55rem;margin-top:1rem;color:#d1d5db;font-size:.86rem;line-height:1.5}
+.optical-comparison-card li{position:relative;padding-left:1rem}
+.optical-comparison-card li::before{position:absolute;top:.65em;left:0;width:.32rem;height:.32rem;border-radius:50%;background:currentColor;content:""}
+.inspection-equation{margin-top:2rem;border:1px solid rgba(147,197,253,.2);background:#0b0c15}
+.inspection-equation-operands{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:rgba(147,197,253,.18)}
+.inspection-equation-card{padding:1.4rem;background:#11131f}
+.inspection-equation-card span{color:#93c5fd;font-size:.72rem;font-weight:700;letter-spacing:.08em}
+.inspection-equation-card h3{margin-top:.55rem;font-size:1.15rem;font-weight:700}
+.inspection-equation-card p{margin-top:.55rem;color:#9ca3af;font-size:.86rem;line-height:1.55}
+.inspection-equation-result{display:flex;align-items:center;justify-content:center;gap:1rem;padding:1.15rem;color:#dbeafe}
+.inspection-equation-result span{color:#60a5fa;font-size:1.3rem}
+.inspection-equation-result strong{font-size:.9rem;letter-spacing:.06em}
+.two-step-ai{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin-top:2rem;border:1px solid rgba(147,197,253,.2);background:rgba(147,197,253,.2)}
+.two-step-card{padding:1.4rem;background:#0b0c15}
+.two-step-card>span,.two-step-card>strong{display:block;color:#93c5fd;font-size:.72rem;font-weight:700;letter-spacing:.08em}
+.two-step-card>strong{margin-top:.5rem;color:#c4b5fd}
+.two-step-card h3{margin-top:.8rem;font-size:1.2rem;font-weight:700}
+.two-step-card ul{display:grid;gap:.55rem;margin-top:1rem;color:#d1d5db;font-size:.86rem;line-height:1.5}
+.two-step-card li{position:relative;padding-left:1rem}
+.two-step-card li::before{position:absolute;top:.65em;left:0;width:.32rem;height:.32rem;border-radius:50%;background:#60a5fa;content:""}
+.process-story-list{display:grid;gap:.55rem;margin-top:1.5rem;color:#d1d5db}
+.process-story-list li{position:relative;padding-left:1rem}
+.process-story-list li::before{position:absolute;top:.7em;left:0;width:.32rem;height:.32rem;border-radius:50%;background:#60a5fa;content:""}
 .process-highlight-stat-section{padding:4rem 0;border-top:1px solid rgba(96,165,250,.25);border-bottom:1px solid rgba(96,165,250,.25);background:#0f1628}
 .process-highlight-stat{display:flex;align-items:center;gap:2rem}
 .process-highlight-stat strong{color:#fff;font-size:clamp(3rem,7vw,6.5rem);line-height:.9;white-space:nowrap}
@@ -127,6 +157,8 @@ body{background:#0b0c15;color:#fff}
 .process-inspection-section{padding:6rem 0;border-top:1px solid rgba(255,255,255,.08)}
 .process-inspection-section:nth-of-type(even){background:rgba(255,255,255,.025)}
 .process-inspection-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:4rem;align-items:center}
+.process-inspection-grid.is-text-only{display:block;max-width:64rem}
+.process-inspection-grid.is-text-only .process-inspection-copy{max-width:58rem;margin:0 auto}
 .process-inspection-section.is-reversed .inspection-media{order:2}
 .process-inspection-section.is-reversed .process-inspection-copy{order:1}
 .process-inspection-copy h2{margin-top:.7rem;font-size:clamp(1.9rem,3vw,2.75rem);font-weight:700;line-height:1.2;word-break:keep-all}
@@ -185,6 +217,6 @@ body{background:#0b0c15;color:#fff}
 .process-related-links{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.7rem}
 .process-related-links a{display:inline-flex;min-height:2.75rem;align-items:center;padding:.65rem .9rem;border:1px solid rgba(147,197,253,.3);border-radius:6px;color:#dbeafe;font-size:.86rem;font-weight:600}
 .process-related-links a:hover{border-color:#93c5fd;color:#fff}
-@media (max-width:1100px){.process-facts-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.process-fact:nth-child(4){border-left:0;border-top:1px solid rgba(255,255,255,.09)}.camera-process-grid,.camera-process-grid.is-data-flow,.camera-process-grid.is-automotive-flow,.camera-process-grid.is-optical-flow{grid-template-columns:repeat(2,minmax(0,1fr))}.camera-process-grid::before{display:none}.process-result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:1100px){.process-facts-grid,.ocr-case-page .process-facts-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.process-fact:nth-child(4){border-left:0;border-top:1px solid rgba(255,255,255,.09)}.camera-process-grid,.camera-process-grid.is-data-flow,.camera-process-grid.is-automotive-flow,.camera-process-grid.is-optical-flow{grid-template-columns:repeat(2,minmax(0,1fr))}.camera-process-grid::before{display:none}.process-result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:900px){.process-problem-layout,.process-inspection-grid,.process-speed-grid,.process-engineering-grid{grid-template-columns:1fr;gap:2.5rem}.process-photo-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.process-inspection-section.is-reversed .inspection-media,.process-inspection-section.is-reversed .process-inspection-copy{order:initial}.process-inspection-section.is-reversed .inspection-media{order:2}.process-speed-list{grid-template-columns:repeat(3,minmax(0,1fr))}.process-result-list{grid-template-columns:repeat(2,minmax(0,1fr))}.process-related-inner{align-items:flex-start;flex-direction:column}.process-related-links{justify-content:flex-start}}
-@media (max-width:640px){.process-hero-subheading{font-size:1.05rem}.process-facts-heading,.process-photo-gallery-heading{align-items:flex-start;flex-direction:column}.process-facts-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.process-fact,.process-fact:nth-child(4){border-top:1px solid rgba(255,255,255,.09);border-left:1px solid rgba(255,255,255,.09)}.process-fact:nth-child(odd){border-left:0}.process-fact:nth-child(-n+2){border-top:0}.process-photo-gallery,.process-challenge-list,.camera-process-grid,.camera-process-grid.is-data-flow,.camera-process-grid.is-automotive-flow,.camera-process-grid.is-optical-flow,.inspection-point-list,.process-speed-list,.process-result-grid,.process-result-list,.process-comparison-grid,.rule-comparison-grid{grid-template-columns:1fr}.process-inspection-section,.process-comparison-section{padding:4rem 0}.inspection-media.is-placeholder{min-height:18rem}.process-speed-section{padding:4rem 0}.automotive-speed-stat,.process-highlight-stat{align-items:flex-start;flex-direction:column}.process-highlight-stat strong{white-space:normal}.process-speed-stat{grid-template-columns:1fr}.process-speed-stat b{justify-self:center;transform:rotate(90deg)}.process-related-links{display:grid;width:100%;grid-template-columns:1fr}.process-related-links a{justify-content:center}}
+@media (max-width:640px){.process-hero-subheading{font-size:1.05rem}.process-facts-heading,.process-photo-gallery-heading{align-items:flex-start;flex-direction:column}.process-facts-grid,.ocr-case-page .process-facts-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.process-fact,.process-fact:nth-child(4){border-top:1px solid rgba(255,255,255,.09);border-left:1px solid rgba(255,255,255,.09)}.process-fact:nth-child(odd){border-left:0}.process-fact:nth-child(-n+2){border-top:0}.process-photo-gallery,.process-challenge-list,.camera-process-grid,.camera-process-grid.is-data-flow,.camera-process-grid.is-automotive-flow,.camera-process-grid.is-optical-flow,.inspection-point-list,.process-speed-list,.process-result-grid,.process-result-list,.process-comparison-grid,.rule-comparison-grid,.optical-comparison-grid,.inspection-equation-operands,.two-step-ai{grid-template-columns:1fr}.process-inspection-section,.process-comparison-section{padding:4rem 0}.inspection-media.is-placeholder{min-height:18rem}.process-speed-section{padding:4rem 0}.automotive-speed-stat,.process-highlight-stat{align-items:flex-start;flex-direction:column}.process-highlight-stat strong{white-space:normal}.process-speed-stat{grid-template-columns:1fr}.process-speed-stat b{justify-self:center;transform:rotate(90deg)}.process-related-links{display:grid;width:100%;grid-template-columns:1fr}.process-related-links a{justify-content:center}}

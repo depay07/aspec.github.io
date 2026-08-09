@@ -301,13 +301,46 @@ def camera_process_items(detail: dict[str, Any]) -> str:
     return "".join(cards)
 
 
+def inspection_visual(section: dict[str, Any]) -> str:
+    visual = section.get("visual")
+    if not visual:
+        return ""
+
+    if visual["type"] == "comparison":
+        cards = []
+        for item in visual["items"]:
+            points = "".join(f"<li>{escape(point)}</li>" for point in item["points"])
+            cards.append(
+                f'<article class="optical-comparison-card is-{escape(item["style"])}">'
+                f'<span>{escape(item["label"])}</span><h3>{escape(item["title"])}</h3><ul>{points}</ul></article>'
+            )
+        return f'<div class="optical-comparison-grid">{"".join(cards)}</div>'
+
+    if visual["type"] == "equation":
+        cards = []
+        for item in visual["items"]:
+            cards.append(
+                f'<article class="inspection-equation-card"><span>{escape(item["label"])}</span>'
+                f'<h3>{escape(item["title"])}</h3><p>{escape(item["body"])}</p></article>'
+            )
+        return (
+            f'<div class="inspection-equation"><div class="inspection-equation-operands">{"".join(cards)}</div>'
+            f'<div class="inspection-equation-result"><span aria-hidden="true">↓</span>'
+            f'<strong>{escape(visual["result"])}</strong></div></div>'
+        )
+
+    raise BuildError(f'Unknown inspection visual type: {visual["type"]}')
+
+
 def inspection_detail_sections(detail: dict[str, Any]) -> str:
     sections = []
     for section in detail["inspectionSections"]:
         items = ""
         if section.get("items"):
             items = '<ul class="inspection-point-list">' + "".join(f"<li>{escape(item)}</li>" for item in section["items"]) + "</ul>"
-        if section.get("images"):
+        if section.get("textOnly"):
+            media = ""
+        elif section.get("images"):
             figures = []
             for image in section["images"]:
                 figures.append(
@@ -328,12 +361,14 @@ def inspection_detail_sections(detail: dict[str, Any]) -> str:
                 f'<p>실제 검사 이미지 제공 후 삽입</p></div><figcaption>{escape(section["imageCaption"])}</figcaption></figure>'
             )
         reverse = " is-reversed" if section.get("imagePosition") == "right" else ""
+        grid_class = " is-text-only" if section.get("textOnly") else ""
+        visual = inspection_visual(section)
         sections.append(
             f'<section class="process-inspection-section{reverse}" aria-labelledby="inspection-{escape(section["number"])}-heading">'
-            f'<div class="case-study-inner process-inspection-grid">{media}<div class="process-inspection-copy">'
+            f'<div class="case-study-inner process-inspection-grid{grid_class}">{media}<div class="process-inspection-copy">'
             f'<p class="case-story-index">{escape(section["number"])} · Inspection</p>'
             f'<h2 id="inspection-{escape(section["number"])}-heading">{escape(section["title"])}</h2>'
-            f'{text_blocks(section["body"])}{items}</div></div></section>'
+            f'{text_blocks(section["body"])}{items}{visual}</div></div></section>'
         )
     return "".join(sections)
 
@@ -388,15 +423,55 @@ def process_before_after(detail: dict[str, Any]) -> str:
 
 def process_speed_stat(detail: dict[str, Any]) -> str:
     stat = detail.get("speedStat")
-    if not stat:
+    if stat:
+        return (
+            '<div class="process-speed-stat" aria-label="판독시간 개선 비교">'
+            f'<div><span>Before</span><strong>{escape(stat["before"])}</strong><small>{escape(stat["beforeNote"])}</small></div>'
+            '<b aria-hidden="true">→</b>'
+            f'<div class="is-after"><span>After</span><strong>{escape(stat["after"])}</strong><small>{escape(stat["afterNote"])}</small></div>'
+            '</div>'
+        )
+
+    two_step = detail.get("twoStep")
+    if not two_step:
         return ""
-    return (
-        '<div class="process-speed-stat" aria-label="판독시간 개선 비교">'
-        f'<div><span>Before</span><strong>{escape(stat["before"])}</strong><small>{escape(stat["beforeNote"])}</small></div>'
-        '<b aria-hidden="true">→</b>'
-        f'<div class="is-after"><span>After</span><strong>{escape(stat["after"])}</strong><small>{escape(stat["afterNote"])}</small></div>'
-        '</div>'
-    )
+    cards = []
+    for item in two_step:
+        points = "".join(f"<li>{escape(point)}</li>" for point in item["points"])
+        cards.append(
+            f'<article class="two-step-card"><span>{escape(item["step"])}</span>'
+            f'<strong>{escape(item["label"])}</strong><h3>{escape(item["title"])}</h3><ul>{points}</ul></article>'
+        )
+    return f'<div class="two-step-ai">{"".join(cards)}</div>'
+
+
+def process_story_sections(sections: list[dict[str, Any]]) -> str:
+    output = []
+    for section in sections:
+        items = ""
+        if section.get("items"):
+            items = '<ul class="process-story-list">' + "".join(
+                f'<li>{escape(item)}</li>' for item in section["items"]
+            ) + "</ul>"
+        steps = ""
+        if section.get("steps"):
+            step_cards = []
+            for step in section["steps"]:
+                step_items = "".join(f'<li>{escape(item)}</li>' for item in step["items"])
+                step_cards.append(
+                    f'<article class="camera-process-card"><span>{escape(step["label"])}</span>'
+                    f'<h3>{escape(step["title"])}</h3><ul>{step_items}</ul></article>'
+                )
+            steps = f'<div class="camera-process-grid is-optical-flow">{"".join(step_cards)}</div>'
+        alt = " is-alt" if section.get("alt") else ""
+        output.append(
+            f'<section class="case-story-section{alt}" aria-labelledby="story-{escape(section["number"])}-heading">'
+            f'<div class="case-study-inner"><div class="case-story-heading">'
+            f'<p class="case-story-index">{escape(section["number"])} · {escape(section["label"])}</p>'
+            f'<h2 id="story-{escape(section["number"])}-heading">{escape(section["title"])}</h2></div>'
+            f'<div class="case-story-copy">{text_blocks(section["body"])}{items}</div>{steps}</div></section>'
+        )
+    return "".join(output)
 
 
 def rule_comparison(detail: dict[str, Any]) -> str:
@@ -490,14 +565,18 @@ def render_process_detail(case: dict[str, Any], lookup: dict[str, dict[str, Any]
         "SYSTEM_GRID_CLASS": (" " + detail["systemGridClass"]) if detail.get("systemGridClass") else "",
         "INSPECTION_SECTIONS": inspection_detail_sections(detail),
         "PROCESS_BEFORE_AFTER": process_before_after(detail),
+        "POST_SPEED_SECTIONS": process_story_sections(detail.get("postSpeedSections", [])),
+        "POST_RESULTS_SECTIONS": process_story_sections(detail.get("postResultsSections", [])),
         "SPEED_INDEX": detail.get("speedIndex", "08 · High Speed"),
         "SPEED_TITLE": detail["speed"]["title"], "SPEED_BODY": text_blocks(detail["speed"]["body"]),
         "SPEED_STAT": process_speed_stat(detail), "SPEED_ITEMS": speed_items,
         "AUTOMOTIVE_SPEED_STAT": automotive_speed_stat(detail),
         "RESULT_CARDS": result_cards, "RESULT_DETAILS": result_details,
         "RESULTS_HEADING": detail.get("resultsHeading", "구축 후 개선된 품질관리"),
+        "RESULTS_INDEX": detail.get("resultsIndex", "09 · Result"),
         "ENGINEERING_INTRO": text_blocks(detail["engineeringIntro"]), "ENGINEERING_ITEMS": engineering_items,
         "ENGINEERING_HEADING": detail.get("engineeringHeading", "ASPEC의 머신비전 시스템 설계 방식"),
+        "ENGINEERING_INDEX": detail.get("engineeringIndex", "10 · Engineering"),
         "MAINTENANCE": text_blocks(detail.get("maintenance", "")),
         "CLASSIFICATION_FIT": text_blocks(detail.get("classificationFit", "")),
         "CLASSIFICATION_FIT_ITEMS": "".join(f'<li>{escape(item)}</li>' for item in detail.get("classificationFitItems", [])),
@@ -506,9 +585,10 @@ def render_process_detail(case: dict[str, Any], lookup: dict[str, dict[str, Any]
         "RELATED_CASES_SECTION": related_cases_section(case, lookup),
         "HERO_KICKER": detail.get("heroKicker", "Automotive · Cognex AI Classification"),
         "AUTOMOTIVE_SPEED_INDEX": detail.get("speedIndex", "08 · Inspection Speed"),
+        "DETAIL_PAGE_CLASS": (" " + detail["pageClass"]) if detail.get("pageClass") else "",
     }
     output = template
-    escaped_tokens = {"TITLE", "META_DESCRIPTION", "CANONICAL", "OG_IMAGE", "CATEGORY_LABEL", "CASE_TITLE", "PAGE_HEADING", "HERO_SUBHEADING", "HERO_DESCRIPTION", "HERO_IMAGE", "HERO_IMAGE_ALT", "HERO_IMAGE_CAPTION", "SYSTEM_HEADING", "SYSTEM_GRID_CLASS", "SPEED_INDEX", "SPEED_TITLE", "RESULTS_HEADING", "ENGINEERING_HEADING", "CTA_TITLE", "CTA_BODY", "CTA_LABEL", "CTA_URL", "HERO_KICKER", "AUTOMOTIVE_SPEED_INDEX"}
+    escaped_tokens = {"TITLE", "META_DESCRIPTION", "CANONICAL", "OG_IMAGE", "CATEGORY_LABEL", "CASE_TITLE", "PAGE_HEADING", "HERO_SUBHEADING", "HERO_DESCRIPTION", "HERO_IMAGE", "HERO_IMAGE_ALT", "HERO_IMAGE_CAPTION", "SYSTEM_HEADING", "SYSTEM_GRID_CLASS", "SPEED_INDEX", "SPEED_TITLE", "RESULTS_HEADING", "RESULTS_INDEX", "ENGINEERING_HEADING", "ENGINEERING_INDEX", "CTA_TITLE", "CTA_BODY", "CTA_LABEL", "CTA_URL", "HERO_KICKER", "AUTOMOTIVE_SPEED_INDEX", "DETAIL_PAGE_CLASS"}
     for key, value in replacements.items():
         output = output.replace("{{" + key + "}}", escape(value) if key in escaped_tokens else value)
     if re.search(r"{{[A-Z0-9_]+}}", output):

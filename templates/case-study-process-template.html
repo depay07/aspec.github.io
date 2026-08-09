@@ -20,7 +20,7 @@
     <meta property="og:url" content="{{CANONICAL}}">
     <meta property="og:image" content="{{OG_IMAGE}}">
     <link rel="stylesheet" href="/styles.css">
-    <link rel="stylesheet" href="/case-study-pages.css?v=20260809-6">
+    <link rel="stylesheet" href="/case-study-pages.css?v=20260809-7">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script type="application/ld+json">{{WEBPAGE_JSON_LD}}</script>
     <script type="application/ld+json">{{BREADCRUMB_JSON_LD}}</script>
@@ -43,7 +43,7 @@
         </div>
     </nav>
 
-    <main class="case-study-page process-case-page">
+    <main class="case-study-page process-case-page{{DETAIL_PAGE_CLASS}}">
         <div class="case-breadcrumb-wrap">
             <nav class="case-study-inner case-breadcrumb" aria-label="Breadcrumb">
                 <a href="/">홈</a><span aria-hidden="true">›</span>
@@ -113,18 +113,18 @@
                 <ul class="process-speed-list">{{SPEED_ITEMS}}</ul>
             </div>
         </section>
-
+{{POST_SPEED_SECTIONS}}
         <section class="case-story-section" aria-labelledby="results-heading">
             <div class="case-study-inner">
-                <div class="case-story-heading"><p class="case-story-index">09 · Result</p><h2 id="results-heading">{{RESULTS_HEADING}}</h2></div>
+                <div class="case-story-heading"><p class="case-story-index">{{RESULTS_INDEX}}</p><h2 id="results-heading">{{RESULTS_HEADING}}</h2></div>
                 <div class="process-result-grid">{{RESULT_CARDS}}</div>
                 <ul class="process-result-list">{{RESULT_DETAILS}}</ul>
             </div>
         </section>
-
+{{POST_RESULTS_SECTIONS}}
         <section class="case-story-section is-alt" aria-labelledby="engineering-heading">
             <div class="case-study-inner">
-                <div class="case-story-heading"><p class="case-story-index">10 · Engineering</p><h2 id="engineering-heading">{{ENGINEERING_HEADING}}</h2></div>
+                <div class="case-story-heading"><p class="case-story-index">{{ENGINEERING_INDEX}}</p><h2 id="engineering-heading">{{ENGINEERING_HEADING}}</h2></div>
                 <div class="process-engineering-grid">
                     <div class="case-story-copy">{{ENGINEERING_INTRO}}</div>
                     <ul class="process-engineering-list">{{ENGINEERING_ITEMS}}</ul>
