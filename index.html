@@ -43,6 +43,11 @@
         .hero-secondary span { color: #93c5fd; }
         .hero-primary { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; padding: 0 1.25rem; border: 1px solid #fff; border-radius: 5px; background: #fff; color: #050508; font-size: .9rem; font-weight: 700; transition: background-color .2s ease, border-color .2s ease; }
         .hero-primary:hover { border-color: #d1d5db; background: #d1d5db; }
+        .equipment-choice-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 3rem; align-items: start; }
+        .equipment-choice-link { display: inline-flex; margin-top: 1.75rem; color: #93c5fd; font-weight: 600; }
+        .equipment-choice-link:hover { color: #bfdbfe; }
+        .equipment-choice-link span { margin-left: .5rem; }
+        .brand-index-row { display: grid; grid-template-columns: 7rem 1fr; gap: 1.25rem; padding: 1.25rem 0; border-bottom: 1px solid rgba(255,255,255,.1); }
         @media (max-width: 767px) {
             .hero-copy { border-left: 0; padding-left: 0; }
             .hero-label { margin-bottom: 1.15rem; font-size: .66rem; }
@@ -51,6 +56,8 @@
             .hero-description { margin-bottom: 1.6rem; font-size: .95rem; line-height: 1.75; }
             .hero-actions { flex-wrap: wrap; gap: .75rem 1.25rem; }
             .hero-primary { order: -1; }
+            .equipment-choice-grid { grid-template-columns: 1fr; }
+            .brand-index-row { grid-template-columns: 1fr; gap: .35rem; }
         }
     </style>
     <script type="application/ld+json">
@@ -162,6 +169,20 @@
                         <p class="text-gray-400 text-sm leading-relaxed">초기 예산이 제한된 현장에는 검사 난이도와 목표 품질을 먼저 확인한 뒤 필요한 성능만 남긴 합리적인 구성을 제안합니다.</p>
                     </article>
                 </div>
+            </div>
+        </section>
+
+        <section class="py-20 border-t border-white/10" aria-labelledby="equipment-choice-heading">
+            <div class="max-w-7xl mx-auto px-6 equipment-choice-grid">
+                <div>
+                    <h2 id="equipment-choice-heading" class="text-3xl md:text-4xl font-bold mb-6">검사 조건과 예산에 맞는 장비 선택</h2>
+                    <p class="text-gray-400 leading-relaxed">모든 검사에 같은 장비가 필요한 것은 아닙니다. Cognex가 더 적합한지, Hikrobot 스마트카메라와 VisionMaster로 필요한 AI 기능을 더 합리적인 비용에 구성할 수 있는지 검사 조건을 놓고 비교해보세요. 검사 난이도와 택타임, 필요한 AI 기능, 기존 설비 조건을 알려주시면 어느 방향이 맞는지부터 같이 살펴보겠습니다.</p>
+                    <a href="hikrobot.html" class="equipment-choice-link">Hikrobot 머신비전 살펴보기 <span aria-hidden="true">→</span></a>
+                </div>
+                <dl class="border-t border-white/15 text-sm">
+                    <div class="brand-index-row"><dt class="font-bold text-white">Cognex</dt><dd class="text-gray-400">In-Sight · DataMan · VisionPro</dd></div>
+                    <div class="brand-index-row"><dt class="font-bold text-white">Hikrobot</dt><dd class="text-gray-400">AI Smart Camera · VisionMaster · Deep Learning · Edge Learning</dd></div>
+                </dl>
             </div>
         </section>
 

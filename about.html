@@ -36,7 +36,8 @@
         .service-area-list{display:grid;grid-template-columns:6rem 1fr;gap:.45rem 1rem}
         .service-area-list dt{color:#cbd5e1;font-weight:600}
         .service-area-list dd{margin:0}
-        @media(max-width:767px){.about-hero-content{border-left:0;padding-left:0}.about-eyebrow{margin-bottom:1.15rem;font-size:.66rem}.about-eyebrow::before{width:1.75rem}.about-title{margin-bottom:1.25rem;font-size:2.25rem;line-height:1.24}.about-intro{font-size:.95rem;line-height:1.75}.service-area-list{grid-template-columns:1fr;gap:.15rem}.service-area-list dd{margin-bottom:.55rem}}
+        .brand-choice-grid{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:3rem;align-items:start}.brand-choice-link{display:inline-flex;color:#93c5fd;font-weight:600}.brand-choice-link:hover{color:#bfdbfe}.brand-choice-link span{margin-left:.5rem}
+        @media(max-width:767px){.about-hero-content{border-left:0;padding-left:0}.about-eyebrow{margin-bottom:1.15rem;font-size:.66rem}.about-eyebrow::before{width:1.75rem}.about-title{margin-bottom:1.25rem;font-size:2.25rem;line-height:1.24}.about-intro{font-size:.95rem;line-height:1.75}.service-area-list{grid-template-columns:1fr;gap:.15rem}.service-area-list dd{margin-bottom:.55rem}.brand-choice-grid{grid-template-columns:1fr;gap:2rem}}
     </style>
     <script type="application/ld+json">
     {
@@ -95,6 +96,20 @@
                     <article class="glass-card rounded-xl p-6"><h3 class="font-bold text-lg mb-2">Cognex 장비 적용</h3><p class="text-sm text-gray-400">In-Sight, VisionPro, PatMax, DataMan 기반 검사 시스템 구성</p></article>
                     <article class="glass-card rounded-xl p-6"><h3 class="font-bold text-lg mb-2">OCR검사</h3><p class="text-sm text-gray-400">LOT, 유통기한, 라벨, 각인, 인쇄 문자 인식</p></article>
                     <article class="glass-card rounded-xl p-6"><h3 class="font-bold text-lg mb-2">시스템 통합</h3><p class="text-sm text-gray-400">PLC 연동, MES 연동, 로봇비전, 검사 데이터 저장</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-white/5" aria-labelledby="brand-choice-heading">
+            <div class="max-w-7xl mx-auto px-6 brand-choice-grid">
+                <div>
+                    <p class="about-eyebrow">Equipment Selection</p>
+                    <h2 id="brand-choice-heading" class="text-3xl md:text-4xl font-bold">브랜드보다 검사 조건을 먼저 봅니다</h2>
+                </div>
+                <div class="space-y-5 text-gray-400 leading-relaxed">
+                    <p>Cognex를 주력으로 사용하고 있지만 모든 프로젝트를 한 브랜드에 맞추지는 않습니다. 검사 난이도와 필요한 AI 기능, 예산을 먼저 알려주세요. Hikrobot 스마트카메라와 VisionMaster가 더 알맞은지도 함께 살펴보겠습니다.</p>
+                    <p>고성능 시스템이 필요한지, 필요한 기능만 갖춘 AI 구성이 더 나은지부터 같이 비교해보겠습니다. 이미 사용 중인 장비가 있다면 유지할 수 있는 부분을 먼저 찾고, 카메라·렌즈·조명과 PLC·MES 연동 범위를 현장 조건에 맞춰 정리합니다.</p>
+                    <a href="hikrobot.html" class="brand-choice-link">Hikrobot 머신비전과 AI 구성 보기 <span aria-hidden="true">→</span></a>
                 </div>
             </div>
         </section>
