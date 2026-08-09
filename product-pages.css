@@ -17,6 +17,7 @@ body{background:#0B0C15;color:#fff}
 .product-filter[aria-pressed="true"]{border-color:#fff;background:#fff;color:#111827}
 .product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}
 .product-card{--accent:#93c5fd;display:flex;min-width:0;min-height:100%;flex-direction:column;overflow:hidden;border:1px solid rgba(255,255,255,.1);border-radius:8px;background:rgba(255,255,255,.045);transition:border-color .2s,transform .2s}
+.product-card[hidden]{display:none}
 .product-card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 60%,transparent)}
 .product-card[data-category="3d"]{--accent:#c4b5fd}
 .product-card[data-category="barcode"]{--accent:#f9a8d4}
