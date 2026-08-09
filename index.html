@@ -32,6 +32,26 @@
         .from-brand-dark\/20 { --tw-gradient-from: rgb(5 5 8 / 0.2) var(--tw-gradient-from-position); --tw-gradient-to: rgb(5 5 8 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
         .via-brand-dark\/65 { --tw-gradient-to: rgb(5 5 8 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(5 5 8 / 0.65) var(--tw-gradient-via-position), var(--tw-gradient-to); }
         .to-brand-dark { --tw-gradient-to: #050508 var(--tw-gradient-to-position); }
+        .hero-copy { max-width: 62rem; border-left: 1px solid rgba(148, 163, 184, .32); padding-left: 2rem; }
+        .hero-label { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.5rem; color: #93c5fd; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+        .hero-label::before { width: 2.5rem; height: 1px; background: rgba(147, 197, 253, .7); content: ""; }
+        .hero-title { max-width: 60rem; margin-bottom: 1.5rem; font-size: 3rem; font-weight: 700; line-height: 1.18; }
+        .hero-description { max-width: 51rem; margin-bottom: 2rem; color: #d1d5db; font-size: 1.0625rem; line-height: 1.85; }
+        .hero-actions { display: flex; align-items: center; gap: 1.75rem; }
+        .hero-secondary { display: inline-flex; align-items: center; gap: .55rem; padding: .65rem 0; border-bottom: 1px solid rgba(255, 255, 255, .28); color: #e5e7eb; font-size: .9rem; font-weight: 600; transition: border-color .2s ease, color .2s ease; }
+        .hero-secondary:hover { border-color: #93c5fd; color: #fff; }
+        .hero-secondary span { color: #93c5fd; }
+        .hero-primary { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; padding: 0 1.25rem; border: 1px solid #fff; border-radius: 5px; background: #fff; color: #050508; font-size: .9rem; font-weight: 700; transition: background-color .2s ease, border-color .2s ease; }
+        .hero-primary:hover { border-color: #d1d5db; background: #d1d5db; }
+        @media (max-width: 767px) {
+            .hero-copy { border-left: 0; padding-left: 0; }
+            .hero-label { margin-bottom: 1.15rem; font-size: .66rem; }
+            .hero-label::before { width: 1.75rem; }
+            .hero-title { margin-bottom: 1.25rem; font-size: 2.25rem; line-height: 1.24; }
+            .hero-description { margin-bottom: 1.6rem; font-size: .95rem; line-height: 1.75; }
+            .hero-actions { flex-wrap: wrap; gap: .75rem 1.25rem; }
+            .hero-primary { order: -1; }
+        }
     </style>
     <script type="application/ld+json">
     {
@@ -96,20 +116,14 @@
             <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/20 via-brand-dark/65 to-brand-dark"></div>
         </div>
         <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="max-w-4xl">
-                <p class="inline-flex px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-300 text-xs font-bold tracking-wide uppercase mb-6">Machine Vision & AI Inspection</p>
-                <h1 class="text-4xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
-                    <span class="gradient-text">코그넥스 대리점 ASPEC</span>이 머신비전 검사 자동화를 함께합니다
-                </h1>
-                <p class="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
-                    ASPEC은 Cognex 코그넥스 공식 대리점으로 In-Sight, VisionPro, PatMax, DataMan 바코드리더기와
-                    머신비전 조명, 머신비전 케이블, 머신비전 렌즈, 산업용 카메라를 현장 조건에 맞춰 구성합니다.
-                    OCR검사, AI 비전검사, 로봇비전, PLC·MES 연동까지 생산라인에 맞춘 스마트팩토리 비전 솔루션을 설계하고 구축합니다.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-3">
-                    <a href="products.html" class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-white text-slate-950 hover:bg-slate-200 border border-white font-bold shadow-[0_10px_28px_rgba(255,255,255,0.16)] transition-colors">제품·솔루션 보기</a>
-                    <a href="portfolio.html" class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-white text-slate-950 hover:bg-slate-200 border border-white font-bold shadow-[0_10px_28px_rgba(255,255,255,0.16)] transition-colors">구축사례 보기</a>
-                    <a href="contact.html" class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-white text-slate-950 hover:bg-slate-200 border border-white font-bold shadow-[0_10px_28px_rgba(255,255,255,0.16)] transition-colors">프로젝트 문의</a>
+            <div class="hero-copy">
+                <p class="hero-label">Machine Vision / AI Inspection</p>
+                <h1 class="hero-title">어려운 머신비전 검사, ASPEC이 현장에 맞는 방법을 함께 찾아드리겠습니다.</h1>
+                <p class="hero-description">ASPEC은 Cognex(코그넥스) 공식 대리점입니다. In-Sight, VisionPro, DataMan 바코드 리더기를 비롯해 산업용 카메라와 머신비전 렌즈·조명·케이블을 검사 대상과 현장 조건에 맞춰 함께 검토해드립니다. OCR, AI 비전검사, 바코드, 로봇비전은 물론 PLC·MES 연동까지 필요한 범위에 맞춰 시스템 구축을 도와드리겠습니다.</p>
+                <div class="hero-actions">
+                    <a href="products.html" class="hero-secondary">제품·솔루션 보기 <span aria-hidden="true">→</span></a>
+                    <a href="portfolio.html" class="hero-secondary">구축사례 보기 <span aria-hidden="true">→</span></a>
+                    <a href="contact.html" class="hero-primary">프로젝트 문의</a>
                 </div>
             </div>
         </div>
