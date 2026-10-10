@@ -17,13 +17,13 @@
 - `generate_lead`: FormSubmit이 성공을 반환한 문의 접수만 측정합니다. 이메일 실제 전달/영업 성사까지 보장하는 이벤트는 아닙니다.
 - `inquiry_click`: 문의 페이지 이동 버튼 클릭. 문의 접수와 구분합니다.
 - `contact_click`: 전화 또는 이메일 링크 클릭. 실제 통화 완료나 이메일 발송과 구분합니다.
-- `generate_lead`의 매개변수: `lead_source`, `product_id`, `service_type`. 문의 내용·연락처·회사명은 이벤트로 보내지 않습니다. GA4 자동 향상된 측정의 양식 상호작용도 점검해 중복 전환을 피하세요.
+- `generate_lead`의 매개변수: `lead_source`, `service_type`. 문의 내용·연락처·회사명은 이벤트로 보내지 않습니다. GA4 자동 향상된 측정의 양식 상호작용도 점검해 중복 전환을 피하세요.
 
 1. 실제 문의 접수가 필요할 때 GA4 실시간/DebugView에서 `generate_lead`가 도착하는지 확인합니다. 개발 검증은 가짜 HTTP 응답으로 수행했으며 테스트 메일을 보내지 않았습니다.
 2. GA4에서 `generate_lead`를 주요 이벤트로 지정합니다.
 3. GA4와 Google Ads를 연결하고 `generate_lead`를 Google Ads의 문의 전환으로 가져옵니다. 이미 같은 전환이 있다면 중복 생성하지 마세요.
 4. 문의 전환 집계는 보통 광고 상호작용당 **1회**로 설정합니다. 문의 버튼·전화 클릭은 보조 전환으로 검토합니다.
-5. 제품별 분석이 필요하면 `product_id`와 `service_type`을 이벤트 범위 맞춤 측정기준으로 등록합니다.
+5. 문의 유형별 분석이 필요하면 `service_type`을 이벤트 범위 맞춤 측정기준으로 등록합니다.
 
 ## 광고그룹과 도착 페이지
 
@@ -45,8 +45,10 @@
 
 - 구축사례는 `data/case-studies.json`과 `templates/`를 수정한 뒤 `python scripts/build-case-studies.py`로 생성합니다. 새 공통 메뉴·자산 연결은 템플릿에도 반영했습니다.
 - 확인: `python scripts/build-case-studies.py --check` 및 `python scripts/check-site.py`.
-- 새 제품 추가 시 제품 소개의 WebPage, 실제 이미지·설명, 문의 제품 선택 옵션, 상단·하단 문의 링크와 사이트맵을 함께 관리합니다.
+- 새 제품 추가 시 제품 소개의 WebPage, 실제 이미지·설명, 상단·하단 문의 링크와 사이트맵을 함께 관리합니다.
 - 모바일 메뉴는 HTML details 요소로 작동하므로 JavaScript가 없어도 링크를 탐색할 수 있습니다.
 - 문의 전송 서비스 FormSubmit의 수신 주소 활성화 상태와 실제 수신 여부는 별도로 관리합니다.
 
 공식 참고: [제품 스니펫](https://developers.google.com/search/docs/appearance/structured-data/product-snippet?hl=ko), [Google이 지원하는 메타 태그](https://developers.google.com/search/docs/crawling-indexing/special-tags), [GA4 권장 이벤트](https://developers.google.com/analytics/devguides/collection/ga4/reference/events#generate_lead).
+
+2026-10-10 추가 수정: 문의 제품 선택란과 제품 자동 선택·제품별 이벤트 매개변수를 제거했습니다. 제품 페이지 문의 버튼은 일반 문의 폼으로 이동합니다.

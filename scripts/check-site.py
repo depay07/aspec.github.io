@@ -58,12 +58,6 @@ def main():
             if url.fragment and target.suffix == '.html':
                 target_page = pages.get(target) or Page(target.read_text())
                 if unquote(url.fragment) not in target_page.ids: errors.append(f'{path.relative_to(ROOT)} → missing anchor {link}')
-            if target.name == 'contact.html' and url.query:
-                from urllib.parse import parse_qs
-                product = parse_qs(url.query).get('product', [None])[0]
-                if product and product not in pages[(ROOT/'contact.html').resolve()].ids:
-                    # IDs below follow the select option values, checked separately.
-                    if f'value="{product}"' not in (ROOT/'contact.html').read_text(): errors.append(f'Unknown inquiry product {product}')
     assert not errors, '\n'.join(errors)
     print(f'PASS: {len(urls)} published pages; JSON-LD, canonical, H1, descriptions, mobile menus, assets, links and anchors.')
 if __name__ == '__main__': main()
