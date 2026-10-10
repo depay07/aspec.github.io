@@ -12,7 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI 비전검사·비전검사기 구축 | 외관검사 자동화 ASPEC</title>
     <meta name="description" content="AI 비전검사, AI검사, 비전검사기, 외관검사 장비, 딥러닝 불량검사, 저비용 머신비전 시스템을 생산라인 조건에 맞춰 설계·구축하는 ASPEC의 검사 자동화 안내 페이지입니다.">
-    <meta name="keywords" content="AI 비전검사, AI검사, AI 검사, ai비전검사, ai검사, 비전검사기, 비전 검사기, 비전검사 장비, AI 검사 장비, 외관검사 장비, 딥러닝 비전검사, 딥러닝 외관검사, 불량검사 자동화, 표면검사, 스크래치 검사, 이물 검사, 누락 검사, 머신비전 시스템, 머신비전 업체, 저비용 머신비전, 예산형 머신비전, 코그넥스 비전검사, Cognex, ASPEC">
     <link rel="canonical" href="https://www.aspec-tech.co.kr/ai-vision.html">
     <meta name="robots" content="index, follow">
     <meta property="og:type" content="website">
@@ -35,6 +34,8 @@
       "description": "생산라인의 불량 유형, 택타임, 조명 조건, PLC MES 연동 조건에 맞춰 AI 비전검사와 비전검사기 시스템을 설계하고 구축합니다."
     }
     </script>
+    <link rel="stylesheet" href="/site-enhancements.css?v=20261010">
+    <script defer src="/site-enhancements.js?v=20261010"></script>
 </head>
 <body class="antialiased">
     <nav class="fixed w-full z-50 bg-brand-dark/85 backdrop-blur-md border-b border-white/10">
@@ -45,12 +46,15 @@
                 <a href="about.html" class="hover:text-white">회사소개</a>
                 <a href="products.html" class="hover:text-white">제품·솔루션</a>
                 <a href="ai-vision.html" class="text-white font-bold">AI검사</a>
+                <a href="/ocr-inspection.html" class="hover:text-white">OCR·OCV</a>
+                <a href="/hikrobot.html" class="hover:text-white">Hikrobot</a>
                 <a href="vision-accessories.html" class="hover:text-white">조명·케이블</a>
                 <a href="barcode-reader.html" class="hover:text-white">바코드</a>
                 <a href="vision-software.html" class="hover:text-white">SW개발</a>
                 <a href="portfolio.html" class="hover:text-white">구축사례</a>
                 <a href="contact.html" class="hover:text-white">문의</a>
             </div>
+            <details class="site-mobile-menu"><summary aria-label="사이트 메뉴 열기">메뉴</summary><div class="site-mobile-links"><a href="/">홈</a><a href="/products.html">제품·솔루션</a><a href="/ai-vision.html">AI 비전검사</a><a href="/ocr-inspection.html">OCR·OCV 문자검사</a><a href="/barcode-reader.html">바코드·DPM</a><a href="/hikrobot.html">Hikrobot</a><a href="/vision-software.html">SW 개발</a><a href="/vision-accessories.html">조명·렌즈·케이블</a><a href="/portfolio.html">구축사례</a><a href="/about.html">회사소개</a><a href="/contact.html">견적·샘플 테스트 문의</a></div></details>
         </div>
     </nav>
 
@@ -61,7 +65,7 @@
                 <h1 class="text-4xl md:text-6xl font-bold mb-6">AI 비전검사, 현장에 맞는 방법을 함께 찾아드리겠습니다</h1>
                 <p class="text-xl text-gray-300 leading-relaxed mb-8">스크래치, 찍힘, 이물, 누락, 조립 오류처럼 기준을 하나의 규칙으로 정하기 어려운 검사라면 AI를 검토해볼 수 있습니다. 샘플 이미지와 실제 불량을 보여주세요. 조명과 카메라 조건부터 생산 택타임까지 살펴본 뒤, AI가 맞는지 기존 비전 방식이 더 나은지부터 같이 확인해보겠습니다.</p>
                 <div class="flex flex-col sm:flex-row gap-3">
-                    <a href="contact.html" class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-white text-slate-950 hover:bg-slate-200 border border-white font-bold shadow-[0_10px_28px_rgba(255,255,255,0.16)] transition-colors">AI 검사 상담</a>
+                    <a href="/contact.html?service=ai#contact-form" class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-white text-slate-950 hover:bg-slate-200 border border-white font-bold shadow-[0_10px_28px_rgba(255,255,255,0.16)] transition-colors">AI 검사 상담</a>
                     <a href="portfolio.html" class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-white text-slate-950 hover:bg-slate-200 border border-white font-bold shadow-[0_10px_28px_rgba(255,255,255,0.16)] transition-colors">구축사례 보기</a>
                 </div>
             </div>
@@ -150,12 +154,13 @@
             <div class="max-w-5xl mx-auto px-6 text-center">
                 <h2 class="text-3xl font-bold mb-5">AI 비전검사 샘플 테스트가 필요하신가요?</h2>
                 <p class="text-gray-400 mb-8">검사하려는 제품과 정상·불량 샘플을 보여주세요. 목표 택타임과 설치 공간까지 알려주시면 현재 조건에서 AI 검사가 맞는지, 어떤 카메라와 광학 구성이 필요한지부터 같이 확인해보겠습니다.</p>
-                <a href="contact.html" class="inline-flex px-7 py-3 rounded-lg bg-white text-slate-950 hover:bg-slate-200 border border-white font-bold shadow-[0_10px_28px_rgba(255,255,255,0.16)] transition-colors">프로젝트 문의하기</a>
+                <a href="/contact.html?service=ai#contact-form" class="inline-flex px-7 py-3 rounded-lg bg-white text-slate-950 hover:bg-slate-200 border border-white font-bold shadow-[0_10px_28px_rgba(255,255,255,0.16)] transition-colors">프로젝트 문의하기</a>
             </div>
         </section>
+    <section class="solution-evidence"><div class="enhance-inner"><p class="enhance-kicker">APPLICATION ENGINEERING</p><h2>샘플로 확인하는 AI 외관검사</h2><p class="enhance-lead">AI 비전검사는 학습 이미지 수보다 정상·불량의 구분 기준과 촬영 재현성이 먼저입니다. 다른 생산일, 제품 위치, 표면 상태의 샘플을 분리해 검증하고 미검출·과검출과 전체 처리시간을 함께 확인합니다.</p><div class="enhance-grid"><a class="enhance-card" href="/case-studies/pharmaceutical-film-vision-inspection.html"><h3>의약품 포장지 이물검사</h3><p>필름의 이물과 인쇄 영역을 구분하는 검사 구성</p><span>자세히 보기 →</span></a><a class="enhance-card" href="/case-studies/automotive-transmission-tap-ai-inspection.html"><h3>자동차 부품 탭 AI 검사</h3><p>제품 형상과 검사 영역을 고려한 불량 판정</p><span>자세히 보기 →</span></a><a class="enhance-card" href="/ocr-inspection.html"><h3>AI OCR·OCV 문자검사</h3><p>문자 위치 검출과 판독을 나누는 검사 방식</p><span>자세히 보기 →</span></a></div></div></section>
     </main>
 
-    <footer class="border-t border-white/10 py-8 text-center text-gray-500 text-sm">
+    <footer class="border-t border-white/10 py-8 text-center text-gray-500 text-sm"><nav class="site-footer-links" aria-label="솔루션 바로가기"><a href="/products.html">제품·솔루션</a><a href="/ai-vision.html">AI 비전검사</a><a href="/ocr-inspection.html">OCR·OCV 문자검사</a><a href="/barcode-reader.html">바코드·DPM</a><a href="/hikrobot.html">Hikrobot</a><a href="/vision-software.html">SW 개발</a><a href="/vision-accessories.html">조명·렌즈·케이블</a><a href="/portfolio.html">구축사례</a></nav><p class="site-footer-contact"><a href="tel:01096795522">010-9679-5522</a> · <a href="mailto:sales@aspec-tech.co.kr">sales@aspec-tech.co.kr</a></p>
         <p>&copy; 2026 ASPEC. All rights reserved.</p>
     </footer>
 </body>
