@@ -370,6 +370,20 @@ def inspection_detail_sections(detail: dict[str, Any]) -> str:
             f'<h2 id="inspection-{escape(section["number"])}-heading">{escape(section["title"])}</h2>'
             f'{text_blocks(section["body"])}{items}{visual}</div></div></section>'
         )
+    videos = detail.get("videos", [])
+    if videos:
+        media = "".join(
+            f'<figure class="inspection-media"><video controls playsinline preload="none" style="width:100%;height:auto" aria-label="{escape(item["title"])}">'
+            f'<source src="{escape(nested_asset(item["src"]))}" type="video/mp4">'
+            f'<a href="{escape(nested_asset(item["src"]))}">영상 다운로드</a></video>'
+            f'<figcaption>{escape(item["title"])}</figcaption></figure>'
+            for item in videos
+        )
+        sections.append('<section class="case-story-section" aria-labelledby="project-videos-heading"><div class="case-study-inner">'
+                        '<div class="case-story-heading"><p class="case-story-index">Project Videos</p><h2 id="project-videos-heading">실제 검사·자동화 영상</h2></div>'
+                        f'<div class="case-gallery">{media}</div></div></section>')
+    if detail.get("sourceUrl"):
+        sections.append('<div class="case-study-inner case-story-copy"><p><a href="' + escape(detail["sourceUrl"]) + '">ASPEC 블로그에서 프로젝트 원문 보기</a></p></div>')
     return "".join(sections)
 
 

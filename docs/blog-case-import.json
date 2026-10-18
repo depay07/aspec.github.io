@@ -1,0 +1,113 @@
+{
+  "importedOn": "2026-10-18",
+  "category": 6,
+  "existingCases": 6,
+  "addedCases": 15,
+  "sources": [
+    {
+      "postId": "224333808640",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224333808640",
+      "slug": "water-filter-dimension-appearance",
+      "imageCount": 4,
+      "videoCount": 0
+    },
+    {
+      "postId": "224428174754",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224428174754",
+      "slug": "automotive-sealing-ai-defect-inspection",
+      "imageCount": 17,
+      "videoCount": 0
+    },
+    {
+      "postId": "224333803389",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224333803389",
+      "slug": "ev-motor-die-ai-surface-inspection",
+      "imageCount": 11,
+      "videoCount": 0
+    },
+    {
+      "postId": "224333783810",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224333783810",
+      "slug": "automotive-bumper-primer-ai-classification",
+      "imageCount": 5,
+      "videoCount": 0
+    },
+    {
+      "postId": "224333792657",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224333792657",
+      "slug": "cosmetic-foundation-cover-robot-alignment",
+      "imageCount": 3,
+      "videoCount": 0
+    },
+    {
+      "postId": "224332598979",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224332598979",
+      "slug": "robot-pick-place-vision-calibration",
+      "imageCount": 1,
+      "videoCount": 0
+    },
+    {
+      "postId": "224412355803",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224412355803",
+      "slug": "pharmaceutical-package-ai-foreign-material",
+      "imageCount": 10,
+      "videoCount": 1
+    },
+    {
+      "postId": "224333772348",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224333772348",
+      "slug": "pp-bag-production-date-ai-ocr",
+      "imageCount": 11,
+      "videoCount": 0
+    },
+    {
+      "postId": "224332586729",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224332586729",
+      "slug": "cosmetic-nose-strip-count-appearance",
+      "imageCount": 5,
+      "videoCount": 0
+    },
+    {
+      "postId": "224332571090",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224332571090",
+      "slug": "ev-motor-press-seating-hdr-ai",
+      "imageCount": 1,
+      "videoCount": 1
+    },
+    {
+      "postId": "224329328013",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224329328013",
+      "slug": "infusion-bag-ai-pattern-robot-pick",
+      "imageCount": 8,
+      "videoCount": 0
+    },
+    {
+      "postId": "224329285532",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224329285532",
+      "slug": "food-expiry-ocr-box-package-inspection",
+      "imageCount": 8,
+      "videoCount": 0
+    },
+    {
+      "postId": "224332578544",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224332578544",
+      "slug": "food-six-sided-barcode-tunnel",
+      "imageCount": 3,
+      "videoCount": 0
+    },
+    {
+      "postId": "224354786926",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224354786926",
+      "slug": "reflective-metal-date-ai-ocr",
+      "imageCount": 9,
+      "videoCount": 0
+    },
+    {
+      "postId": "224354746312",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224354746312",
+      "slug": "automotive-button-laser-marking-alignment",
+      "imageCount": 3,
+      "videoCount": 4
+    }
+  ]
+}
