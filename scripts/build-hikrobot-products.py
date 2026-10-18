@@ -59,7 +59,7 @@ def render(p,products,catalog,template):
 
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--check',action='store_true');args=ap.parse_args();changed=[]
- payload=json.loads((ROOT/'data/hikrobot-products.json').read_text());products=payload['products'];assert len(products)==13;assert len({p['slug'] for p in products})==13
+ payload=json.loads((ROOT/'data/hikrobot-products.json').read_text());products=payload['products'];assert products;assert len({p['slug'] for p in products})==len(products)
  template=(ROOT/'templates/hikrobot-product-template.html').read_text()
  for p in products:
   assert (ROOT/p['image']).is_file()
@@ -68,7 +68,7 @@ def main():
  library=f'''<!-- HIKROBOT_PRODUCTS:START -->
         <section class="product-hub-section hikrobot-product-library" data-product-library aria-labelledby="hikrobot-products-heading">
             <div class="section-inner"><p class="section-kicker">Hikrobot Product Library</p><h2 id="hikrobot-products-heading" class="section-heading">Hikrobot 하이크로봇 제품</h2><p class="section-lead">비전센서와 AI 스마트카메라, 고정식·물류용·핸드형 바코드 리더기. 검사 방식과 설치 조건에 맞는 시리즈를 확인해 보세요.</p>
-            <div class="product-toolbar"><div class="product-search-wrap"><label for="hikrobot-product-search" class="product-search-label">하이크로봇 제품 검색</label><input id="hikrobot-product-search" class="product-search" type="search" autocomplete="off" placeholder="시리즈 또는 모델 검색 (예: SC5000X, IDH3000)"></div><p class="product-count" aria-live="polite">13개 제품</p></div>
+            <div class="product-toolbar"><div class="product-search-wrap"><label for="hikrobot-product-search" class="product-search-label">하이크로봇 제품 검색</label><input id="hikrobot-product-search" class="product-search" type="search" autocomplete="off" placeholder="시리즈 또는 모델 검색 (예: SC5000X, IDH3000)"></div><p class="product-count" aria-live="polite">{len(products)}개 제품</p></div>
             <div class="product-filters" role="group" aria-label="Hikrobot 제품 카테고리"><button class="product-filter" type="button" data-filter="all" aria-pressed="true">전체</button>{filters}</div>
             <div class="product-grid">{''.join(card(p) for p in products)}</div><p class="product-empty">검색 조건에 맞는 제품이 없습니다. 시리즈명이나 모델명을 다시 확인해 주세요.</p><a href="hikrobot.html" class="hikrobot-hub-link">Hikrobot 머신비전·AI 시스템 구성 보기 <span aria-hidden="true">→</span></a></div>
         </section>
@@ -85,6 +85,6 @@ def main():
  if '<!-- HIKROBOT_PRODUCTS:START -->' in sitemap:sitemap=re.sub(r'<!-- HIKROBOT_PRODUCTS:START -->.*?<!-- HIKROBOT_PRODUCTS:END -->',block,sitemap,flags=re.S)
  else:sitemap=sitemap.replace('</urlset>',block+'\n</urlset>')
  write(ROOT/'sitemap.xml',sitemap,args.check,changed)
- print('HIKROBOT: 13 products; '+('would change: ' if args.check else 'changed: ')+(', '.join(changed) if changed else 'none'))
+ print(f'HIKROBOT: {len(products)} products; '+('would change: ' if args.check else 'changed: ')+(', '.join(changed) if changed else 'none'))
  return bool(changed) if args.check else 0
 if __name__=='__main__':raise SystemExit(main())
