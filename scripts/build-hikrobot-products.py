@@ -46,8 +46,9 @@ def render(p,products,catalog,template):
  else:
   faq=[('프레임레이트가 판독 속도인가요?','영상 취득·처리 프레임레이트와 초당 코드 판독 수, 실제 라인 처리 속도는 서로 다른 값입니다. 노출·광량·코드 수와 통신 시간을 포함해 확인해야 합니다.'),('설치 거리와 렌즈는 어떻게 정하나요?','최소 코드 모듈 크기, 판독 범위, 작업거리와 제품 높이 편차를 기준으로 센서·렌즈·조명을 선정합니다.'),('기존 PLC·MES에 연결할 수 있나요?','지원 인터페이스·프로토콜과 기존 데이터 형식을 확인한 뒤 리더기, PLC 또는 중계 프로그램을 통한 결과 전달 구성을 검토할 수 있습니다.')]
  body+=section('08 · FAQ','제품 선정 FAQ','<div class="detail-faq">'+''.join('<details><summary>'+esc(q)+'</summary><p>'+esc(a)+'</p></details>' for q,a in faq)+'</div>',True)
- sources='<p class="detail-section-lead"><a href="'+esc(catalog['url'])+'">HIKROBOT 제조사 제품 카탈로그</a> · 참조 페이지 '+esc(', '.join(map(str,p['catalogPages'])))+'</p>'
- if p.get('sourceUrl'):sources+='<p class="detail-section-lead"><a href="'+esc(p['sourceUrl'])+'">HIKROBOT 공식 제품 정보</a></p>'
+ sources='<p class="detail-section-lead"><a href="'+esc(catalog['url'])+'">HIKROBOT 제조사 제품 카탈로그 (영문 PDF)</a> · 참조 페이지 '+esc(', '.join(map(str,p['catalogPages'])))+'</p>'
+ if p.get('sourceUrl'):assert p['sourceUrl'].startswith('https://www.hikrobotics.com/en/'), 'Product resource must use the verified English site'
+ if p.get('sourceUrl'):sources+='<p class="detail-section-lead"><a href="'+esc(p['sourceUrl'])+'">HIKROBOT 공식 제품 정보 (영문)</a></p>'
  body+=section('09 · Product Resources','제품 자료',sources)
  body+=section('10 · Project Inquiry','제품 선정·견적 및 샘플 테스트','<div class="detail-cta"><div><p>검사 대상 또는 판독 코드, 설치 거리와 생산 속도를 알려주세요.</p></div>'+actions+'</div>',True)
  main='<main class="detail-page">'+breadcrumb+hero+body+'</main>'
