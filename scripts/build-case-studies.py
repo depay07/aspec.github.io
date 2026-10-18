@@ -387,29 +387,6 @@ def inspection_detail_sections(detail: dict[str, Any]) -> str:
     return "".join(sections)
 
 
-def process_photo_gallery(detail: dict[str, Any]) -> str:
-    figures = []
-    seen: set[str] = set()
-    for section in detail["inspectionSections"]:
-        for image in section.get("images", []):
-            if image["src"] in seen:
-                continue
-            seen.add(image["src"])
-            figures.append(
-                f'<a class="process-photo-card" href="#inspection-{escape(section["number"])}-heading">'
-                f'<figure><img src="{escape(nested_asset(image["src"]))}" alt="{escape(image["alt"])}" '
-                f'loading="eager" decoding="async"><figcaption>{escape(image["caption"])}</figcaption></figure></a>'
-            )
-    if not figures:
-        return ""
-    return (
-        '<section class="process-photo-gallery-section" aria-labelledby="process-photo-gallery-heading">'
-        '<div class="case-study-inner"><div class="process-photo-gallery-heading">'
-        '<p class="case-study-kicker">Project Photos</p>'
-        f'<h2 id="process-photo-gallery-heading">{escape(detail.get("galleryHeading", "실제 구축 현장 및 검사 화면"))}</h2></div>'
-        f'<div class="process-photo-gallery">{"".join(figures)}</div></div></section>'
-    )
-
 
 def process_before_after(detail: dict[str, Any]) -> str:
     comparison = detail.get("beforeAfter")
@@ -568,7 +545,7 @@ def render_process_detail(case: dict[str, Any], lookup: dict[str, dict[str, Any]
         "HERO_DESCRIPTION": detail["heroDescription"], "HERO_IMAGE": nested_asset(case["heroImage"]),
         "HERO_IMAGE_ALT": case.get("heroImageAlt") or case["title"],
         "HERO_IMAGE_CAPTION": case.get("heroImageCaption") or case["title"],
-        "PROCESS_FACTS": process_fact_items(detail), "PROCESS_PHOTO_GALLERY": process_photo_gallery(detail),
+        "PROCESS_FACTS": process_fact_items(detail),
         "OVERVIEW": text_blocks(case["overview"]),
         "PROBLEM": text_blocks(case["problem"]), "CHALLENGES": challenges,
         "RULE_BASED": text_blocks(detail.get("ruleBased", "")),
