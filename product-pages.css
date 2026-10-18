@@ -161,3 +161,18 @@ body{background:#0B0C15;color:#fff}
 @media (max-width:720px){.section-inner{width:min(100% - 2rem,80rem)}.product-hub-section{padding:4rem 0}.product-toolbar{align-items:stretch;flex-direction:column}.product-search-wrap{flex-basis:auto;max-width:none}.product-count{padding:0}.product-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.product-filter{width:100%;padding:.55rem .45rem}.product-grid{grid-template-columns:1fr}.product-actions{grid-template-columns:1fr}.detail-page{padding-top:4.25rem}.detail-hero{padding:3.25rem 0 4rem}.detail-hero-grid{gap:2rem}.detail-title{font-size:2.45rem}.detail-visual{min-height:17rem}.detail-section{padding:3.5rem 0}.detail-grid,.detail-list,.related-grid,.support-steps{grid-template-columns:1fr}.detail-cta{align-items:flex-start;flex-direction:column;padding:1.5rem}.detail-actions{width:100%}.detail-button{width:100%}}
 @media (max-width:720px){.catalog-3900 .catalog-hero{padding:3.5rem 0 3rem}.catalog-3900 .detail-title{font-size:3rem}.catalog-subtitle{font-size:1.05rem}.catalog-product-stage{min-height:19rem}.catalog-product-stage img{height:18rem}.catalog-quick-specs{padding:3rem 0}.catalog-section-heading h2,.catalog-copy-grid h2{font-size:1.85rem}.catalog-feature-grid,.catalog-model-grid,.catalog-optics-grid,.catalog-process,.catalog-related-products{grid-template-columns:1fr}.catalog-feature-grid article{min-height:12rem}.catalog-feature-grid h3{margin-top:1.7rem}.catalog-function-list article{grid-template-columns:1fr;gap:.55rem}.catalog-data-list>div{grid-template-columns:1fr;min-height:0}.catalog-application-grid{grid-template-columns:1fr}.catalog-related-products img{height:13rem}.catalog-spec-table th,.catalog-spec-table td{padding:.85rem;font-size:.8rem}}
 @media (max-width:390px){.product-filters{grid-template-columns:1fr}.detail-title{font-size:2.15rem}}
+
+/* HIKROBOT catalog additions share the Cognex card and detail layout. */
+.hikrobot-product-library{border-top:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.02)}
+.hik-product-keyline{margin-top:1.1rem;color:#bfdbfe;font-size:1.15rem;line-height:1.65;font-weight:600}
+.hik-spec-wrap{margin-top:2rem;overflow-x:auto;border:1px solid rgba(255,255,255,.13);border-radius:8px}
+.hik-spec-table{width:100%;min-width:44rem;border-collapse:collapse;text-align:left}
+.hik-spec-table caption{text-align:left;padding:1rem;background:#151925;color:#dbeafe;font-weight:600}
+.hik-spec-table th,.hik-spec-table td{padding:1rem;border-bottom:1px solid rgba(255,255,255,.1);vertical-align:top;font-size:.9rem;line-height:1.6}
+.hik-spec-table thead{background:rgba(255,255,255,.04);color:#bfdbfe}
+.hik-spec-table tbody th{font-weight:500;color:#e5e7eb;overflow-wrap:anywhere}
+.hik-spec-table td{color:#b6bdc8}
+.hik-spec-table tr:last-child>*{border-bottom:0}
+.hikrobot-product-library .product-card[data-category="handheld"]{--accent:#f9a8d4}
+.hikrobot-product-library .product-card[data-category="smart"]{--accent:#c4b5fd}
+@media(max-width:720px){.hik-spec-table th,.hik-spec-table td{padding:.8rem;font-size:.82rem}}
