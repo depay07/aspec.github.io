@@ -41,7 +41,15 @@ body {
   color: var(--color-ink);
   font-family: var(--font-body);
   letter-spacing: 0;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
+/* Center constrained headings inside centered sections as well as their text. */
+.text-center h1,
+.text-center h2,
+.text-center h3 { margin-inline: auto; }
+.page-accessories table td:first-child,
+.page-accessories table th:first-child { white-space: nowrap; padding-right: 1rem; }
 
 a, button, input, select, textarea, summary { transition: color var(--dur-short), background-color var(--dur-short), border-color var(--dur-short), opacity var(--dur-short); }
 a { text-decoration: none; }
@@ -400,8 +408,11 @@ body:not(.page-home) > header .text-xl {
 .glass-card { padding: 1.6rem !important; }
 .glass-card h3 { margin-bottom: .75rem; color: var(--color-ink); font-size: 1.08rem; }
 .glass-card p { color: var(--color-muted); }
-.page-home .brand-index-row { border-color: var(--color-rule); }
-.page-home .brand-index-row dt { color: var(--color-cool); font-family: var(--font-outlier); }
+.page-home .brand-index-row { grid-template-columns: 11rem minmax(0, 1fr); border-color: var(--color-rule); }
+.page-home .brand-index-row dt { color: var(--color-cool); font-family: var(--font-body); white-space: nowrap; }
+@media (max-width: 767px) {
+  .page-home .brand-index-row { grid-template-columns: 1fr; }
+}
 
 /* Product catalogue */
 .product-hub-section { padding-top: calc(var(--nav-height) + var(--space-2xl)) !important; background: var(--color-paper); }
