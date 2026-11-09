@@ -287,6 +287,54 @@ main > section > .max-w-5xl,
   border: 0 !important;
   background: transparent !important;
 }
+
+/* Keep case-study text and inspection images easy to scan. */
+.case-study-page .case-story-section,
+.case-study-page .process-inspection-section,
+.case-study-page .process-speed-section {
+  padding-block: 4.5rem !important;
+}
+.case-study-page .case-story-heading { margin-bottom: 1.75rem; }
+.case-study-page .case-story-copy { max-width: 58rem; }
+.case-study-page .case-story-copy,
+.case-study-page .process-inspection-copy,
+.case-study-page .process-speed-copy,
+.case-study-page .camera-process-card,
+.case-study-page .process-step { word-break: keep-all; overflow-wrap: anywhere; }
+.case-study-page .camera-process-card:has(ul:empty) { min-height: 8rem; }
+.case-study-page .case-story-copy + .camera-process-grid,
+.case-study-page .case-story-copy + .inspection-process,
+.case-study-page .case-story-copy + .system-grid:not(:empty) { margin-top: 2rem; }
+.case-study-page .system-grid:empty,
+.case-study-page .process-result-grid:empty { display: none; }
+.case-study-page .case-gallery img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: #080b0d;
+}
+.case-study-page .case-study-hero-media:not(.process-hero-media) {
+  min-height: 0;
+  aspect-ratio: 4 / 3;
+}
+.case-study-page .case-study-hero-media:not(.process-hero-media) img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #080b0d;
+}
+.case-study-page .process-inspection-copy { min-width: 0; }
+.case-study-page .process-inspection-copy > p:not(.case-story-index) { max-width: 60ch; }
+.case-study-page .case-gallery figcaption,
+.case-study-page .inspection-media figcaption { word-break: keep-all; }
+@media (max-width: 720px) {
+  .case-study-page .case-story-section,
+  .case-study-page .process-inspection-section,
+  .case-study-page .process-speed-section { padding-block: 3rem !important; }
+  .case-study-page .case-story-heading { margin-bottom: 1.25rem; }
+  .case-study-page .case-gallery { gap: 1rem; }
+}
 .case-grid > .case-card { border: 1px solid var(--color-rule) !important; }
 .page-home main .grid:has(> .glass-card) > .glass-card,
 .page-about main .grid:has(> .glass-card) > .glass-card,
@@ -436,11 +484,11 @@ main > section > .max-w-5xl,
 .process-fact dd { color: var(--color-ink) !important; }
 .process-photo-gallery { gap: 1px !important; border: 1px solid var(--color-rule); background: var(--color-rule); }
 .process-photo-card { border: 0 !important; border-radius: 0 !important; }
-.process-photo-card img { aspect-ratio: 4 / 3; object-fit: cover; filter: saturate(.72) contrast(1.07); }
+.process-photo-card img { aspect-ratio: 4 / 3; object-fit: contain; }
 .case-story-section,
 .process-inspection-section,
 .process-speed-section { padding-block: clamp(var(--space-3xl), 9vw, var(--space-4xl)) !important; }
-.case-story-heading { position: sticky; top: calc(var(--nav-height) + 1.5rem); }
+.case-story-heading { position: static; }
 .camera-process-grid,
 .process-result-grid,
 .process-comparison-grid,
@@ -452,7 +500,7 @@ main > section > .max-w-5xl,
 .rule-comparison-card,
 .optical-comparison-card { border: 0 !important; border-radius: 0 !important; }
 .camera-process-card > span { color: var(--color-cool) !important; font-family: var(--font-outlier); }
-.inspection-media img { width: 100%; object-fit: cover; }
+.inspection-media img { width: 100%; object-fit: contain; }
 .inspection-point-list li,
 .process-challenge-list li,
 .process-speed-list li,
