@@ -108,9 +108,9 @@ body > nav.fixed > div > div a.text-white::after {
 
 /* Inner page mastheads */
 body:not(.page-home) > header {
-  min-height: 430px;
-  padding-top: calc(var(--nav-height) + 6.5rem) !important;
-  padding-bottom: 5rem !important;
+  min-height: 0;
+  padding-top: calc(var(--nav-height) + 3.5rem) !important;
+  padding-bottom: 3.5rem !important;
   border-bottom: 1px solid var(--color-rule);
   background: var(--color-paper-2) !important;
   text-align: left !important;
@@ -119,6 +119,17 @@ body:not(.page-home) > header > div {
   max-width: var(--content-wide) !important;
   margin-inline: auto;
   padding-inline: var(--gutter) !important;
+}
+body:not(.page-home) > header > .grid > div:has(> img) {
+  width: 100%;
+  max-width: 360px;
+  justify-self: center;
+}
+body:not(.page-home) > header > .grid > div > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 body:not(.page-home) > header p:first-child {
   color: var(--color-cool) !important;
@@ -137,16 +148,18 @@ body:not(.page-home) > header h1 {
 body:not(.page-home) > header h1 + p,
 body:not(.page-home) > header .text-xl {
   max-width: 760px;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
   color: var(--color-ink-2) !important;
   font-size: var(--text-lead) !important;
 }
 
 /* Home: full-bleed technical opening */
 .page-home > header {
-  min-height: min(820px, 94vh);
+  min-height: 0;
   display: flex;
-  align-items: flex-end;
-  padding: calc(var(--nav-height) + var(--space-3xl)) 0 var(--space-3xl) !important;
+  align-items: center;
+  padding: calc(var(--nav-height) + 4rem) 0 4rem !important;
   border-bottom: 1px solid var(--color-rule);
   background: var(--color-paper-3) !important;
 }
@@ -357,6 +370,9 @@ body:not(.page-home) > header .text-xl {
   line-height: 1.2;
 }
 @media (max-width: 640px) {
+  body:not(.page-home) > header { padding-bottom: 2.5rem !important; }
+  body:not(.page-home) > header > .grid { gap: 1.5rem; }
+  body:not(.page-home) > header > .grid > div:has(> img) { max-width: 220px; }
   .page-home .hero-title { font-size: 1.75rem; line-height: 1.25; }
   body:not(.page-home) > header h1,
   .case-study-page .case-study-title,
@@ -430,7 +446,7 @@ body:not(.page-home) > header .text-xl {
 .hikrobot-family span { color: var(--color-cool) !important; font-family: var(--font-outlier); letter-spacing: .04em !important; }
 
 /* Portfolio library */
-.page-portfolio > header { min-height: 560px; justify-content: flex-end !important; padding-bottom: 5.5rem !important; text-align: left; }
+.page-portfolio > header { min-height: 0; height: auto; justify-content: center !important; padding-bottom: 3.5rem !important; text-align: left; }
 .page-portfolio > header > .absolute img { opacity: .42 !important; filter: grayscale(.65) contrast(1.18); }
 .page-portfolio .hero-overlay { background: color-mix(in oklab, var(--color-paper-3) 58%, transparent) !important; }
 .page-portfolio > header > .relative { width: 100%; max-width: var(--content-wide) !important; padding-inline: var(--gutter) !important; }
@@ -541,7 +557,7 @@ body:not(.page-home) > header .text-xl {
 .case-study-cta { background: var(--color-paper-2) !important; }
 
 /* Contact as a serious project intake tool */
-.page-contact > header { min-height: 500px; }
+.page-contact > header { min-height: 0; }
 .page-contact main > section { background: var(--color-paper); }
 .page-contact main > section > div { grid-template-columns: minmax(0, 1.25fr) minmax(320px, .75fr) !important; gap: 1px !important; border: 1px solid var(--color-rule); background: var(--color-rule); }
 .page-contact main > section > div > div { border: 0 !important; border-radius: 0 !important; background: var(--color-paper-2) !important; }
@@ -607,8 +623,8 @@ body > footer p { width: 100%; max-width: var(--content-wide); margin-inline: au
   body > nav.fixed { overflow-x: auto; overflow-y: hidden; }
   body > nav.fixed > div { min-width: max-content; gap: var(--space-lg); }
   body > nav.fixed > div > div { display: flex !important; }
-  body:not(.page-home) > header { min-height: 380px; padding-top: calc(var(--nav-height) + var(--space-2xl)) !important; }
-  .page-home > header { min-height: 760px; }
+  body:not(.page-home) > header { min-height: 0; padding-top: calc(var(--nav-height) + 2.5rem) !important; }
+  .page-home > header { min-height: 0; }
   .page-home .hero-copy { padding-left: 1.25rem; }
   .case-story-heading { position: static; }
   .page-contact main > section > div { grid-template-columns: 1fr !important; }
@@ -619,7 +635,7 @@ body > footer p { width: 100%; max-width: var(--content-wide); margin-inline: au
   body > nav.fixed > div > a:first-child { font-size: 1.18rem !important; }
   body > nav.fixed > div > div { gap: var(--space-md); }
   body > nav.fixed > div > div a { font-size: .76rem; }
-  .page-home > header { min-height: 720px; padding-bottom: 3.5rem !important; }
+  .page-home > header { min-height: 0; padding: calc(var(--nav-height) + 2.5rem) 0 2.5rem !important; }
   .page-home .hero-copy { padding-left: 0; border-left: 0; }
   .page-home .hero-title { font-size: 1.75rem; }
   .page-home .hero-description { font-size: .93rem; }
