@@ -338,11 +338,11 @@ main > section > .max-w-5xl,
 
 /* A quieter, consistent type scale for page titles. */
 .page-home .hero-title {
-  font-size: 2.75rem;
+  font-size: 2.25rem;
   line-height: 1.2;
 }
 body:not(.page-home) > header h1 {
-  font-size: 2.65rem !important;
+  font-size: 2.25rem !important;
   line-height: 1.22;
 }
 body:not(.page-home) > header h1 + p,
@@ -351,15 +351,17 @@ body:not(.page-home) > header .text-xl {
   line-height: 1.8;
 }
 .case-study-page .case-study-title,
+.page-calculator main h1,
 .detail-title {
-  font-size: 2.65rem !important;
+  font-size: 2.25rem !important;
   line-height: 1.2;
 }
 @media (max-width: 640px) {
-  .page-home .hero-title { font-size: 2rem; line-height: 1.25; }
+  .page-home .hero-title { font-size: 1.75rem; line-height: 1.25; }
   body:not(.page-home) > header h1,
   .case-study-page .case-study-title,
-  .detail-title { font-size: 1.9rem !important; line-height: 1.25; }
+  .page-calculator main h1,
+  .detail-title { font-size: 1.75rem !important; line-height: 1.25; }
   body:not(.page-home) > header h1 + p,
   body:not(.page-home) > header .text-xl { font-size: 1rem !important; }
 }
@@ -619,17 +621,17 @@ body > footer p { width: 100%; max-width: var(--content-wide); margin-inline: au
   body > nav.fixed > div > div a { font-size: .76rem; }
   .page-home > header { min-height: 720px; padding-bottom: 3.5rem !important; }
   .page-home .hero-copy { padding-left: 0; border-left: 0; }
-  .page-home .hero-title { font-size: 2rem; }
+  .page-home .hero-title { font-size: 1.75rem; }
   .page-home .hero-description { font-size: .93rem; }
   .page-home .hero-actions { align-items: stretch; flex-direction: column; }
   .hero-primary { width: 100%; }
-  body:not(.page-home) > header h1 { font-size: 1.875rem !important; }
+  body:not(.page-home) > header h1 { font-size: 1.75rem !important; }
   .product-toolbar { padding: var(--space-md) !important; }
   .product-filters { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .product-grid { grid-template-columns: 1fr !important; }
   .product-visual { min-height: 220px; }
   .case-grid { grid-template-columns: 1fr !important; }
-  .case-study-title, .detail-title { font-size: 1.9rem !important; }
+  .case-study-title, .detail-title { font-size: 1.75rem !important; }
   .catalog-product-stage img, .detail-visual img { padding: 1.25rem; }
   .catalog-table-wrap { overflow-x: auto; }
   .catalog-spec-table { min-width: 760px; }
