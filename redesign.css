@@ -162,7 +162,7 @@ body:not(.page-home) > header .text-xl {
   padding-inline: var(--gutter) !important;
 }
 .page-home .hero-copy {
-  max-width: 880px;
+  max-width: 1000px;
   padding-left: 1.75rem;
   border-left: 2px solid var(--color-accent);
 }
@@ -334,6 +334,34 @@ main > section > .max-w-5xl,
   .case-study-page .process-speed-section { padding-block: 3rem !important; }
   .case-study-page .case-story-heading { margin-bottom: 1.25rem; }
   .case-study-page .case-gallery { gap: 1rem; }
+}
+
+/* A quieter, consistent type scale for page titles. */
+.page-home .hero-title {
+  font-size: 2.75rem;
+  line-height: 1.2;
+}
+body:not(.page-home) > header h1 {
+  font-size: 2.65rem !important;
+  line-height: 1.22;
+}
+body:not(.page-home) > header h1 + p,
+body:not(.page-home) > header .text-xl {
+  font-size: 1.05rem !important;
+  line-height: 1.8;
+}
+.case-study-page .case-study-title,
+.detail-title {
+  font-size: 2.65rem !important;
+  line-height: 1.2;
+}
+@media (max-width: 640px) {
+  .page-home .hero-title { font-size: 2rem; line-height: 1.25; }
+  body:not(.page-home) > header h1,
+  .case-study-page .case-study-title,
+  .detail-title { font-size: 1.9rem !important; line-height: 1.25; }
+  body:not(.page-home) > header h1 + p,
+  body:not(.page-home) > header .text-xl { font-size: 1rem !important; }
 }
 .case-grid > .case-card { border: 1px solid var(--color-rule) !important; }
 .page-home main .grid:has(> .glass-card) > .glass-card,
@@ -591,7 +619,7 @@ body > footer p { width: 100%; max-width: var(--content-wide); margin-inline: au
   body > nav.fixed > div > div a { font-size: .76rem; }
   .page-home > header { min-height: 720px; padding-bottom: 3.5rem !important; }
   .page-home .hero-copy { padding-left: 0; border-left: 0; }
-  .page-home .hero-title { font-size: 2.45rem; }
+  .page-home .hero-title { font-size: 2rem; }
   .page-home .hero-description { font-size: .93rem; }
   .page-home .hero-actions { align-items: stretch; flex-direction: column; }
   .hero-primary { width: 100%; }
@@ -601,7 +629,7 @@ body > footer p { width: 100%; max-width: var(--content-wide); margin-inline: au
   .product-grid { grid-template-columns: 1fr !important; }
   .product-visual { min-height: 220px; }
   .case-grid { grid-template-columns: 1fr !important; }
-  .case-study-title, .detail-title { font-size: 2.5rem !important; }
+  .case-study-title, .detail-title { font-size: 1.9rem !important; }
   .catalog-product-stage img, .detail-visual img { padding: 1.25rem; }
   .catalog-table-wrap { overflow-x: auto; }
   .catalog-spec-table { min-width: 760px; }
