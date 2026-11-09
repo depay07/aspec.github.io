@@ -1,0 +1,33 @@
+{
+  "importedOn": "2026-11-09",
+  "sources": [
+    {
+      "postId": "224412781417",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224412781417",
+      "slug": "rice-cooker-barcode-mes-integration",
+      "imageCount": 3,
+      "reviewNote": "원문에 리더기 수량이 총 2대와 상하 각각 2대로 혼재하여 홈페이지에는 수량을 기재하지 않음. 정확한 모델명도 확정하지 않음."
+    },
+    {
+      "postId": "224334927648",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224334927648",
+      "slug": "feed-bag-delta-robot-pick-place",
+      "imageCount": 4,
+      "reviewNote": ""
+    },
+    {
+      "postId": "224334932552",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224334932552",
+      "slug": "industrial-adhesive-ai-foreign-material",
+      "imageCount": 2,
+      "reviewNote": ""
+    },
+    {
+      "postId": "224334876409",
+      "sourceUrl": "https://blog.naver.com/aspec-tech/224334876409",
+      "slug": "feed-bag-barcode-liquid-lens",
+      "imageCount": 8,
+      "reviewNote": ""
+    }
+  ]
+}
